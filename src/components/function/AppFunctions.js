@@ -28,7 +28,6 @@ import binEmp from '../../assets/bin2.png'
 import reset from '../../assets/reset.png'
 import github from '../../assets/github.png'
 import paint from '../../assets/paint.png'
-import aiagent from '../../assets/ai_robot.png'
 import cat from '../../assets/catpic.png'
 import patch from '../../assets/patch.png'
 import ThreedObject from '../../assets/3dObject.png'
@@ -145,9 +144,6 @@ export function imageMapping (name, type) {
     case "paint":
     case "Paint":
       return paint;
-
-    case "AiAgent":
-      return aiagent;
 
     case "Cat":
     case "cat":
@@ -320,10 +316,6 @@ export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUr
       setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
     break;
 
-    case 'AiAgent': 
-        setProjectUrl('https://yuteoctober.github.io/AI_chatbot/'); 
-    break;
-
     case '3dObject': 
         setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
     break;
@@ -346,10 +338,6 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
   
         case 'Note': 
         setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
-        break;
-  
-        case 'AiAgent': 
-        setProjectUrl('https://yuteoctober.github.io/AI_chatbot/'); 
         break;
 
         case '3dObject': 

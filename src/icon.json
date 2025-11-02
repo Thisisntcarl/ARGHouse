@@ -282,17 +282,6 @@
         "description": "Interactive web-based resume showcasing personal work and experience."
     },
     {
-        "name": "AiAgent",
-        "pic": "AiAgent",
-        "folderId": "Desktop",
-        "size": 10000,
-        "type": ".exe",
-        "x": 29,
-        "y": 29,
-        "category": "Productivity",
-        "description": "AI-powered personal assistant for answering questions."
-    },
-    {
         "name": "Cat",
         "pic": "Cat",
         "folderId": "Desktop",

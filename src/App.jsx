@@ -1476,7 +1476,6 @@ function ObjectState() {
     { name: 'Mail',        setter: setMailExpand,       usestate: MailExpand,       color: 'rgba(178, 26, 77, 0.85)', size: 'small' },
     { name: 'Nft',         setter: setNftExpand,        usestate: NftExpand,        color: 'rgba(142, 29, 126, 0.85)', size: 'small' },
     { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: 'rgba(114, 81, 54, 0.85)', size: 'small' },
-    { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
     { name: '3dObject',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(224, 88, 43, 0.85)', size: 'small' },
     { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
@@ -1607,10 +1606,6 @@ function handleShow(name) {
           handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
           handleShow('Internet');
         }
-        if(lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
-          handleShow('Internet');
-        }
         if(lowerCaseName === '3dobject') {
         handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
@@ -1634,7 +1629,7 @@ function handleShow(name) {
   if(tap.includes(name)) return;
   setStartActive(false);
 
-  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune'];
+  const notToOpenList = ['Run', 'Nft', 'Note', '3dObject', 'Fortune'];
   if (notToOpenList.includes(name)) return;
 
   setTap(prevTap => [...prevTap, name]);
@@ -1708,10 +1703,6 @@ function handleShowMobile(name) {
           handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
           handleShow('Internet');
         }
-        if(lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
-          handleShow('Internet');
-        }
         if(lowerCaseName === '3dobject') {
         handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
@@ -1732,7 +1723,7 @@ function handleShowMobile(name) {
     if(tap.includes(name)) return;
     setStartActive(false)
   
-    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune'];
+    const notToOpenList = ['Run', 'Nft', 'Note', '3dObject', 'Fortune'];
     if (notToOpenList.includes(name)) return;
   
     setTap(prevTap => [...prevTap, name]);
