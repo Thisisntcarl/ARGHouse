@@ -150,17 +150,6 @@
         "y": 14
     },
     {
-        "name": "Bitcoin",
-        "pic": "Bitcoin",
-        "folderId": "Utility",
-        "size": 500,
-        "type": ".exe",
-        "x": 15,
-        "y": 15,
-        "category": "Utilities",
-        "description": "Crypto tracking and wallet utility tool."
-    },
-    {
         "name": "001",
         "pic": "Jpeg",
         "folderId": "Picture",

@@ -12,7 +12,6 @@ import project from '../assets/regFolder.png';
 import resume from '../assets/folder.png';
 import shutdownicon from '../assets/shutdownicon.png';
 import settings from '../assets/setting.png';
-import btc_icon from '../assets/btc_icon.webp'
 import { clippyPhrase, clippySuggest } from './function/ClippyFunction';
 import { BsCheck  } from "react-icons/bs";
 import Calendar from 'react-calendar';
@@ -38,7 +37,6 @@ export default function Footer() {
         tileScreen, setTileScreen,
         onlineUser,
         newsPopup, setNewsPopup,
-        btcShow, setBtcShow,
         isTouchDevice,
         desktopIcon,
         projectStartBar, setProjectStartBar,
@@ -490,15 +488,6 @@ export default function Footer() {
                                 e.stopPropagation()
                                 setNewsPopup(!newsPopup)
                             }}
-                    />
-                    <img src={btc_icon} alt="btc_icon" 
-                        style={{
-                            position: 'relative',
-                            width: '18px',
-                            left: '5px',
-                            zIndex: '2'
-                        }} 
-                        onClick={() => setBtcShow(!btcShow)}
                     />
                     <img src={display} alt="display" 
                         onClick={(e) => {
