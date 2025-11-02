@@ -271,17 +271,6 @@
         "description": "Interactive web-based resume showcasing personal work and experience."
     },
     {
-        "name": "Cat",
-        "pic": "Cat",
-        "folderId": "Desktop",
-        "size": 5000,
-        "type": ".exe",
-        "x": 30,
-        "y": 30,
-        "category": "Games",
-        "description": "Virtual pet simulation game featuring a cute cat spinning."
-    },
-    {
         "name": "RecycleBin",
         "pic": "RecycleBin",
         "folderId": "Desktop",
