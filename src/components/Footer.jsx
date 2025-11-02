@@ -5,7 +5,6 @@ import startIcon from '../assets/95icon.png';
 import run from '../assets/run.png';
 import github from '../assets/github.png';
 import linked from '../assets/linkedin.png';
-import tile from '../assets/tile.png';
 import sidebar from '../assets/sidebar95.png';
 import display from '../assets/display.png';
 import project from '../assets/regFolder.png';
@@ -33,8 +32,7 @@ export default function Footer() {
     const [calValue, calOnChange] = useState(new Date());
    
 
-    const { 
-        tileScreen, setTileScreen,
+    const {
         onlineUser,
         newsPopup, setNewsPopup,
         isTouchDevice,
@@ -124,21 +122,6 @@ export default function Footer() {
             spanText: "Github",
             onClick: () => {
                 handleDoubleClickEnterLink('Github', handleShow)
-                setStartActive(false)
-            },
-            onmouseenter: () => {
-                setResumejectStartBar(false);
-                setProjectStartBar(false);
-            },
-        },
-        {
-            className: "linked",
-            imgSrc: tile,
-            imgAlt: "Tile",
-            style: { borderRadius: '5px' },
-            spanText: "Tile Screen",
-            onClick: () => {
-                setTileScreen(true),
                 setStartActive(false)
             },
             onmouseenter: () => {
