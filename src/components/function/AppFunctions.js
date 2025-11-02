@@ -33,7 +33,6 @@ import ThreedObject from '../../assets/3dObject.png'
 import Fortune from '../../assets/fortune.png'
 import run from '../../assets/run.png'
 import backarrow from '../../assets/backarrow.png'
-import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
 import store from '../../assets/store.png'
@@ -160,10 +159,6 @@ export function imageMapping (name, type) {
 
     case "Exit":
       return backarrow;
-
-    case "tile":
-    case "Tile":
-      return tile;
 
     case "TaskManager":
     case "taskmanager":

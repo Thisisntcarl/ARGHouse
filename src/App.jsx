@@ -29,7 +29,6 @@ import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
 import NewsApp from './components/NewsApp'
 import Patch from './components/Patch';
-import WindowsDragLogin from './components/WindowsDragLogin';
 import TaskManager from './components/TaskManager';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
@@ -77,8 +76,6 @@ function App() {
   });
 
   const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
-  const [tileBG, setTileBG] = useState('#098684')
-  const [tileScreen, setTileScreen] = useState(true)
   const [chatBotActive, setChatBotActive] = useState(false);
   const [newsPopup, setNewsPopup] = useState(false)
   const [onlineUser, setOnlineUser] = useState(0)
@@ -325,10 +322,6 @@ useEffect(() => {
   const handleRightClick = (e) => {
     e.preventDefault();
 
-  if(tileScreen) {
-    return;
-  }
-  
     const iconRect = refBeingClicked.current?.getBoundingClientRect();
     setRightClickPosition({ x: e.clientX, y: e.clientY });
 
@@ -351,15 +344,12 @@ useEffect(() => {
   return () => {
     document.removeEventListener("contextmenu", handleRightClick);
   };
-}, [tileScreen]);
+}, []);
+
 
 
   useEffect(() => {
     const handleTouchStart = (e) => {
-
-      if(tileScreen) {
-      return;
-      }
 
       if (dragging) return; // Prevent duplicate triggers
 
@@ -385,8 +375,7 @@ useEffect(() => {
       document.removeEventListener("touchmove", handleTouchEnd);
       document.removeEventListener("touchcancel", handleTouchEnd);
     };
-  }, [tileScreen]);
-
+  }, []);
 
   function handleMobileLongPress(e, icon) { // long press icon on mobile
     if(dragging) return;
@@ -909,8 +898,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     weather, setWeather,
     bgRotation, setBgRotation,
     backgroundImageUrl, setBackgroundImageUrl,
-    tileBG, setTileBG,
-    tileScreen, setTileScreen,
     chatBotActive, setChatBotActive,
     PatchExpand, setPatchExpand,
     newsPopup, setNewsPopup,
@@ -1044,7 +1031,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     return(
       <UserContext.Provider value={contextValue}>
         <Login/>
-        <WindowsDragLogin/>
       </UserContext.Provider>
     )
   }
@@ -1080,19 +1066,9 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     )
   }
 
-  // // show login page
-  // if(tileScreen ) {
-  //   return(
-  //     <UserContext.Provider value={contextValue}>
-  //       <WindowsDragLogin/>
-  //     </UserContext.Provider>
-  //   )
-  // }
-
   return (
     <>
       <UserContext.Provider value={contextValue}>
-      <WindowsDragLogin/>
       {regErrorPopUp && (
         <ErrorBtn
             themeDragBar={themeDragBar}
@@ -1620,8 +1596,6 @@ function handleShow(name) {
     }
   });
 
-  PatchExpand ? null : setTileScreen(false);
-  
   if(tap.includes(name)) return;
   setStartActive(false);
 
@@ -1714,7 +1688,6 @@ function handleShowMobile(name) {
         item.setter(prev => ({ ...prev, focusItem: false }));
       }
     });
-    PatchExpand ? null : setTileScreen(false)
 
     if(tap.includes(name)) return;
     setStartActive(false)
