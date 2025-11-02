@@ -10,8 +10,7 @@ function TaskManager() {
   const [itemSelected, setItemSelected] = useState(null);
   const [selectedItemToClose, setSelectedItemToClose] = useState('');
 
-    const { 
-    btcShow,
+    const {
     setShutdownWindow,
     TaskManagerExpand, setTaskManagerExpand,
     themeDragBar,
@@ -51,7 +50,6 @@ function TaskManager() {
   });
 
   const additionalItems = [ // added items
-    { name: 'Bitcoin', state: btcShow },
   ];
 
   const activeState = [
