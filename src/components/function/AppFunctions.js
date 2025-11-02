@@ -28,7 +28,6 @@ import binEmp from '../../assets/bin2.png'
 import reset from '../../assets/reset.png'
 import github from '../../assets/github.png'
 import paint from '../../assets/paint.png'
-import cat from '../../assets/catpic.png'
 import patch from '../../assets/patch.png'
 import ThreedObject from '../../assets/3dObject.png'
 import Fortune from '../../assets/fortune.png'
@@ -144,10 +143,6 @@ export function imageMapping (name, type) {
     case "paint":
     case "Paint":
       return paint;
-
-    case "Cat":
-    case "cat":
-      return cat;
 
     case "patch":
     case "Patch":

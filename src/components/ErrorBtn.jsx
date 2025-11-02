@@ -13,7 +13,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
         deletepermanently,
         iconBeingRightClicked,
         setUserCreatedFolder,
-        handleSetFocusItemTrue, setRunCatVideo 
+        handleSetFocusItemTrue
 
     } = useContext(UseContext);
     const textResetStroage = "Warning: Resetting local storage will erase all your info. Are you sure you want to continue?"
@@ -52,11 +52,6 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 setContent(textGithub);
                 break;
 
-            case "cat":
-                setYesNo(true);
-                setContent(textCat);
-                break;
-
             default:
                 setYesNo(false);
                 setContent(text);
@@ -84,10 +79,6 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
             case "webresume": 
                 
             return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
-            
-            case "cat": 
-                setRunCatVideo(true)
-                return;
 
             default:
                 return runOpenFuction();

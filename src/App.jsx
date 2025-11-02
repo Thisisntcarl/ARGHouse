@@ -28,7 +28,6 @@ import RightClickWindows from './components/RightClickWindows';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
 import NewsApp from './components/NewsApp'
-import SpinningCat from './components/SpinningCat';
 import Patch from './components/Patch';
 import WindowsDragLogin from './components/WindowsDragLogin';
 import TaskManager from './components/TaskManager';
@@ -81,7 +80,6 @@ function App() {
   const [tileBG, setTileBG] = useState('#098684')
   const [tileScreen, setTileScreen] = useState(true)
   const [chatBotActive, setChatBotActive] = useState(false);
-  const [runCatVideo, setRunCatVideo] = useState(false)
   const [newsPopup, setNewsPopup] = useState(false)
   const [onlineUser, setOnlineUser] = useState(0)
   const [sortedIcon, setSortedIcon] = useState([])
@@ -915,7 +913,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     tileScreen, setTileScreen,
     chatBotActive, setChatBotActive,
     PatchExpand, setPatchExpand,
-    runCatVideo, setRunCatVideo,
     newsPopup, setNewsPopup,
     onlineUser,
     UtilityRef,
@@ -1167,7 +1164,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <Store/>
         <TaskManager/>
         <Patch/>
-        <SpinningCat/>
         <NewsApp/>
         <RightClickWindows/>
         <Notification/>
