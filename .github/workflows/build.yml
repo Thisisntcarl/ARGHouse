@@ -29,3 +29,10 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     #- run: npm test
+
+    # Upload dist folder
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist
+        path: dist/
