@@ -50,7 +50,7 @@
     {
         "name": "Mine Sweeper",
         "pic": "MineSweeper",
-        "folderId": "Project",
+        "folderId": "Desktop",
         "size": 250,
         "type": ".exe",
         "x": 5,
