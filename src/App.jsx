@@ -27,7 +27,6 @@ import ErrorBtn from './components/ErrorBtn';
 import RightClickWindows from './components/RightClickWindows';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
-import NewsApp from './components/NewsApp'
 import Patch from './components/Patch';
 import TaskManager from './components/TaskManager';
 import { StyleHide, imageMapping,
@@ -1140,7 +1139,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <Store/>
         <TaskManager/>
         <Patch/>
-        <NewsApp/>
         <RightClickWindows/>
         <Notification/>
         <Shutdown/>

@@ -17,7 +17,6 @@ import Calendar from 'react-calendar';
 import { BsFillCaretRightFill } from "react-icons/bs";
 import binEmp from '../assets/bin2.png'
 import bin from '../assets/bin.png'
-import news from '../assets/news.png'
 
 
 export default function Footer() {
@@ -34,7 +33,6 @@ export default function Footer() {
 
     const {
         onlineUser,
-        newsPopup, setNewsPopup,
         isTouchDevice,
         desktopIcon,
         projectStartBar, setProjectStartBar,
@@ -460,18 +458,6 @@ export default function Footer() {
                 </div>
 
                 <div className="time">
-                    <img src={news} alt="news" 
-                            style={{
-                                position: 'relative',
-                                width: '18px',
-                                left: '3px',
-                                zIndex: '2'
-                            }} 
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                setNewsPopup(!newsPopup)
-                            }}
-                    />
                     <img src={display} alt="display" 
                         onClick={(e) => {
                             e.stopPropagation()
