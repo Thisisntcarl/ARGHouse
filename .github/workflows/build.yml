@@ -5,9 +5,9 @@ name: Build app
 
 on:
   push:
-    branches: [ "feature/initial-release" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ ]
+    branches: [ "develop" ]
 
 jobs:
   build:
