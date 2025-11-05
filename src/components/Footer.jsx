@@ -1,7 +1,7 @@
 import { useEffect, useRef, useContext, useState } from 'react';
 import UseContext from '../Context'
 import { motion, AnimatePresence  } from 'framer-motion';
-import startIcon from '../assets/95icon.png';
+import startIcon from '../assets/logoblack32x32.png';
 import run from '../assets/run.png';
 import github from '../assets/github.png';
 import linked from '../assets/linkedin.png';
