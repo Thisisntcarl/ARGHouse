@@ -22,16 +22,13 @@ import WindowsShutdown from './components/WindowsShutdown';
 import BgSetting from './components/BgSetting';
 import Run from './components/Run';
 import Notification from './components/Notification';
-import BTC from './components/BTC';
 import EmptyFolder from './components/EmptyFolder';
 import ErrorBtn from './components/ErrorBtn';
 import RightClickWindows from './components/RightClickWindows';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
 import NewsApp from './components/NewsApp'
-import SpinningCat from './components/SpinningCat';
 import Patch from './components/Patch';
-import WindowsDragLogin from './components/WindowsDragLogin';
 import TaskManager from './components/TaskManager';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
@@ -79,10 +76,7 @@ function App() {
   });
 
   const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
-  const [tileBG, setTileBG] = useState('#098684')
-  const [tileScreen, setTileScreen] = useState(true)
   const [chatBotActive, setChatBotActive] = useState(false);
-  const [runCatVideo, setRunCatVideo] = useState(false)
   const [newsPopup, setNewsPopup] = useState(false)
   const [onlineUser, setOnlineUser] = useState(0)
   const [sortedIcon, setSortedIcon] = useState([])
@@ -112,13 +106,12 @@ function App() {
   const [selectedFolder, setSelectedFolder] = useState({label: 'MyComputer', img: imageMapping('MyComputer')})
   const [currentFolder, setCurrentFolder] = useState('MyComputer')
   const [loading, setLoading] = useState(true)
-  const [btcShow, setBtcShow] = useState(false)
   const [resumeStartBar, setResumejectStartBar] = useState(false)
   const [projectStartBar, setProjectStartBar] = useState(false)
   const [calenderToggle, setCalenderToggle] = useState(false)
   const [iconScreenSize, setIconScreenSize] = useState(() => {
     const savedIconSize = localStorage.getItem('iconSize');
-    return savedIconSize ? Number(savedIconSize) : 0
+    return savedIconSize ? Number(savedIconSize) : 3 // Default resolution to 1920x1080
   });
   const [iconSize, setIconSize] = useState(false)
   const [allowNoti, setAllowNoti] = useState(false)
@@ -329,10 +322,6 @@ useEffect(() => {
   const handleRightClick = (e) => {
     e.preventDefault();
 
-  if(tileScreen) {
-    return;
-  }
-  
     const iconRect = refBeingClicked.current?.getBoundingClientRect();
     setRightClickPosition({ x: e.clientX, y: e.clientY });
 
@@ -355,15 +344,12 @@ useEffect(() => {
   return () => {
     document.removeEventListener("contextmenu", handleRightClick);
   };
-}, [tileScreen]);
+}, []);
+
 
 
   useEffect(() => {
     const handleTouchStart = (e) => {
-
-      if(tileScreen) {
-      return;
-      }
 
       if (dragging) return; // Prevent duplicate triggers
 
@@ -389,8 +375,7 @@ useEffect(() => {
       document.removeEventListener("touchmove", handleTouchEnd);
       document.removeEventListener("touchcancel", handleTouchEnd);
     };
-  }, [tileScreen]);
-
+  }, []);
 
   function handleMobileLongPress(e, icon) { // long press icon on mobile
     if(dragging) return;
@@ -913,11 +898,8 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     weather, setWeather,
     bgRotation, setBgRotation,
     backgroundImageUrl, setBackgroundImageUrl,
-    tileBG, setTileBG,
-    tileScreen, setTileScreen,
     chatBotActive, setChatBotActive,
     PatchExpand, setPatchExpand,
-    runCatVideo, setRunCatVideo,
     newsPopup, setNewsPopup,
     onlineUser,
     UtilityRef,
@@ -950,7 +932,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     selectedFolder, setSelectedFolder,
     currentFolder, setCurrentFolder,
     MyComputerExpand, setMyComputerExpand,
-    btcShow, setBtcShow,
     projectStartBar, setProjectStartBar,
     resumeStartBar, setResumejectStartBar,
     calenderToggle, setCalenderToggle,
@@ -1050,7 +1031,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     return(
       <UserContext.Provider value={contextValue}>
         <Login/>
-        <WindowsDragLogin/>
       </UserContext.Provider>
     )
   }
@@ -1086,19 +1066,9 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     )
   }
 
-  // // show login page
-  // if(tileScreen ) {
-  //   return(
-  //     <UserContext.Provider value={contextValue}>
-  //       <WindowsDragLogin/>
-  //     </UserContext.Provider>
-  //   )
-  // }
-
   return (
     <>
       <UserContext.Provider value={contextValue}>
-      <WindowsDragLogin/>
       {regErrorPopUp && (
         <ErrorBtn
             themeDragBar={themeDragBar}
@@ -1170,7 +1140,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <Store/>
         <TaskManager/>
         <Patch/>
-        <SpinningCat/>
         <NewsApp/>
         <RightClickWindows/>
         <Notification/>
@@ -1187,7 +1156,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <OpenProject/>
         <BgSetting/>
         <Run/>
-        {btcShow && <BTC/>}
         <Dragdrop/>
         <Footer/>
       </UserContext.Provider>
@@ -1480,7 +1448,6 @@ function ObjectState() {
     { name: 'Mail',        setter: setMailExpand,       usestate: MailExpand,       color: 'rgba(178, 26, 77, 0.85)', size: 'small' },
     { name: 'Nft',         setter: setNftExpand,        usestate: NftExpand,        color: 'rgba(142, 29, 126, 0.85)', size: 'small' },
     { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: 'rgba(114, 81, 54, 0.85)', size: 'small' },
-    { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
     { name: '3dObject',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(224, 88, 43, 0.85)', size: 'small' },
     { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
@@ -1551,11 +1518,6 @@ function handleShow(name) {
 
   if(name === '' || !name) return;
 
-  if(name === 'Bitcoin') {
-    setBtcShow(true)
-    return;
-  }
-
   const lowerCaseName = name.toLowerCase().split(' ').join('');
   const allSetItems = ObjectState();
 
@@ -1616,10 +1578,6 @@ function handleShow(name) {
           handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
           handleShow('Internet');
         }
-        if(lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
-          handleShow('Internet');
-        }
         if(lowerCaseName === '3dobject') {
         handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
@@ -1638,12 +1596,10 @@ function handleShow(name) {
     }
   });
 
-  PatchExpand ? null : setTileScreen(false);
-  
   if(tap.includes(name)) return;
   setStartActive(false);
 
-  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune'];
+  const notToOpenList = ['Run', 'Nft', 'Note', '3dObject', 'Fortune'];
   if (notToOpenList.includes(name)) return;
 
   setTap(prevTap => [...prevTap, name]);
@@ -1659,12 +1615,6 @@ function handleShowMobile(name) {
   if (now - lastTapTime < 300) {
 
     if(name === '' || !name) return;
-
-  
-    if(name === 'Bitcoin') {
-      setBtcShow(true)
-      return;
-    }
   
     const lowerCaseName = name.toLowerCase().split(' ').join('');
   
@@ -1723,10 +1673,6 @@ function handleShowMobile(name) {
           handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
           handleShow('Internet');
         }
-        if(lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
-          handleShow('Internet');
-        }
         if(lowerCaseName === '3dobject') {
         handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
@@ -1742,12 +1688,11 @@ function handleShowMobile(name) {
         item.setter(prev => ({ ...prev, focusItem: false }));
       }
     });
-    PatchExpand ? null : setTileScreen(false)
 
     if(tap.includes(name)) return;
     setStartActive(false)
   
-    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune'];
+    const notToOpenList = ['Run', 'Nft', 'Note', '3dObject', 'Fortune'];
     if (notToOpenList.includes(name)) return;
   
     setTap(prevTap => [...prevTap, name]);
@@ -1894,11 +1839,6 @@ function handleShowMobile(name) {
 }
 
   function deleteTap(name) {
-
-    if(name === 'Bitcoin') {
-      setBtcShow(false)
-      return;
-    }
 
     const setState = ObjectState();
     const passedName = name.toLowerCase().split(' ').join('');

@@ -10,8 +10,7 @@ function NewsApp() {
     const [error, setError] = useState('');
     const [allNews, setAllNews] = useState([]);
 
-    const { 
-        tileScreen,
+    const {
         city, setCity,
         Cel, setCel,
         weather, setWeather,
@@ -86,10 +85,6 @@ function NewsApp() {
             getUserLocation();   
         }
     }, [newsPopup]);
-
-    useEffect(() => { // update weather and location since tile screen is active
-        getUserLocation();   
-    }, [tileScreen]);
 
     function getUserLocation() {
         navigator.geolocation.getCurrentPosition(

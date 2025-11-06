@@ -12,7 +12,6 @@ import settings from '../../assets/setting.png'
 import file from '../../assets/file4download.png'
 import disk from '../../assets/c.png'
 import rom from '../../assets/rom.png'
-import btc from '../../assets/btc_icon.webp'
 import jpeg from '../../assets/jpeg.png'
 import firstPic from '../../assets/001.jpg'
 import secondPic from '../../assets/002.jpg'
@@ -29,14 +28,11 @@ import binEmp from '../../assets/bin2.png'
 import reset from '../../assets/reset.png'
 import github from '../../assets/github.png'
 import paint from '../../assets/paint.png'
-import aiagent from '../../assets/ai_robot.png'
-import cat from '../../assets/catpic.png'
 import patch from '../../assets/patch.png'
 import ThreedObject from '../../assets/3dObject.png'
 import Fortune from '../../assets/fortune.png'
 import run from '../../assets/run.png'
 import backarrow from '../../assets/backarrow.png'
-import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
 import store from '../../assets/store.png'
@@ -127,10 +123,6 @@ export function imageMapping (name, type) {
     case 'cd-rom':
       return rom;
 
-    case 'Bitcoin':
-    case 'bitcoin':
-      return btc
-
     case name[0] === '0':
     case 'Photo':
     case 'Jpeg':
@@ -151,13 +143,6 @@ export function imageMapping (name, type) {
     case "Paint":
       return paint;
 
-    case "AiAgent":
-      return aiagent;
-
-    case "Cat":
-    case "cat":
-      return cat;
-
     case "patch":
     case "Patch":
       return patch;
@@ -174,10 +159,6 @@ export function imageMapping (name, type) {
 
     case "Exit":
       return backarrow;
-
-    case "tile":
-    case "Tile":
-      return tile;
 
     case "TaskManager":
     case "taskmanager":
@@ -325,10 +306,6 @@ export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUr
       setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
     break;
 
-    case 'AiAgent': 
-        setProjectUrl('https://yuteoctober.github.io/AI_chatbot/'); 
-    break;
-
     case '3dObject': 
         setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
     break;
@@ -351,10 +328,6 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
   
         case 'Note': 
         setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
-        break;
-  
-        case 'AiAgent': 
-        setProjectUrl('https://yuteoctober.github.io/AI_chatbot/'); 
         break;
 
         case '3dObject': 

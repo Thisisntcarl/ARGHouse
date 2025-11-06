@@ -10,8 +10,7 @@ function TaskManager() {
   const [itemSelected, setItemSelected] = useState(null);
   const [selectedItemToClose, setSelectedItemToClose] = useState('');
 
-    const { 
-    btcShow,
+    const {
     setShutdownWindow,
     TaskManagerExpand, setTaskManagerExpand,
     themeDragBar,
@@ -41,7 +40,7 @@ function TaskManager() {
 
   const allState = ObjectState()
 
-  const bannedItems = ['Fortune', 'AiAgent', 'TaskManager', '3dObject']
+  const bannedItems = ['Fortune', 'TaskManager', '3dObject']
 
   const activeStateAll = allState.filter(item => { // from objectState
     if(bannedItems.includes(item.name)) {
@@ -51,7 +50,6 @@ function TaskManager() {
   });
 
   const additionalItems = [ // added items
-    { name: 'Bitcoin', state: btcShow },
   ];
 
   const activeState = [

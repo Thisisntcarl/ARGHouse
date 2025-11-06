@@ -150,17 +150,6 @@
         "y": 14
     },
     {
-        "name": "Bitcoin",
-        "pic": "Bitcoin",
-        "folderId": "Utility",
-        "size": 500,
-        "type": ".exe",
-        "x": 15,
-        "y": 15,
-        "category": "Utilities",
-        "description": "Crypto tracking and wallet utility tool."
-    },
-    {
         "name": "001",
         "pic": "Jpeg",
         "folderId": "Picture",
@@ -280,28 +269,6 @@
         "y": 28,
         "category": "Productivity",
         "description": "Interactive web-based resume showcasing personal work and experience."
-    },
-    {
-        "name": "AiAgent",
-        "pic": "AiAgent",
-        "folderId": "Desktop",
-        "size": 10000,
-        "type": ".exe",
-        "x": 29,
-        "y": 29,
-        "category": "Productivity",
-        "description": "AI-powered personal assistant for answering questions."
-    },
-    {
-        "name": "Cat",
-        "pic": "Cat",
-        "folderId": "Desktop",
-        "size": 5000,
-        "type": ".exe",
-        "x": 30,
-        "y": 30,
-        "category": "Games",
-        "description": "Virtual pet simulation game featuring a cute cat spinning."
     },
     {
         "name": "RecycleBin",
