@@ -3,7 +3,6 @@ import UserContext from './Context'
 import { Filter } from 'bad-words';
 import badword from './badword'
 import Footer from './components/Footer';
-import Store from './components/Store';
 import Dragdrop from './components/Dragdrop';
 import MyBioFolder from './components/MyBioFolder';
 import MyComputer from './components/MyComputer';
@@ -253,9 +252,6 @@ function App() {
   const [TaskManagerExpand, setTaskManagerExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
-  const [StoreExpand, setStoreExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-
   const [UserCreatedFolder, setUserCreatedFolder] = useState(() => {
   const localFolders = localStorage.getItem('userFolders');
   const parsed = localFolders ? JSON.parse(localFolders) : [];
@@ -309,11 +305,6 @@ function App() {
     setTimeout(() => {
       handleShow('Patch');
     }, 2500);
-    
-    if(!desktopIcon.find(icon => icon.name === 'Store')) {
-      localStorage.clear();
-      location.reload();
-    }
   },[])
 
 
@@ -878,7 +869,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
   const contextValue = {
     itemBeingSelected, setItemBeingSelected,
     installIcon, setInstallIcon,
-    StoreExpand, setStoreExpand,
     deletepermanently,
     currentRightClickFolder, setCurrentRightClickFolder,
     ringMsnOff,
@@ -1136,7 +1126,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
           folderName='Photo'
           photoMode={true}
         />
-        <Store/>
         <TaskManager/>
         <Patch/>
         <RightClickWindows/>
@@ -1199,8 +1188,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 // }
 
   function deletepermanently(deleteName) { // delete from desktopIcon
-
-    if(deleteName === 'Store') return;
     
     const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
     if (droppedIcon) { 
@@ -1462,7 +1449,6 @@ function ObjectState() {
     { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: 'rgba(193, 178, 46, 0.85)', size: 'small' },
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
     { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
-    { name: 'Store',       setter: setStoreExpand,      usestate: StoreExpand,      color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
     
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({

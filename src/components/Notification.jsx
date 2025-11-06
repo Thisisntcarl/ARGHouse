@@ -65,34 +65,6 @@ function Notification() {
           text2: '',
           function: 'MSN',
         };
-      case 'appInstalling':
-        return {
-          img,
-          text1: `Installing ${safeName} app...`,
-          text2: '',
-          function: '',
-        };
-      case 'appInstalled':
-        return {
-          img,
-          text1: `${safeName} app is now installed`,
-          text2: '',
-          function: safeName,
-        };
-      case 'unIntallingApp':
-        return {
-          img,
-          text1: `uninstalling ${safeName} app`,
-          text2: '',
-          function: '',
-        };
-      case 'appUninstalled':
-        return {
-          img,
-          text1: `${safeName} app is now uninstalled`,
-          text2: '',
-          function: '',
-        };
       default:
         return {
           img: icon_wins95,
