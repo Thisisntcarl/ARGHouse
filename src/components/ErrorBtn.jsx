@@ -51,6 +51,11 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 setContent(textGithub);
                 break;
 
+            case "cicada detroit":
+                 setYesNo(true);
+                 setContent(textGithub);
+                 break;
+
             default:
                 setYesNo(false);
                 setContent(text);
@@ -75,9 +80,11 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
             case "github": 
                 return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
 
-            case "webresume": 
-                
-            return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
+            case "webresume":
+                return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
+
+            case "cicada detroit":
+                return window.open('https://www.cicadadetroit.com/');
 
             default:
                 return runOpenFuction();

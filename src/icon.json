@@ -271,6 +271,17 @@
         "description": "Interactive web-based resume showcasing personal work and experience."
     },
     {
+        "name": "Cicada Detroit",
+        "pic": "CicadaDetroit",
+        "folderId": "Desktop",
+        "size": 21347,
+        "type": ".exe",
+        "x": 28,
+        "y": 28,
+        "category": "Productivity",
+        "description": "Interactive web-based resume showcasing personal work and experience."
+    },
+    {
         "name": "RecycleBin",
         "pic": "RecycleBin",
         "folderId": "Desktop",
