@@ -215,7 +215,7 @@ function App() {
   const [desktopIcon, setDesktopIcon] = useState(() => {
   const localItems = localStorage.getItem('icons');
 
-  const deleteIcon = ['Winamp', 'Paint', '3dObject'];
+  const deleteIcon = ['Winamp', '3dObject'];
 
   const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
 

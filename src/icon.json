@@ -281,7 +281,7 @@
     {
         "name": "Paint",
         "pic": "Paint",
-        "folderId": "Utility",
+        "folderId": "Desktop",
         "size": 200,
         "type": ".exe",
         "x": 33,
