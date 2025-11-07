@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { SketchPicker } from 'react-color';
 import settingIcon from '../assets/setting.png'
 import bgPic from '../assets/bgpc.png'
-import bg0 from '../assets/bg0.png'
+import bg0 from '../assets/ARGHousebg.gif
 import bg1 from '../assets/bg1.png'
 import bg2 from '../assets/bg2.jpg'
 import bg3 from '../assets/bg3.jpg'
@@ -27,7 +27,7 @@ import '../css/BgSetting.css'
 
 
 function BgSetting() {
-  
+
   const [pickerPanel, setPickerPanel] = useState(false)
   const [userPickedColor, setUserPickedColor] = useState('')
   const [bgTap, setBgTap] = useState(true)
@@ -35,7 +35,7 @@ function BgSetting() {
   const [ barcolor, setBarcolor ] = useState(null)
   const [ ImgBgPreview, setImgBgPreview ] = useState(null)
   const [ ImgBgPreviewEffect, setImgBgPreviewEffect ] = useState(null)
-  
+
   const [ localBg, setLocalBg ] = useState(() => {
     const prevBg = localStorage.getItem('background')
     return prevBg? prevBg : null
@@ -65,7 +65,7 @@ function BgSetting() {
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
-        const positionX = data.x 
+        const positionX = data.x
         const positionY = data.y
         setBgSettingExpand(prev => ({
           ...prev,
@@ -88,8 +88,8 @@ function BgSetting() {
         { value: 11, label: 'Live Wavy Grey', color: '#3C3C3C', image: bg10, barColor: '#3C3C3C'},
         { value: 12, label: 'Live Wavy Light Grey', color: '#828890', image: bg11, barColor: '#4a4a4a'},
       ];
-      
-      
+
+
       const effectOptions = [
         { value: 1, label: '(None)', image: 'none'},
         { value: 2, label: 'Noise', image: eff1},
@@ -109,10 +109,10 @@ function BgSetting() {
       }, [userPickedColor]);
 
 
-      
+
       function setbgColorFunction2(index) {
         const selectedOption = colorOptions.find(option => option.value === index);
-        
+
         if (selectedOption) {
           setSelectedBg2(index);
           setImgBgPreview(selectedOption.image);
@@ -123,7 +123,7 @@ function BgSetting() {
 
       function setbgColorFunction2Effect(index) {
         const selectedOption = effectOptions.find(option => option.value === index);
-        
+
         if (selectedOption) {
           setSelectedBg2Effect(index);
           setImgBgPreviewEffect(selectedOption.image);
@@ -142,7 +142,7 @@ function BgSetting() {
         }
 
       },[BgSettingExpand])
-      
+
 
       useEffect(() => {
         const bodyBG = document.getElementsByTagName('body')[0];
@@ -165,18 +165,18 @@ function BgSetting() {
 
         if (ImgBgPreviewEffect) { // for Effect
           rootEffect.style.setProperty('--before-bg-image', `url(${ImgBgPreviewEffect})`);
-          
-        } 
+
+        }
 
         if (ImgBgPreview) { // for background
           bodyBG.style.backgroundColor = themeColor
-          bodyBG.style.backgroundImage = `url(${ImgBgPreview})`; 
+          bodyBG.style.backgroundImage = `url(${ImgBgPreview})`;
           setThemeDragBar(barcolor)
         } else {
           return;
         }
       }
-      
+
       function cancelBg() {
         const bodyBG = document.getElementsByTagName('body')[0];
         const rootEffect = document.getElementById('root');
@@ -184,8 +184,8 @@ function BgSetting() {
 
         if (localEffect) { // for Effect
           rootEffect.style.setProperty('--before-bg-image', `url(${localEffect})`);
-        } 
-      
+        }
+
         if (localBg) { // for background
           bodyBG.style.backgroundColor = localtheme
           bodyBG.style.backgroundImage = `url(${localBg})`;
@@ -194,7 +194,7 @@ function BgSetting() {
           return;
         }
       }
-      
+
 
       function okBg() {
 
@@ -205,46 +205,46 @@ function BgSetting() {
         if (ImgBgPreviewEffect) { // for effect
           rootEffect.style.setProperty('--before-bg-image', `url(${ImgBgPreviewEffect})`);
         }
-        
+
         if (ImgBgPreviewEffect) { // for effect
           localStorage.setItem('effect', ImgBgPreviewEffect); // set background in localstroage
           setLocalEffect(ImgBgPreviewEffect)
           setLocalEffect(localEffect)
-        } 
+        }
 
         if (ImgBgPreview) { // for background
           bodyBG.style.backgroundColor = themeColor
-          bodyBG.style.backgroundImage = `url(${ImgBgPreview})`; 
+          bodyBG.style.backgroundImage = `url(${ImgBgPreview})`;
           setThemeDragBar(barcolor)
         }
-        
+
         if (ImgBgPreview) { // for background
           localStorage.setItem('theme', themeColor); // set theme in localstroage
           localStorage.setItem('background', ImgBgPreview); // set background in localstroage
           localStorage.setItem('barcolor', barcolor); // set barcolor in localstroage
           setLocalBg(ImgBgPreview)
           setLocalTheme(themeColor)
-        } 
+        }
         return;
       }
 
   return (
     <>
       <Draggable
-        axis="both" 
+        axis="both"
         handle={'.folder_dragbar_bgsetting'}
         grid={[1, 1]}
         scale={1}
         disabled={BgSettingExpand.expand}
         bounds={{top: 0}}
-        defaultPosition={{ 
+        defaultPosition={{
           x: window.innerWidth <= 500 ? 35 : 70,
           y: window.innerWidth <= 500 ? 35 : 40,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
         onStart={() => handleSetFocusItemTrue('Settings')}
       >
-        <motion.div className='bgsetting_folder' 
+        <motion.div className='bgsetting_folder'
             onClick={(e) => {
               e.stopPropagation();
               handleSetFocusItemTrue('Settings');
@@ -264,7 +264,7 @@ function BgSetting() {
                 setBgSettingExpand(prev => ({...prev, hide: true, focusItem: false}))
                 StyleHide('Settings')
               } : undefined
-              }   
+              }
                 onTouchEnd={(e) => {
                 e.stopPropagation()
                 setBgSettingExpand(prev => ({...prev, hide: true, focusItem: false}))
@@ -293,8 +293,8 @@ function BgSetting() {
             </div>
           </div>
           <div className="file_tap_container-bgsetting">
-          <p 
-            style={{ 
+          <p
+            style={{
               borderBottomColor: bgTap ? '' : '#f0efef',
               bottom: bgTap? '2px' : '',
             }}
@@ -308,10 +308,10 @@ function BgSetting() {
             }}>
               Background
             </span>
-            
+
           </p>
           <p
-            style={{ 
+            style={{
               borderBottomColor: effectTap ? '' : '#f0efef',
               bottom: effectTap? '2px' : '',
             }}
@@ -326,7 +326,7 @@ function BgSetting() {
             Effect
             </span>
           </p>
-          
+
           </div>
           <div className="folder_content">
           {/* Background Section */}
@@ -379,7 +379,7 @@ function BgSetting() {
                       >
                         {option.label}
                         {option.value === 13 && (
-                          <span 
+                          <span
                             style={{ position: 'relative', left: '8px'}}>
                             {userPickedColor}
                           </span>
@@ -447,8 +447,8 @@ function BgSetting() {
             </div>
 
             <div className="bgsetting_btn_cancel"
-              onClick={!isTouchDevice ? () => { 
-                deleteTap('Settings') 
+              onClick={!isTouchDevice ? () => {
+                deleteTap('Settings')
                 cancelBg()
               } : undefined
               }
@@ -472,6 +472,6 @@ function BgSetting() {
       </Draggable>
     </>
   )
-}          
+}
 
 export default BgSetting
