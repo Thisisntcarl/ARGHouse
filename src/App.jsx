@@ -4,7 +4,7 @@ import { Filter } from 'bad-words';
 import badword from './badword'
 import Footer from './components/Footer';
 import Dragdrop from './components/Dragdrop';
-import MyBioFolder from './components/MyBioFolder';
+import AboutFolder from './components/AboutFolder';
 import MyComputer from './components/MyComputer';
 import ResumeFolder from './components/ResumeFolder';
 import ProjectFolder from './components/ProjectFolder';
@@ -166,7 +166,7 @@ function App() {
   const [tap, setTap] = useState([])
   const [lastTapTime, setLastTapTime] = useState(0)
   const [projectUrl, setProjectUrl] = useState('')
-  const [MybioExpand, setMybioExpand] = useState(
+  const [AboutExpand, setAboutExpand] = useState(
   {
     expand: false, // fullscreen
     show: false, // show folder when double clicked
@@ -945,7 +945,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     startActive, setStartActive,
     time, setTime,
     desktopIcon, setDesktopIcon,
-    MybioExpand, setMybioExpand,
+    AboutExpand, setAboutExpand,
     tap, setTap,
     imageMapping,
     lastTapTime, setLastTapTime,
@@ -1132,7 +1132,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <Notification/>
         <Shutdown/>
         <MyComputer/>
-        <MyBioFolder/>
+        <AboutFolder/>
         <ResumeFolder/>
         <ProjectFolder/>
         <MailFolder/>
@@ -1426,7 +1426,7 @@ async function getChat() {
 function ObjectState() {
   return [
    
-    { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: 'rgba(46, 108, 176, 0.85)', size: 'small' },
+    { name: 'About',       setter: setAboutExpand,      usestate: AboutExpand,      color: 'rgba(46, 108, 176, 0.85)', size: 'small' },
     { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: 'rgba(65, 138, 68, 0.85)', size: 'small' },
     { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
     { name: 'Picture',     setter: setPictureExpand,    usestate: pictureExpand,    color: 'rgba(85, 50, 148, 0.85)', size: 'large' },
