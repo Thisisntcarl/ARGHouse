@@ -136,18 +136,14 @@
 
 .file_tap_container-bgsetting p {
     position: relative;
-    height: 22px;
-    padding: 0px 4px;
+    padding: 0px 8px;
     padding-top: 1px;
-    bottom: 1px;
-    font-size: 12px;
-    background: #c5c4c4;
+    font-size: 13px;
     border: 2px solid black;
     border-top-color: #f0efef;
     border-left-color: #f0efef;
-    border-bottom-color: transparent;
     border-right-color: rgb(53, 52, 52);
-    z-index: 999999;
+    z-index: 1;
     cursor: pointer;
 }
 

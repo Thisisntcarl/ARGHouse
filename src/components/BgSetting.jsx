@@ -64,6 +64,19 @@ function BgSetting() {
         }))
       }
 
+      function handleSettingsTap(name) {
+        setBgTap(name === 'bg');
+        setEffectTap(name === 'effect');
+      }
+
+      const activeBtnStyle = {
+        bottom: '2px',
+        outline: '1px dotted black',
+        outlineOffset: '-5px',
+        borderBottomColor: '#c5c4c4',
+        zIndex: '3'
+      };
+
       const colorOptions = [
         { value: 1, label: 'Digital Dusk', color: '#3F4565', image: bg0, barColor: '#3F4565'},
         { value: 13, label: 'Choose your favorite color', color: userPickedColor, image: userPickedColor, barColor: userPickedColor}
@@ -235,7 +248,7 @@ function BgSetting() {
              style={{ background: BgSettingExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="bgsetting_barname">
-              <img src={settingIcon} alt="" />
+              <img src={settingIcon} alt="Settings" />
               <span>Settings</span>
             </div>
             <div className="bgsetting_barbtn">
@@ -260,12 +273,14 @@ function BgSetting() {
                   onClick={!isTouchDevice ? () => {
                     cancelBg()
                     deleteTap('Settings')
+                    handleAboutTap('bg')
                     setPickerPanel(false);
                   }
                   : undefined}
                   onTouchEnd={() => {
                     cancelBg()
                     deleteTap('Settings')
+                    handleAboutTap('bg')
                   }}
                 >×
                 </p>
@@ -273,38 +288,13 @@ function BgSetting() {
             </div>
           </div>
           <div className="file_tap_container-bgsetting">
-          <p
-            style={{
-              borderBottomColor: bgTap ? '' : '#f0efef',
-              bottom: bgTap? '2px' : '',
-            }}
-            onClick={() => {
-              setBgTap(true)
-              setEffectTap(false)
-            }}
-          >
-            <span style={{
-              border: bgTap? '1px dotted black' :''
-            }}>
-              Background
-            </span>
-
+          <p onClick={() => handleSettingsTap("bg")}
+              style={bgTap ? activeBtnStyle : {}}
+          >Background
           </p>
-          <p
-            style={{
-              borderBottomColor: effectTap ? '' : '#f0efef',
-              bottom: effectTap? '2px' : '',
-            }}
-            onClick={() => {
-              setBgTap(false)
-              setEffectTap(true)
-            }}
-          >
-            <span style={{
-                    border: effectTap? '1px dotted black' :''
-                  }}>
-            Effect
-            </span>
+          <p onClick={() => handleSettingsTap("effect")}
+              style={effectTap ? activeBtnStyle : {}}
+          >Effect
           </p>
 
           </div>
