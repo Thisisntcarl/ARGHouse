@@ -87,13 +87,13 @@ select {
 
 body {
     font-family: 'win95', sans-serif;
-  background: #098684;
-  height: 100svh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: repeat;
-  overflow: hidden;
-  background-repeat: no-repeat;
+    background: url('./assets/ARGHousebg.gif');
+    height: 100svh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    overflow: hidden;
+    background-repeat: no-repeat;
 }
 
 
