@@ -6,16 +6,6 @@ import { SketchPicker } from 'react-color';
 import settingIcon from '../assets/setting.png'
 import bgPic from '../assets/bgpc.png'
 import bg0 from '../assets/ARGHousebg.gif'
-import bg1 from '../assets/bg1.png'
-import bg2 from '../assets/bg2.jpg'
-import bg3 from '../assets/bg3.jpg'
-import bg5 from '../assets/bg5.png'
-import bg6 from '../assets/bg6.jpg'
-import bg7 from '../assets/bg7.png'
-import bg8 from '../assets/bg8.png'
-import bg9 from '../assets/bg9.jpg'
-import bg10 from '../assets/live_grey.gif'
-import bg11 from '../assets/live_light_grey.gif'
 import eff1 from '../assets/noise.png'
 import eff2 from '../assets/glitch2.jpg'
 import eff3 from '../assets/brokenTV.jpg'
@@ -74,19 +64,22 @@ function BgSetting() {
         }))
       }
 
+      function handleSettingsTap(name) {
+        setBgTap(name === 'bg');
+        setEffectTap(name === 'effect');
+      }
+
+      const activeBtnStyle = {
+        bottom: '2px',
+        outline: '1px dotted black',
+        outlineOffset: '-5px',
+        borderBottomColor: '#c5c4c4',
+        zIndex: '3'
+      };
+
       const colorOptions = [
-        { value: 1, label: '(None)', color: '#098684', image: bg0, barColor: '#14045c'},
-        { value: 13, label: 'Choose your favorite color', color: userPickedColor, image: userPickedColor, barColor: userPickedColor},
-        { value: 2, label: 'Purple Summer', color: '#3F4565', image: bg1, barColor: '#3F4565'},
-        { value: 3, label: 'Matt Blue', color: '#456EA6', image: bg2, barColor: '#456EA6'},
-        { value: 4, label: 'Matt Green', color: '#008081', image: bg3, barColor: '#008081'},
-        { value: 6, label: 'Blue Sky', color: '#4B6894', image: bg5, barColor: '#4B6894'},
-        { value: 7, label: 'Dark Tone', color: '#313439', image: bg6, barColor: '#313439'},
-        { value: 8, label: 'Light Pink', color: '#f3aac0', image: bg7, barColor: '#1c1719'},
-        { value: 9, label: 'Deep Ocean', color: '#3F4565', image: bg8, barColor: '#3F4565'},
-        { value: 10, label: 'Purple Blue', color: '#354092', image: bg9, barColor: '#354092'},
-        { value: 11, label: 'Live Wavy Grey', color: '#3C3C3C', image: bg10, barColor: '#3C3C3C'},
-        { value: 12, label: 'Live Wavy Light Grey', color: '#828890', image: bg11, barColor: '#4a4a4a'},
+        { value: 1, label: 'Digital Dusk', color: '#3F4565', image: bg0, barColor: '#3F4565'},
+        { value: 13, label: 'Choose your favorite color', color: userPickedColor, image: userPickedColor, barColor: userPickedColor}
       ];
 
 
@@ -255,7 +248,7 @@ function BgSetting() {
              style={{ background: BgSettingExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="bgsetting_barname">
-              <img src={settingIcon} alt="" />
+              <img src={settingIcon} alt="Settings" />
               <span>Settings</span>
             </div>
             <div className="bgsetting_barbtn">
@@ -280,12 +273,14 @@ function BgSetting() {
                   onClick={!isTouchDevice ? () => {
                     cancelBg()
                     deleteTap('Settings')
+                    handleAboutTap('bg')
                     setPickerPanel(false);
                   }
                   : undefined}
                   onTouchEnd={() => {
                     cancelBg()
                     deleteTap('Settings')
+                    handleAboutTap('bg')
                   }}
                 >×
                 </p>
@@ -293,38 +288,13 @@ function BgSetting() {
             </div>
           </div>
           <div className="file_tap_container-bgsetting">
-          <p
-            style={{
-              borderBottomColor: bgTap ? '' : '#f0efef',
-              bottom: bgTap? '2px' : '',
-            }}
-            onClick={() => {
-              setBgTap(true)
-              setEffectTap(false)
-            }}
-          >
-            <span style={{
-              border: bgTap? '1px dotted black' :''
-            }}>
-              Background
-            </span>
-
+          <p onClick={() => handleSettingsTap("bg")}
+              style={bgTap ? activeBtnStyle : {}}
+          >Background
           </p>
-          <p
-            style={{
-              borderBottomColor: effectTap ? '' : '#f0efef',
-              bottom: effectTap? '2px' : '',
-            }}
-            onClick={() => {
-              setBgTap(false)
-              setEffectTap(true)
-            }}
-          >
-            <span style={{
-                    border: effectTap? '1px dotted black' :''
-                  }}>
-            Effect
-            </span>
+          <p onClick={() => handleSettingsTap("effect")}
+              style={effectTap ? activeBtnStyle : {}}
+          >Effect
           </p>
 
           </div>
