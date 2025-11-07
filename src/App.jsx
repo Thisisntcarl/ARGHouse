@@ -215,7 +215,7 @@ function App() {
   const [desktopIcon, setDesktopIcon] = useState(() => {
   const localItems = localStorage.getItem('icons');
 
-  const deleteIcon = ['Winamp', '3dObject'];
+  const deleteIcon = [ ]; // List of hidden programs. These would be installable via the store, if we hadn't removed that.
 
   const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
 
