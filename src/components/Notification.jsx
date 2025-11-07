@@ -3,7 +3,7 @@ import '../css/Notification.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import UseContext from '../Context';
 import msnIcon from '../assets/msn.png';
-import icon_wins95 from '../assets/95icon.png';
+import icon_argHouse from '../assets/logoblack32x32.png';
 import { imageMapping } from './function/AppFunctions';
 
 function Notification() {
@@ -52,9 +52,9 @@ function Notification() {
     // Safe image fallback
     let img;
     try {
-      img = type === 'msn' ? msnIcon : imageMapping(safeName) || icon_wins95;
+      img = type === 'msn' ? msnIcon : imageMapping(safeName) || icon_argHouse;
     } catch {
-      img = icon_wins95;
+      img = icon_argHouse;
     }
 
     switch (type) {
@@ -65,39 +65,11 @@ function Notification() {
           text2: '',
           function: 'MSN',
         };
-      case 'appInstalling':
-        return {
-          img,
-          text1: `Installing ${safeName} app...`,
-          text2: '',
-          function: '',
-        };
-      case 'appInstalled':
-        return {
-          img,
-          text1: `${safeName} app is now installed`,
-          text2: '',
-          function: safeName,
-        };
-      case 'unIntallingApp':
-        return {
-          img,
-          text1: `uninstalling ${safeName} app`,
-          text2: '',
-          function: '',
-        };
-      case 'appUninstalled':
-        return {
-          img,
-          text1: `${safeName} app is now uninstalled`,
-          text2: '',
-          function: '',
-        };
       default:
         return {
-          img: icon_wins95,
-          text1: 'Welcome to My Windows 95 Portfolio! 🎉',
-          text2: 'It’s a fun, retro-styled space where I showcase my projects. Hope you enjoy exploring!',
+          img: icon_argHouse,
+          text1: 'Welcome to ARG House! 🎉',
+          text2: '!!Tag line goes here!!',
           function: '',
         };
     }

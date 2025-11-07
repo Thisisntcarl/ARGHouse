@@ -42,21 +42,16 @@
         "size": 12,
         "type": ".exe",
         "x": 4,
-        "y": 4,
-        "category": "Productivity",
-        "description": "Email client for sending and receiving emails."
-
+        "y": 4
     },
     {
         "name": "Mine Sweeper",
         "pic": "MineSweeper",
-        "folderId": "Project",
+        "folderId": "Desktop",
         "size": 250,
         "type": ".exe",
         "x": 5,
-        "y": 5,
-        "category": "Games",
-        "description": "Classic puzzle game where you clear mines without detonating them."
+        "y": 5
     },
     {
         "name": "MSN",
@@ -65,20 +60,16 @@
         "size": 1500,
         "type": ".exe",
         "x": 6,
-        "y": 6,
-        "category": "Utilities",
-        "description": "Instant messaging application for chatting with friends."
+        "y": 6
     },
     {
         "name": "Winamp",
         "pic": "Winamp",
-        "folderId": "Utility",
+        "folderId": "Desktop",
         "size": 4300,
         "type": ".exe",
         "x": 7,
-        "y": 7,
-        "category": "Utilities",
-        "description": "Media player for playing music and audio files."
+        "y": 7
     },
     {
         "name": "ResumeFile",
@@ -87,9 +78,7 @@
         "size": 28,
         "type": ".exe",
         "x": 8,
-        "y": 8,
-        "category": "Productivity",
-        "description": "Digital resume file containing work experience and skills."
+        "y": 8
     },
     {
         "name": "Nft",
@@ -98,9 +87,7 @@
         "size": 15,
         "type": ".exe",
         "x": 9,
-        "y": 9,
-        "category": "Productivity",
-        "description": "Tool for creating and managing digital art assets as NFTs."
+        "y": 9
     },
     {
         "name": "Note",
@@ -109,9 +96,7 @@
         "size": 10,
         "type": ".exe",
         "x": 10,
-        "y": 10,
-        "category": "Productivity",
-        "description": "Simple note-taking program for writing text or ideas."
+        "y": 10
     },
     {
         "name": "Hard Disk (C:)",
@@ -255,9 +240,7 @@
         "size": 15,
         "type": ".exe",
         "x": 27,
-        "y": 27,
-        "category": "Productivity",
-        "description": "Tool for accessing and managing code repositories online."
+        "y": 27
     },
     {
         "name": "WebResume",
@@ -266,16 +249,23 @@
         "size": 2100,
         "type": ".exe",
         "x": 28,
-        "y": 28,
-        "category": "Productivity",
-        "description": "Interactive web-based resume showcasing personal work and experience."
+        "y": 28
+    },
+    {
+        "name": "Cicada Detroit",
+        "pic": "CicadaDetroit",
+        "folderId": "Desktop",
+        "size": 21347,
+        "type": ".exe",
+        "x": 28,
+        "y": 28
     },
     {
         "name": "RecycleBin",
         "pic": "RecycleBin",
         "folderId": "Desktop",
         "size": 250,
-        "type": "ReCycleBin",
+        "type": "RecycleBin",
         "x": 31,
         "y": 31
     },
@@ -286,20 +276,16 @@
         "size": 20,
         "type": ".exe",
         "x": 32,
-        "y": 32,
-        "category": "Utilities",
-        "description": "Clears or resets storage data to free up system space."
+        "y": 32
     },
     {
         "name": "Paint",
         "pic": "Paint",
-        "folderId": "Utility",
+        "folderId": "Desktop",
         "size": 200,
         "type": ".exe",
         "x": 33,
-        "y": 33,
-        "category": "Utilities",
-        "description": "Basic drawing program for creating and editing images."
+        "y": 33
     },
     {
         "name": "Utility",
@@ -317,9 +303,7 @@
         "size": 500,
         "type": ".exe",
         "x": 35,
-        "y": 35,
-        "category": "Utilities",
-        "description": "Software patch used to fix bugs or apply updates."
+        "y": 35
     },
     {
         "name": "3dObject",
@@ -328,9 +312,7 @@
         "size": 1000,
         "type": ".exe",
         "x": 36,
-        "y": 36,
-        "category": "Productivity",
-        "description": "3D Interactive modeling, three-dimensional objects."
+        "y": 36
     },
     {
         "name": "Fortune",
@@ -339,9 +321,7 @@
         "size": 1900,
         "type": ".exe",
         "x": 37,
-        "y": 37,
-        "category": "Games",
-        "description": "Random fortune or quote generator for entertainment."
+        "y": 37
     },
     {
         "name": "TaskManager",
@@ -350,17 +330,6 @@
         "size": 3500,
         "type": ".exe",
         "x": 38,
-        "y": 38,
-        "category": "Utilities",
-        "description": "System tool to monitor active processes and performance."
-    },
-    {
-        "name": "Store",
-        "pic": "Store",
-        "folderId": "Desktop",
-        "size": 5500,
-        "type": ".exe",
-        "x": 39,
-        "y": 39
+        "y": 38
     }
 ]

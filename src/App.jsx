@@ -3,7 +3,6 @@ import UserContext from './Context'
 import { Filter } from 'bad-words';
 import badword from './badword'
 import Footer from './components/Footer';
-import Store from './components/Store';
 import Dragdrop from './components/Dragdrop';
 import MyBioFolder from './components/MyBioFolder';
 import MyComputer from './components/MyComputer';
@@ -27,7 +26,6 @@ import ErrorBtn from './components/ErrorBtn';
 import RightClickWindows from './components/RightClickWindows';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
-import NewsApp from './components/NewsApp'
 import Patch from './components/Patch';
 import TaskManager from './components/TaskManager';
 import { StyleHide, imageMapping,
@@ -217,7 +215,7 @@ function App() {
   const [desktopIcon, setDesktopIcon] = useState(() => {
   const localItems = localStorage.getItem('icons');
 
-  const deleteIcon = ['Cat', 'AiAgent','Winamp','Paint','3dObject'];
+  const deleteIcon = [ ]; // List of hidden programs. These would be installable via the store, if we hadn't removed that.
 
   const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
 
@@ -252,9 +250,6 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
   const [TaskManagerExpand, setTaskManagerExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-
-  const [StoreExpand, setStoreExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [UserCreatedFolder, setUserCreatedFolder] = useState(() => {
@@ -310,11 +305,6 @@ function App() {
     setTimeout(() => {
       handleShow('Patch');
     }, 2500);
-    
-    if(!desktopIcon.find(icon => icon.name === 'Store')) {
-      localStorage.clear();
-      location.reload();
-    }
   },[])
 
 
@@ -879,7 +869,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
   const contextValue = {
     itemBeingSelected, setItemBeingSelected,
     installIcon, setInstallIcon,
-    StoreExpand, setStoreExpand,
     deletepermanently,
     currentRightClickFolder, setCurrentRightClickFolder,
     ringMsnOff,
@@ -1137,10 +1126,8 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
           folderName='Photo'
           photoMode={true}
         />
-        <Store/>
         <TaskManager/>
         <Patch/>
-        <NewsApp/>
         <RightClickWindows/>
         <Notification/>
         <Shutdown/>
@@ -1201,8 +1188,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 // }
 
   function deletepermanently(deleteName) { // delete from desktopIcon
-
-    if(deleteName === 'Store') return;
     
     const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
     if (droppedIcon) { 
@@ -1464,7 +1449,6 @@ function ObjectState() {
     { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: 'rgba(193, 178, 46, 0.85)', size: 'small' },
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
     { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
-    { name: 'Store',       setter: setStoreExpand,      usestate: StoreExpand,      color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
     
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({

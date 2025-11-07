@@ -35,7 +35,7 @@ import run from '../../assets/run.png'
 import backarrow from '../../assets/backarrow.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
-import store from '../../assets/store.png'
+import cicadalogot from '../../assets/cicadalogot.png'
 
 
 
@@ -172,9 +172,8 @@ export function imageMapping (name, type) {
     case "notepad":
       return notepad
 
-    case "Store":
-    case "store":
-      return store
+    case "CicadaDetroit":
+      return cicadalogot
 
     default:
       if(type === 'folder') {

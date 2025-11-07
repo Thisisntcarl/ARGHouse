@@ -35,7 +35,6 @@
 *::after {
     font-family: 'win95', sans-serif;
     box-sizing: border-box;
-    
 }
 
 body,
@@ -314,7 +313,6 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    
 }
 
 .footer .time p {
@@ -341,7 +339,6 @@ body {
     border-right-color: #1e1d1d;
     grid-template-areas:
         'sidebar winamp'
-        'sidebar tile'
         'sidebar ghithub'
         'sidebar facebook'
         'sidebar ig'
@@ -527,7 +524,6 @@ body {
     -ms-user-select: none;
     user-select: none;
     overflow: hidden;
-    
 }
 
 .start_tap p {
@@ -598,7 +594,6 @@ body {
     position: relative;
     font-size: 12px;
     left: 19px;
-
 }
 
 
@@ -795,7 +790,6 @@ body {
     border: 1px dotted rgba(255, 255, 255, 0);
     text-align: center;
     line-height: 11px;
-
 }
 
 .icon .p_focus {
@@ -868,7 +862,6 @@ body {
     background: rgb(216, 218, 165);
     z-index: 1002;
     cursor: default;
-    
 }
 
 .clippy_container .bubble_chat p {
@@ -888,7 +881,6 @@ body {
     border-color: rgb(216, 218, 165)  transparent transparent transparent;
     transform: scaleY(1.5);
     z-index: 1003;
-
 }
 
 .block_menu_paint {

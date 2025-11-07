@@ -16,9 +16,8 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
         handleSetFocusItemTrue
 
     } = useContext(UseContext);
-    const textResetStroage = "Warning: Resetting local storage will erase all your info. Are you sure you want to continue?"
-    const textGithub = "Warning: You will be redirecting to another site, are you sure you want to continue?"
-    const textCat = "Warning: Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai !"
+    const textResetStorage = "Warning: Resetting local storage will erase all your info. Are you sure you want to continue?"
+    const textExternal = "Warning: You will be redirecting to another site, are you sure you want to continue?"
     const textDelete = `Are you sure you want to permanantly delete ${iconBeingRightClicked.name}?`
 
     useEffect(() => {
@@ -39,18 +38,23 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
 
             case "resetstorage":
                 setYesNo(true);
-                setContent(textResetStroage);
+                setContent(textResetStorage);
                 break;
 
             case "github":
                 setYesNo(true);
-                setContent(textGithub);
+                setContent(textExternal);
                 break;
 
             case "webresume":
                 setYesNo(true);
-                setContent(textGithub);
+                setContent(textExternal);
                 break;
+
+            case "cicada detroit":
+                 setYesNo(true);
+                 setContent(textExternal);
+                 break;
 
             default:
                 setYesNo(false);
@@ -76,9 +80,11 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
             case "github": 
                 return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
 
-            case "webresume": 
-                
-            return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
+            case "webresume":
+                return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
+
+            case "cicada detroit":
+                return window.open('https://www.cicadadetroit.com/');
 
             default:
                 return runOpenFuction();
