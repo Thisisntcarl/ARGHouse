@@ -7,76 +7,76 @@ import icon_argHouse from '../assets/logoblack32x32.png';
 import { imageMapping } from './function/AppFunctions';
 
 function Notification() {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const {
-    clearNotiTimeOut, setClearNotiTimeOut,
-    isTouchDevice,
-    handleShow, handleShowMobile,
-    newMessage, 
-    setNewMessage, 
-    notiOn, setNotiOn,
-  } = useContext(UseContext);
+    const {
+        clearNotiTimeOut, setClearNotiTimeOut,
+        isTouchDevice,
+        handleShow, handleShowMobile,
+        newMessage,
+        setNewMessage,
+        notiOn, setNotiOn,
+    } = useContext(UseContext);
 
-  // Update screen width on resize
-  useEffect(() => {
-    const handleResize = () => setScreenWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    
-    // Show initial notification delay
-    const initialTimeout = setTimeout(() => setNotiOn(true), 6000);
+    // Update screen width on resize
+    useEffect(() => {
+        const handleResize = () => setScreenWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(initialTimeout);
-    };
-  }, []);
+        // Show initial notification delay
+        const initialTimeout = setTimeout(() => setNotiOn(true), 6000);
 
-  // Automatically hide notifications after a duration
-  useEffect(() => {
-    if (!notiOn) return;
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            clearTimeout(initialTimeout);
+        };
+    }, []);
 
-    const timeoutId = setTimeout(() => setNotiOn(false), 12000);
-    setClearNotiTimeOut(timeoutId);
+    // Automatically hide notifications after a duration
+    useEffect(() => {
+        if (!notiOn) return;
 
-    return () => clearTimeout(timeoutId);
-  }, [notiOn]);
+        const timeoutId = setTimeout(() => setNotiOn(false), 12000);
+        setClearNotiTimeOut(timeoutId);
 
-  // Safely generate notification content
-  function newNotification(message) {
-    if (!message) message = {};
+        return () => clearTimeout(timeoutId);
+    }, [notiOn]);
 
-    const type = message.type || 'default';
-    const safeName = message.appName || 'Unknown App';
+    // Safely generate notification content
+    function newNotification(message) {
+        if (!message) message = {};
 
-    // Safe image fallback
-    let img;
-    try {
-      img = type === 'msn' ? msnIcon : imageMapping(safeName) || icon_argHouse;
-    } catch {
-      img = icon_argHouse;
+        const type = message.type || 'default';
+        const safeName = message.appName || 'Unknown App';
+
+        // Safe image fallback
+        let img;
+        try {
+            img = type === 'msn' ? msnIcon : imageMapping(safeName) || icon_argHouse;
+        } catch {
+            img = icon_argHouse;
+        }
+
+        switch (type) {
+            case 'msn':
+                return {
+                    img,
+                    text1: 'You got a new message!',
+                    text2: '',
+                    function: 'MSN',
+                };
+            default:
+                return {
+                    img: icon_argHouse,
+                    text1: 'Welcome to ARG House! 🎉',
+                    text2: '!!Tag line goes here!!',
+                    function: '',
+                };
+        }
     }
 
-    switch (type) {
-      case 'msn':
-        return {
-          img,
-          text1: 'You got a new message!',
-          text2: '',
-          function: 'MSN',
-        };
-      default:
-        return {
-          img: icon_argHouse,
-          text1: 'Welcome to ARG House! 🎉',
-          text2: '!!Tag line goes here!!',
-          function: '',
-        };
-    }
-  }
-
-  // Safely extract the current notification data
-  const notificationData = newNotification(newMessage);
+    // Safely extract the current notification data
+    const notificationData = newNotification(newMessage);
 
   return (
     <AnimatePresence>

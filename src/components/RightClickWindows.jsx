@@ -1,281 +1,271 @@
 import { useEffect, useRef, useContext, useState } from 'react';
 import UseContext from '../Context';
 import '../css/RightClickWindows.css';
-import { BsFillCaretRightFill } from "react-icons/bs";
+import { BsFillCaretRightFill } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 
 function RightClickWindows() {
-  const timerRef = useRef(false);
-  const [sortExpand, setSortExpand] = useState(false);
-  const screenWidth = window.innerWidth;
-  const screenHeight = window.innerHeight;
-  const [restoreIcon, setRestoreIcon] = useState(0)
-  const [popUpCreateFolderName, setPopUpCreateFolderName] = useState(false);
-  const [newFolderNameVal, setNewFolderNameVal] = useState('');
+    const timerRef = useRef(false);
+    const [sortExpand, setSortExpand] = useState(false);
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const [restoreIcon, setRestoreIcon] = useState(0)
+    const [popUpCreateFolderName, setPopUpCreateFolderName] = useState(false);
+    const [newFolderNameVal, setNewFolderNameVal] = useState('');
 
-  const {
-    regErrorPopUpVal,
-    setRegErrorPopUpVal, setRegErrorPopUp,
-    currentRightClickFolder,
-    UserCreatedFolder, setUserCreatedFolder,
-    ObjectState,
-    deleteIcon, setDeleteIcon,
-    setKey,
-    refBeingClicked,
-    binRestoreArr, setBinRestoreArr,
-    rightClickBin, setRightClickBin,
-    inFolder, setInFolder,
-    handleShowInfolder, 
-    iconBeingRightClicked, 
-    rightClickIcon, setRightClickIcon,
-    setDesktopIcon, desktopIcon,
-    iconFocusIcon,
-    setRefresh,
-    handleShow,
-    rightClickDefault, setRightClickDefault,
-    rightClickPosition,
-  } = useContext(UseContext);
-
-
-  useEffect(() => {
-    setSortExpand(false);
-  }, [rightClickDefault]);
-
-  function refreshed() {
-    setRightClickDefault(false);
-    setRefresh(prev => prev + 1);
-    // setSortIconTrigger(prev => prev + 1)
-  }
+    const {
+        regErrorPopUpVal,
+        setRegErrorPopUpVal, setRegErrorPopUp,
+        currentRightClickFolder,
+        UserCreatedFolder, setUserCreatedFolder,
+        ObjectState,
+        deleteIcon, setDeleteIcon,
+        setKey,
+        refBeingClicked,
+        binRestoreArr, setBinRestoreArr,
+        rightClickBin, setRightClickBin,
+        inFolder, setInFolder,
+        handleShowInfolder,
+        iconBeingRightClicked,
+        rightClickIcon, setRightClickIcon,
+        setDesktopIcon, desktopIcon,
+        iconFocusIcon,
+        setRefresh,
+        handleShow,
+        rightClickDefault, setRightClickDefault,
+        rightClickPosition,
+    } = useContext(UseContext);
 
 
-  // useEffect(() =>{
-  //   if(sortIconTrigger > 0){
-  //     const updatedSortedIcon = sortedIcon.length > 1 ? sortedIcon : desktopIcon
-  //     setDesktopIcon(updatedSortedIcon)
-  //     setRefresh(prev => prev + 1);
-  //   }
+    useEffect(() => {
+        setSortExpand(false);
+    }, [rightClickDefault]);
 
-  // },[sortIconTrigger])
-
-
-  function handleSwitchOpenFolder() { // decide which folder function to call
-
-    if(iconBeingRightClicked.name === inFolder) { 
-      handleShowInfolder(iconBeingRightClicked.name)
-      setInFolder('')
-      return;
+    function refreshed() {
+        setRightClickDefault(false);
+        setRefresh(prev => prev + 1);
+        // setSortIconTrigger(prev => prev + 1)
     }
-    handleShow(iconBeingRightClicked.name);
-  }
 
-  
-  function handleDeleteIcon() {
+    // useEffect(() =>{
+    //   if(sortIconTrigger > 0){
+    //     const updatedSortedIcon = sortedIcon.length > 1 ? sortedIcon : desktopIcon
+    //     setDesktopIcon(updatedSortedIcon)
+    //     setRefresh(prev => prev + 1);
+    //   }
 
-    const IconCannotBeDeleted = ['MyComputer', 'RecycleBin', "Hard Disk (C:)", "Hard Disk (D:)", "CD-ROM"]
+    // },[sortIconTrigger])
 
-    if(IconCannotBeDeleted.includes(iconBeingRightClicked.name)) return;
-    // Add icon to binRestoreArr
-    // Update state and ensure localStorage is updated properly
-    setBinRestoreArr(prevArr => {
-    const updatedArr = [
-    ...prevArr,
-    {
-      name: iconBeingRightClicked.name,
-      OldFolder: iconBeingRightClicked.folderId
+
+    function handleSwitchOpenFolder() { // decide which folder function to call
+        if (iconBeingRightClicked.name === inFolder) {
+            handleShowInfolder(iconBeingRightClicked.name)
+            setInFolder('')
+            return;
+        }
+        handleShow(iconBeingRightClicked.name);
     }
-  ];
-  localStorage.setItem('restoreArray', JSON.stringify(updatedArr));
-  return updatedArr; 
-});
 
 
-    const droppedIcon = desktopIcon.find(icon => icon.name === iconBeingRightClicked.name);
-    if (droppedIcon) { 
-      setDesktopIcon(prevIcons => {
-        const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
-        const newIcon = { ...droppedIcon, folderId: 'RecycleBin' };
-        setKey(prev => prev + 1); // make folder icon by re-mount
-        localStorage.setItem('icons', JSON.stringify([...updatedIcons, newIcon]));
-        return [...updatedIcons, newIcon];
-      });
-    }
-    setDeleteIcon(prev => prev + 1) // important link to useEffect
-  }
+    function handleDeleteIcon() {
 
-  useEffect(() => { // the only way to make it works is to mutate state like this for DELETE ICON
-    if (deleteIcon > 0) {
-      setDesktopIcon(prevIcons => {
-        return prevIcons.map(icon =>
-          icon.name === iconBeingRightClicked.name
-            ? { ...icon, folderId: 'RecycleBin' }  // Mutate the `folderId`
-            : icon
-        ).slice(); // Creates a new array reference
-      });
-  
-      setKey(prev => prev + 1); // Force re-render by changing an unrelated state
-    }
-  }, [deleteIcon]); 
-  
+        const IconCannotBeDeleted = ['MyComputer', 'RecycleBin', "Hard Disk (C:)", "Hard Disk (D:)", "CD-ROM"]
 
-
-  function handleRestore() {
-
-    const droppedIcon = binRestoreArr.find(icon => icon.name === iconBeingRightClicked.name);
-
-    if (!droppedIcon) return; //prevent error if not found
-
-    if (droppedIcon) { 
-        setDesktopIcon(prevIcons => {
-        const findIconToRestore = prevIcons.find(icon => icon.name === droppedIcon.name)
-        const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
-        const restoredIcon = { ...findIconToRestore, folderId: droppedIcon.OldFolder };
-        console.log(restoredIcon)
-
-        setKey(prev => prev + 1); // make folder icon by re-mount
-
-        const newDesktopIcons = [...updatedIcons, restoredIcon];
-        localStorage.setItem('icons', JSON.stringify(newDesktopIcons));
-        return newDesktopIcons; 
-    });
-        // if(!binRestoreArr) return;
-        // setBinRestoreArr(prev => {
-        //   const newBinArr = prev.filter(icon => icon.name !== droppedIcon.name);
-        //   localStorage.setItem('restoreArray', JSON.stringify(newBinArr)); // Update localStorage
-        //   return newBinArr;
-        // });
-    }
-    setRestoreIcon(prev => prev + 1) // important link to useEffect
-  }
-  
-
-  useEffect(() => { // the only way to make it works is to mutate state like this for DELETE ICON
-    if (restoreIcon > 0) {
-      if(!binRestoreArr) return;
-      const iconBeingRestored = binRestoreArr.find(icon => icon.name === iconBeingRightClicked.name)
-        setBinRestoreArr(prev => {
-          const newBinArr = prev.filter(icon => icon.name !== iconBeingRightClicked.name);
-          localStorage.setItem('restoreArray', JSON.stringify(newBinArr)); // Update localStorage
-          return newBinArr;
+        if (IconCannotBeDeleted.includes(iconBeingRightClicked.name)) return;
+        // Add icon to binRestoreArr
+        // Update state and ensure localStorage is updated properly
+        setBinRestoreArr(prevArr => {
+            const updatedArr = [
+                ...prevArr,
+                {
+                    name: iconBeingRightClicked.name,
+                    OldFolder: iconBeingRightClicked.folderId
+                }
+            ];
+            localStorage.setItem('restoreArray', JSON.stringify(updatedArr));
+            return updatedArr;
         });
-        
-      setDesktopIcon(prevIcons => {
-        return prevIcons.map(icon =>
-          icon.name === iconBeingRightClicked.name
-            ? { ...icon, folderId: iconBeingRestored.OldFolder }  // Mutate the `folderId`
-            : icon
-        ).slice(); // Creates a new array reference
-      });
-  
-      setKey(prev => prev + 1); // Force re-render by changing an unrelated state
+
+        const droppedIcon = desktopIcon.find(icon => icon.name === iconBeingRightClicked.name);
+        if (droppedIcon) {
+            setDesktopIcon(prevIcons => {
+                const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
+                const newIcon = {...droppedIcon, folderId: 'RecycleBin'};
+                setKey(prev => prev + 1); // make folder icon by re-mount
+                localStorage.setItem('icons', JSON.stringify([...updatedIcons, newIcon]));
+                return [...updatedIcons, newIcon];
+            });
+        }
+        setDeleteIcon(prev => prev + 1) // important link to useEffect
     }
-  }, [restoreIcon]); 
+
+    useEffect(() => { // the only way to make it works is to mutate state like this for DELETE ICON
+        if (deleteIcon > 0) {
+            setDesktopIcon(prevIcons => {
+                return prevIcons.map(icon =>
+                    icon.name === iconBeingRightClicked.name
+                        ? {...icon, folderId: 'RecycleBin'}  // Mutate the `folderId`
+                        : icon
+                ).slice(); // Creates a new array reference
+            });
+
+            setKey(prev => prev + 1); // Force re-render by changing an unrelated state
+        }
+    }, [deleteIcon]);
 
 
+    function handleRestore() {
 
-function CreateFolder() {
+        const droppedIcon = binRestoreArr.find(icon => icon.name === iconBeingRightClicked.name);
 
-  if(newFolderNameVal.trim() === '') return;
+        if (!droppedIcon) return; //prevent error if not found
 
-  const allState = ObjectState();
+        if (droppedIcon) {
+            setDesktopIcon(prevIcons => {
+                const findIconToRestore = prevIcons.find(icon => icon.name === droppedIcon.name)
+                const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
+                const restoredIcon = {...findIconToRestore, folderId: droppedIcon.OldFolder};
+                console.log(restoredIcon)
 
-  const checkIfFolderExist = allState.some(item => item.name === newFolderNameVal.trim());
+                setKey(prev => prev + 1); // make folder icon by re-mount
 
-  if (checkIfFolderExist) return;
-
-  const checkedNameNoSpace = newFolderNameVal.trim().replace(/\s+/g, '');
-
-  const id = `folder-${Date.now()}`;
-
-  const newFolder = {
-    id,
-    pic: "Project",
-    name: checkedNameNoSpace,
-    type: "folder",
-    folderId: "Desktop",
-    size: "2000",
-    x: 1,
-    y: 1,
-  };
-
-  setDesktopIcon(prev => {
-    const updatedIcons = [...prev, newFolder];
-    localStorage.setItem("icons", JSON.stringify(updatedIcons));
-    return updatedIcons;
-  });
-
-  const newStateFolder = {
-    id,
-    name: checkedNameNoSpace,
-    expand: false,
-    show: false,
-    hide: false,
-    focusItem: false, 
-    x: 0,
-    y: 0,
-    zIndex: 1,
-  };
-
-  setUserCreatedFolder(prev => {
-    const safePrev = Array.isArray(prev) ? prev : [];
-    const updatedFolders = [...safePrev, newStateFolder];
-    localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
-    return updatedFolders;
-  });
-  setPopUpCreateFolderName(false)
-  setNewFolderNameVal('')
-}
-  console.log(iconBeingRightClicked.name, regErrorPopUpVal)
-
-  function askBeforeDelete() {
-    setRegErrorPopUpVal(iconBeingRightClicked.name)
-    setRegErrorPopUp(true)
-  }
-
-
-  function arrangeIcons() {
-    if(currentRightClickFolder === 'MyComputer') return;
-
-    const iconsOnFolder = desktopIcon.filter(icon => icon.folderId === currentRightClickFolder);
-    const newArrangedIcons = iconsOnFolder.sort((a, b) => a.name.localeCompare(b.name));
-    const otherIcons = desktopIcon.filter(icon => icon.folderId !== currentRightClickFolder);
-    const updatedIcons = [...newArrangedIcons, ...otherIcons];
-    setDesktopIcon(updatedIcons);
-    localStorage.setItem('icons', JSON.stringify(updatedIcons));
-    setRightClickDefault(false);
-    
-    if(currentRightClickFolder === 'Desktop') {
-      refreshed()
+                const newDesktopIcons = [...updatedIcons, restoredIcon];
+                localStorage.setItem('icons', JSON.stringify(newDesktopIcons));
+                return newDesktopIcons;
+            });
+            // if(!binRestoreArr) return;
+            // setBinRestoreArr(prev => {
+            //   const newBinArr = prev.filter(icon => icon.name !== droppedIcon.name);
+            //   localStorage.setItem('restoreArray', JSON.stringify(newBinArr)); // Update localStorage
+            //   return newBinArr;
+            // });
+        }
+        setRestoreIcon(prev => prev + 1) // important link to useEffect
     }
-  }
-  
-  function arrangeIconsByType() {
-    if(currentRightClickFolder === 'MyComputer') return;
 
-    const iconsOnFolder = desktopIcon.filter(icon => icon.folderId === currentRightClickFolder);
-    const newArrangedIcons = [...iconsOnFolder].sort((a, b) => a.type.localeCompare(b.type));
-    const otherIcons = desktopIcon.filter(icon => icon.folderId !== currentRightClickFolder);
-    const updatedIcons = [...newArrangedIcons, ...otherIcons];
-    setDesktopIcon(updatedIcons);
-    localStorage.setItem('icons', JSON.stringify(updatedIcons));
-    setRightClickDefault(false);
-    
-    if(currentRightClickFolder === 'Desktop') {
-      refreshed()
+    useEffect(() => { // the only way to make it works is to mutate state like this for DELETE ICON
+        if (restoreIcon > 0) {
+            if (!binRestoreArr) return;
+            const iconBeingRestored = binRestoreArr.find(icon => icon.name === iconBeingRightClicked.name)
+            setBinRestoreArr(prev => {
+                const newBinArr = prev.filter(icon => icon.name !== iconBeingRightClicked.name);
+                localStorage.setItem('restoreArray', JSON.stringify(newBinArr)); // Update localStorage
+                return newBinArr;
+            });
+
+            setDesktopIcon(prevIcons => {
+                return prevIcons.map(icon =>
+                    icon.name === iconBeingRightClicked.name
+                        ? {...icon, folderId: iconBeingRestored.OldFolder}  // Mutate the `folderId`
+                        : icon
+                ).slice(); // Creates a new array reference
+            });
+
+            setKey(prev => prev + 1); // Force re-render by changing an unrelated state
+        }
+    }, [restoreIcon]);
+
+    function CreateFolder() {
+
+        if (newFolderNameVal.trim() === '') return;
+
+        const allState = ObjectState();
+
+        const checkIfFolderExist = allState.some(item => item.name === newFolderNameVal.trim());
+
+        if (checkIfFolderExist) return;
+
+        const checkedNameNoSpace = newFolderNameVal.trim().replace(/\s+/g, '');
+
+        const id = `folder-${Date.now()}`;
+
+        const newFolder = {
+            id,
+            pic: "Project",
+            name: checkedNameNoSpace,
+            type: "folder",
+            folderId: "Desktop",
+            size: "2000",
+            x: 1,
+            y: 1,
+        };
+
+        setDesktopIcon(prev => {
+            const updatedIcons = [...prev, newFolder];
+            localStorage.setItem("icons", JSON.stringify(updatedIcons));
+            return updatedIcons;
+        });
+
+        const newStateFolder = {
+            id,
+            name: checkedNameNoSpace,
+            expand: false,
+            show: false,
+            hide: false,
+            focusItem: false,
+            x: 0,
+            y: 0,
+            zIndex: 1,
+        };
+
+        setUserCreatedFolder(prev => {
+            const safePrev = Array.isArray(prev) ? prev : [];
+            const updatedFolders = [...safePrev, newStateFolder];
+            localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
+            return updatedFolders;
+        });
+        setPopUpCreateFolderName(false)
+        setNewFolderNameVal('')
     }
-  }
 
+    console.log(iconBeingRightClicked.name, regErrorPopUpVal)
 
-  
+    function askBeforeDelete() {
+        setRegErrorPopUpVal(iconBeingRightClicked.name)
+        setRegErrorPopUp(true)
+    }
 
-  function handleOpenExpandArrageBy() { // delay the expand window
-    timerRef.current = true;
+    function arrangeIcons() {
+        if (currentRightClickFolder === 'MyComputer') return;
 
-    setTimeout(() => {
-      if(timerRef.current) {
-      setSortExpand(true)
-      }
-    }, 350);
-}
+        const iconsOnFolder = desktopIcon.filter(icon => icon.folderId === currentRightClickFolder);
+        const newArrangedIcons = iconsOnFolder.sort((a, b) => a.name.localeCompare(b.name));
+        const otherIcons = desktopIcon.filter(icon => icon.folderId !== currentRightClickFolder);
+        const updatedIcons = [...newArrangedIcons, ...otherIcons];
+        setDesktopIcon(updatedIcons);
+        localStorage.setItem('icons', JSON.stringify(updatedIcons));
+        setRightClickDefault(false);
+
+        if (currentRightClickFolder === 'Desktop') {
+            refreshed()
+        }
+    }
+
+    function arrangeIconsByType() {
+        if (currentRightClickFolder === 'MyComputer') return;
+
+        const iconsOnFolder = desktopIcon.filter(icon => icon.folderId === currentRightClickFolder);
+        const newArrangedIcons = [...iconsOnFolder].sort((a, b) => a.type.localeCompare(b.type));
+        const otherIcons = desktopIcon.filter(icon => icon.folderId !== currentRightClickFolder);
+        const updatedIcons = [...newArrangedIcons, ...otherIcons];
+        setDesktopIcon(updatedIcons);
+        localStorage.setItem('icons', JSON.stringify(updatedIcons));
+        setRightClickDefault(false);
+
+        if (currentRightClickFolder === 'Desktop') {
+            refreshed()
+        }
+    }
+
+    function handleOpenExpandArrageBy() { // delay the expand window
+        timerRef.current = true;
+
+        setTimeout(() => {
+            if (timerRef.current) {
+                setSortExpand(true)
+            }
+        }, 350);
+    }
   
   return (
     <>

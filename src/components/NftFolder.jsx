@@ -1,61 +1,58 @@
 import UseContext from '../Context'
-import { useContext } from "react";
+import { useContext } from 'react';
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import file4 from '../assets/file4.png'
 import folder from '../assets/regFolder.png'
 import '../css/ResumeFolder.css'
 
-
 function NftFolder() {
 
-  const { 
-    themeDragBar,
-    handleShow, handleShowMobile,
-    projectname,
-    handleDoubleClickiframe, handleDoubleTapiframeMobile,
-    setOpenProjectExpand,
-    setProjectUrl,
-    NftExpand, setNftExpand,
-    lastTapTime, setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    iconFocusIcon,
-    deleteTap,
+    const {
+        themeDragBar,
+        handleShow, handleShowMobile,
+        projectname,
+        handleDoubleClickiframe, handleDoubleTapiframeMobile,
+        setOpenProjectExpand,
+        setProjectUrl,
+        NftExpand, setNftExpand,
+        lastTapTime, setLastTapTime,
+        StyleHide,
+        isTouchDevice,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        iconFocusIcon,
+        deleteTap,
+    } = useContext(UseContext);
 
-   } = useContext(UseContext);
-
-      function handleDragStop(event, data) {
-        const positionX = data.x 
+    function handleDragStop(event, data) {
+        const positionX = data.x
         const positionY = data.y
         setNftExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
+            ...prev,
+            x: positionX,
+            y: positionY
         }))
+    }
 
-      }
-
-   function handleExpandStateToggle() {
-    setNftExpand(prevState => ({
-      ...prevState,
-      expand: !prevState.expand
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
+    function handleExpandStateToggle() {
         setNftExpand(prevState => ({
             ...prevState,
             expand: !prevState.expand
         }));
     }
-    setLastTapTime(now);
-}
+
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            setNftExpand(prevState => ({
+                ...prevState,
+                expand: !prevState.expand
+            }));
+        }
+        setLastTapTime(now);
+    }
 
 
   return (

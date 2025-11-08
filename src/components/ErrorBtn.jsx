@@ -9,7 +9,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     const [deleteMode, setDeleteMode] = useState(false)
     const [deleteIconName, setDeleteIconName] = useState('')
 
-    const { 
+    const {
         deletepermanently,
         iconBeingRightClicked,
         setUserCreatedFolder,
@@ -22,7 +22,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
 
     useEffect(() => {
         handleBtn(stateVal)
-    }, [stateVal]); 
+    }, [stateVal]);
 
     function handleBtn(name) {
 
@@ -32,8 +32,8 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
             setDeleteMode(true);
             setDeleteIconName(name);
             return;
-        }   
-                
+        }
+
         switch (name.toLowerCase()) {
 
             case "resetstorage":
@@ -52,9 +52,9 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 break;
 
             case "cicada detroit":
-                 setYesNo(true);
-                 setContent(textExternal);
-                 break;
+                setYesNo(true);
+                setContent(textExternal);
+                break;
 
             default:
                 setYesNo(false);
@@ -62,7 +62,6 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 break;
         }
     }
-    
 
     function handleFunction(name) {
 
@@ -71,13 +70,13 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
             setDeleteMode(false);
             setDeleteIconName('');
             return;
-        }   
+        }
 
         switch (name.toLowerCase()) {
             case "resetstorage":
                 return removeLocalStorage();
 
-            case "github": 
+            case "github":
                 return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
 
             case "webresume":
@@ -91,8 +90,6 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
         }
     }
 
-
-    
     function removeLocalStorage() {
         setUserCreatedFolder([])
         localStorage.clear();
@@ -110,7 +107,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
             style={{ background: themeDragBar }}
         >
             <p>{stateVal}</p>
-            <div 
+            <div
                 onClick={() => {
                     setStateVal(false)
                     runOpenFuction()
@@ -131,7 +128,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                     setStateVal(false)
                     handleFunction(stateVal)
                 }}
-                
+
             >
                 <p>{YesNo ? 'YES' : 'OK'}</p>
             </div>
@@ -142,12 +139,12 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                     setDeleteMode(false);
                     setDeleteIconName('');
                 }}
-                
+
             >
                 <p>NO</p>
-            </div>   
+            </div>
             )}
-            
+
         </div>
     </div>
   )

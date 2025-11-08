@@ -1,75 +1,75 @@
 import UseContext from '../Context';
-import { useContext, useRef } from "react";
+import { useContext, useRef } from 'react';
 import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 import Project from '../assets/regFolder.png';
 import '../css/ProjectFolder.css';
 
 function ProjectFolder() {
-  const iconRefs = useRef([]);
+    const iconRefs = useRef([]);
 
-  const {
-    setCurrentRightClickFolder,
-    refBeingClicked,
-    handleMobileLongPress,
-    setRightClickIcon,
-    setIconBeingRightClicked,
-    timerRef,
-    iconContainerSize,
-    iconImgSize,
-    iconTextSize,
-    iconScreenSize,
-    dragging,
-    key,
-    setDropTargetFolder,
-    dropTargetFolder,
-    handleDrop,
-    handleOnDrag,
-    ProjectFolderRef,
-    imageMapping,
-    desktopIcon,
-    themeDragBar,
-    ProjectExpand,
-    setProjectExpand,
-    lastTapTime,
-    setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    handleShow,
-    handleShowMobile,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    iconFocusIcon,
-    deleteTap,
-  } = useContext(UseContext);
+    const {
+        setCurrentRightClickFolder,
+        refBeingClicked,
+        handleMobileLongPress,
+        setRightClickIcon,
+        setIconBeingRightClicked,
+        timerRef,
+        iconContainerSize,
+        iconImgSize,
+        iconTextSize,
+        iconScreenSize,
+        dragging,
+        key,
+        setDropTargetFolder,
+        dropTargetFolder,
+        handleDrop,
+        handleOnDrag,
+        ProjectFolderRef,
+        imageMapping,
+        desktopIcon,
+        themeDragBar,
+        ProjectExpand,
+        setProjectExpand,
+        lastTapTime,
+        setLastTapTime,
+        StyleHide,
+        isTouchDevice,
+        handleShow,
+        handleShowMobile,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        iconFocusIcon,
+        deleteTap,
+    } = useContext(UseContext);
 
-  function handleDragStop(event, data) {
-    const { x, y } = data;
-    setProjectExpand((prev) => ({
-      ...prev,
-      x,
-      y,
-    }));
-  }
-
-  function handleExpandStateToggle() {
-    setProjectExpand((prevState) => ({
-      ...prevState,
-      expand: !prevState.expand,
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
-      setProjectExpand((prevState) => ({
-        ...prevState,
-        expand: !prevState.expand,
-      }));
+    function handleDragStop(event, data) {
+        const {x, y} = data;
+        setProjectExpand((prev) => ({
+            ...prev,
+            x,
+            y,
+        }));
     }
-    setLastTapTime(now);
-  }
+
+    function handleExpandStateToggle() {
+        setProjectExpand((prevState) => ({
+            ...prevState,
+            expand: !prevState.expand,
+        }));
+    }
+
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            setProjectExpand((prevState) => ({
+                ...prevState,
+                expand: !prevState.expand,
+            }));
+        }
+        setLastTapTime(now);
+    }
 
   return (
     <Draggable

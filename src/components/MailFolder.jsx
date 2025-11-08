@@ -1,102 +1,100 @@
 import UseContext from '../Context'
 import emailjs from '@emailjs/browser';
-import { useContext, useRef } from "react";
+import { useContext, useRef } from 'react';
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import Mail from '../assets/mail.png'
 import '../css/MailFolder.css'
 
-
 function MailFolder() {
 
-  const focusName = useRef();
-  const focusEmail = useRef();
+    const focusName = useRef();
+    const focusEmail = useRef();
 
-  const { 
-    themeDragBar,
-    MailExpand, setMailExpand,
-    lastTapTime, setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    clippyThanksYouFunction,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    deleteTap,
-    iconFocusIcon,
-   } = useContext(UseContext);
+    const {
+        themeDragBar,
+        MailExpand, setMailExpand,
+        lastTapTime, setLastTapTime,
+        StyleHide,
+        isTouchDevice,
+        clippyThanksYouFunction,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        deleteTap,
+        iconFocusIcon,
+    } = useContext(UseContext);
 
 // ---------------------- EMAIL JS ---------------------------------------
 
-const form = useRef();
+    const form = useRef();
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+    const sendEmail = (e) => {
+        e.preventDefault();
 
-    emailjs
-      .sendForm('service_3jp9sce', 'template_mwqeuol', form.current, {
-        publicKey: 'VEMHa6EGtulAzDYSH',
-      })
-      .then(
-        () => {
-          clippyThanksYouFunction()
-          alert('Thank you for your interest, will contact you back shortly!')
-          form.current.reset();
-        },
-        (error) => {
-          console.log('FAILED...', error.text);
-        },
-      );
-  };
+        emailjs
+            .sendForm('service_3jp9sce', 'template_mwqeuol', form.current, {
+                publicKey: 'VEMHa6EGtulAzDYSH',
+            })
+            .then(
+                () => {
+                    clippyThanksYouFunction()
+                    alert('Thank you for your interest, will contact you back shortly!')
+                    form.current.reset();
+                },
+                (error) => {
+                    console.log('FAILED...', error.text);
+                },
+            );
+    };
 
 // ------------------------------------------------------------------------------
 
-      function handleDragStop(event, data) {
-        const positionX = data.x 
+    function handleDragStop(event, data) {
+        const positionX = data.x
         const positionY = data.y
         setMailExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
+            ...prev,
+            x: positionX,
+            y: positionY
         }))
+    }
 
-      }
-
-   function handleExpandStateToggle() {
-    setMailExpand(prevState => ({
-      ...prevState,
-      expand: !prevState.expand
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
+    function handleExpandStateToggle() {
         setMailExpand(prevState => ({
             ...prevState,
             expand: !prevState.expand
         }));
     }
-    setLastTapTime(now);
-}
+
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            setMailExpand(prevState => ({
+                ...prevState,
+                expand: !prevState.expand
+            }));
+        }
+        setLastTapTime(now);
+    }
 
   return (
     <>
       <Draggable
-        axis="both" 
+        axis="both"
         handle={'.folder_dragbar-mail'}
         grid={[1, 1]}
         scale={1}
         disabled={MailExpand.expand}
         bounds={{top: 0}}
-        defaultPosition={{ 
+        defaultPosition={{
           x: window.innerWidth <= 500 ? 20 : 50,
           y: window.innerWidth <= 500 ? 40 : 120,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
         onStart={() => handleSetFocusItemTrue('Mail')}
       >
-        <div className='folder_folder-mail' 
+        <div className='folder_folder-mail'
             onClick={(e) => {
               e.stopPropagation();
               handleSetFocusItemTrue('Mail');
@@ -115,7 +113,7 @@ const form = useRef();
               <div onClick={ !isTouchDevice? (e) => {
                 e.stopPropagation()
                 setMailExpand(prev => ({...prev, hide: true, focusItem: false}))
-                StyleHide('Mail') 
+                StyleHide('Mail')
               } : undefined
             }
                    onTouchEnd={(e) => {
@@ -133,7 +131,7 @@ const form = useRef();
               >
                 <motion.div className={`expand-mail ${MailExpand.expand ? 'full' : ''}`}>
                 </motion.div>
-                {MailExpand.expand ? 
+                {MailExpand.expand ?
                 (
                 <div className="expand_2-mail"></div>
                 )
@@ -158,9 +156,9 @@ const form = useRef();
           </div>
           <div className="folder_content-mail"
             onClick={() => iconFocusIcon('')}
-            style={MailExpand.expand ? 
-              { height: 'calc(100svh - 100px)'} 
-              : 
+            style={MailExpand.expand ?
+              { height: 'calc(100svh - 100px)'}
+              :
               {}
             }>
 
@@ -176,17 +174,17 @@ const form = useRef();
                   <input className="myemail_container" placeholder='yudthsoponvit@gmail.com' disabled style={{background: '#d4d1d1'}} />
                 </div>
                 <div className="to_container">
-                  <div className="to_icon" 
+                  <div className="to_icon"
                     onClick={() => focusName.current.focus()}
-                  
+
                   >
                     <p>Name</p>
                   </div>
                   <input className="myemail_container" type="text" name="from_name" required ref={focusName} style={{background: 'white'}} />
                 </div>
-                <div className="to_container" 
-                  onClick={() => focusEmail.current.focus()} 
-                  
+                <div className="to_container"
+                  onClick={() => focusEmail.current.focus()}
+
                 >
                   <div className="to_icon" >
                     <p>Email</p>
@@ -213,7 +211,7 @@ const form = useRef();
                   borderRadius: '0px',
                   letterSpacing: '.5px',
                   background: 'white'
-                  
+
                 }}
               />
             </form>
@@ -222,6 +220,6 @@ const form = useRef();
       </Draggable>
     </>
   )
-}          
+}
 
 export default MailFolder

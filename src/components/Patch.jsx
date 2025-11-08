@@ -1,35 +1,33 @@
 import UseContext from '../Context'
-import { useContext } from "react";
+import { useContext } from 'react';
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import bulb from '../assets/bulb.png'
 import '../css/Patch.css'
 import patchNotes from '../../patchNotes';
 
-
-
 function Patch() {
 
-  const { 
-    themeDragBar,
-    PatchExpand, setPatchExpand,
-    StyleHide,
-    isTouchDevice,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    deleteTap,
-    imageMapping,
+    const {
+        themeDragBar,
+        PatchExpand, setPatchExpand,
+        StyleHide,
+        isTouchDevice,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        deleteTap,
+        imageMapping,
 
-   } = useContext(UseContext);
+    } = useContext(UseContext);
 
     function handleDragStop(event, data) {
-        const positionX = data.x 
+        const positionX = data.x
         const positionY = data.y
         setPatchExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
+            ...prev,
+            x: positionX,
+            y: positionY
         }))
     }
 

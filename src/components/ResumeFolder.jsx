@@ -1,5 +1,5 @@
 import UseContext from '../Context';
-import { Fragment, useContext, useEffect, useRef, useState} from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 import Resume from '../assets/folder.png';
@@ -7,66 +7,66 @@ import '../css/ResumeFolder.css';
 
 function ResumeFolder() {
 
-  const iconRefs = useRef([]);
+    const iconRefs = useRef([]);
 
-  const { 
-    setCurrentRightClickFolder,
-    refBeingClicked,
-    handleMobileLongPress,
-    setRightClickIcon,
-    setIconBeingRightClicked,
-    timerRef,
-    iconContainerSize, iconImgSize, iconTextSize,
-    iconScreenSize,
-    key,
-    dragging,
-    handleOnDrag,
-    handleDrop,
-    ResumeFolderRef,
-    dropTargetFolder, setDropTargetFolder,
-    imageMapping,
-    desktopIcon, 
-    themeDragBar,
-    ResumeExpand, setResumeExpand,
-    lastTapTime, setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    handleShowMobile,
-    handleShow,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    iconFocusIcon,
-    deleteTap,
-  } = useContext(UseContext);
+    const {
+        setCurrentRightClickFolder,
+        refBeingClicked,
+        handleMobileLongPress,
+        setRightClickIcon,
+        setIconBeingRightClicked,
+        timerRef,
+        iconContainerSize, iconImgSize, iconTextSize,
+        iconScreenSize,
+        key,
+        dragging,
+        handleOnDrag,
+        handleDrop,
+        ResumeFolderRef,
+        dropTargetFolder, setDropTargetFolder,
+        imageMapping,
+        desktopIcon,
+        themeDragBar,
+        ResumeExpand, setResumeExpand,
+        lastTapTime, setLastTapTime,
+        StyleHide,
+        isTouchDevice,
+        handleShowMobile,
+        handleShow,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        iconFocusIcon,
+        deleteTap,
+    } = useContext(UseContext);
 
-  function handleDragStop(event, data) {
-    const positionX = data.x;
-    const positionY = data.y;
-    setResumeExpand(prev => ({
-      ...prev,
-      x: positionX,
-      y: positionY,
-    }));
-  }
-
-  function handleExpandStateToggle() {
-    setResumeExpand(prevState => ({
-      ...prevState,
-      expand: !prevState.expand,
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
-      setResumeExpand(prevState => ({
-        ...prevState,
-        expand: !prevState.expand,
-      }));
+    function handleDragStop(event, data) {
+        const positionX = data.x;
+        const positionY = data.y;
+        setResumeExpand(prev => ({
+            ...prev,
+            x: positionX,
+            y: positionY,
+        }));
     }
-    setLastTapTime(now);
-  }
+
+    function handleExpandStateToggle() {
+        setResumeExpand(prevState => ({
+            ...prevState,
+            expand: !prevState.expand,
+        }));
+    }
+
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            setResumeExpand(prevState => ({
+                ...prevState,
+                expand: !prevState.expand,
+            }));
+        }
+        setLastTapTime(now);
+    }
 
   return (
     <Draggable

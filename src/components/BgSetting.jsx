@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from 'react';
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import { SketchPicker } from 'react-color';
@@ -14,212 +14,213 @@ import eff5 from '../assets/glitch.gif'
 import eff6 from '../assets/glitch2.gif'
 import '../css/BgSetting.css'
 
-
-
 function BgSetting() {
 
-  const [pickerPanel, setPickerPanel] = useState(false)
-  const [userPickedColor, setUserPickedColor] = useState('')
-  const [bgTap, setBgTap] = useState(true)
-  const [effectTap, setEffectTap] = useState(false)
-  const [ barcolor, setBarcolor ] = useState(null)
-  const [ ImgBgPreview, setImgBgPreview ] = useState(null)
-  const [ ImgBgPreviewEffect, setImgBgPreviewEffect ] = useState(null)
+    const [pickerPanel, setPickerPanel] = useState(false)
+    const [userPickedColor, setUserPickedColor] = useState('')
+    const [bgTap, setBgTap] = useState(true)
+    const [effectTap, setEffectTap] = useState(false)
+    const [barcolor, setBarcolor] = useState(null)
+    const [ImgBgPreview, setImgBgPreview] = useState(null)
+    const [ImgBgPreviewEffect, setImgBgPreviewEffect] = useState(null)
 
-  const [ localBg, setLocalBg ] = useState(() => {
-    const prevBg = localStorage.getItem('background')
-    return prevBg? prevBg : null
-  })
-  const [ localEffect, setLocalEffect ] = useState(() => {
-    const prevEffect = localStorage.getItem('effect')
-    return prevEffect? prevEffect : null
-  })
+    const [localBg, setLocalBg] = useState(() => {
+        const prevBg = localStorage.getItem('background')
+        return prevBg ? prevBg : null
+    })
+    const [localEffect, setLocalEffect] = useState(() => {
+        const prevEffect = localStorage.getItem('effect')
+        return prevEffect ? prevEffect : null
+    })
 
-  const [ themeColor, setThemeColor ] = useState(null)
-  const [ localtheme, setLocalTheme ] = useState(() => {
-    const prevTheme = localStorage.getItem('theme')
-    return prevTheme? prevTheme : null
-  })
-  const [ selectedBg2, setSelectedBg2 ] = useState(null)
-  const [ selectedBg2Effect, setSelectedBg2Effect ] = useState(null)
+    const [themeColor, setThemeColor] = useState(null)
+    const [localtheme, setLocalTheme] = useState(() => {
+        const prevTheme = localStorage.getItem('theme')
+        return prevTheme ? prevTheme : null
+    })
+    const [selectedBg2, setSelectedBg2] = useState(null)
+    const [selectedBg2Effect, setSelectedBg2Effect] = useState(null)
 
-  const {
-    themeDragBar, setThemeDragBar,
-    BgSettingExpand ,setBgSettingExpand,
-    StyleHide,
-    isTouchDevice,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    deleteTap,
-   } = useContext(UseContext);
+    const {
+        themeDragBar, setThemeDragBar,
+        BgSettingExpand, setBgSettingExpand,
+        StyleHide,
+        isTouchDevice,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        deleteTap,
+    } = useContext(UseContext);
 
-      function handleDragStop(event, data) {
+    function handleDragStop(event, data) {
         const positionX = data.x
         const positionY = data.y
         setBgSettingExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
+            ...prev,
+            x: positionX,
+            y: positionY
         }))
-      }
+    }
 
-      function handleSettingsTap(name) {
+    function handleSettingsTap(name) {
         setBgTap(name === 'bg');
         setEffectTap(name === 'effect');
-      }
+    }
 
-      const activeBtnStyle = {
+    const activeBtnStyle = {
         bottom: '2px',
         outline: '1px dotted black',
         outlineOffset: '-5px',
         borderBottomColor: '#c5c4c4',
         zIndex: '3'
-      };
+    };
 
-      const colorOptions = [
-        { value: 1, label: 'Digital Dusk', color: '#3F4565', image: bg0, barColor: '#3F4565'},
-        { value: 13, label: 'Choose your favorite color', color: userPickedColor, image: userPickedColor, barColor: userPickedColor}
-      ];
-
-
-      const effectOptions = [
-        { value: 1, label: '(None)', image: 'none'},
-        { value: 2, label: 'Noise', image: eff1},
-        { value: 3, label: 'Glitch noise', image: eff2},
-        { value: 4, label: 'Broken TV', image: eff3},
-        { value: 5, label: 'Noise 2', image: eff4},
-        { value: 6, label: 'Glitch', image: eff5},
-        { value: 7, label: 'Glitch Two', image: eff6},
-      ];
-
-      useEffect(() => { // force set background and effect when app opened for color picker
-        if (userPickedColor) {
-          setThemeColor(userPickedColor);
-          setBarcolor(userPickedColor);
-          setImgBgPreview(userPickedColor);
+    const colorOptions = [
+        {value: 1, label: 'Digital Dusk', color: '#3F4565', image: bg0, barColor: '#3F4565'},
+        {
+            value: 13,
+            label: 'Choose your favorite color',
+            color: userPickedColor,
+            image: userPickedColor,
+            barColor: userPickedColor
         }
-      }, [userPickedColor]);
+    ];
 
 
+    const effectOptions = [
+        {value: 1, label: '(None)', image: 'none'},
+        {value: 2, label: 'Noise', image: eff1},
+        {value: 3, label: 'Glitch noise', image: eff2},
+        {value: 4, label: 'Broken TV', image: eff3},
+        {value: 5, label: 'Noise 2', image: eff4},
+        {value: 6, label: 'Glitch', image: eff5},
+        {value: 7, label: 'Glitch Two', image: eff6},
+    ];
 
-      function setbgColorFunction2(index) {
+    useEffect(() => { // force set background and effect when app opened for color picker
+        if (userPickedColor) {
+            setThemeColor(userPickedColor);
+            setBarcolor(userPickedColor);
+            setImgBgPreview(userPickedColor);
+        }
+    }, [userPickedColor]);
+
+
+    function setbgColorFunction2(index) {
         const selectedOption = colorOptions.find(option => option.value === index);
 
         if (selectedOption) {
-          setSelectedBg2(index);
-          setImgBgPreview(selectedOption.image);
-          setThemeColor(selectedOption.color);
-          setBarcolor(selectedOption.barColor)
+            setSelectedBg2(index);
+            setImgBgPreview(selectedOption.image);
+            setThemeColor(selectedOption.color);
+            setBarcolor(selectedOption.barColor)
         }
-      }
+    }
 
-      function setbgColorFunction2Effect(index) {
+    function setbgColorFunction2Effect(index) {
         const selectedOption = effectOptions.find(option => option.value === index);
 
         if (selectedOption) {
-          setSelectedBg2Effect(index);
-          setImgBgPreviewEffect(selectedOption.image);
+            setSelectedBg2Effect(index);
+            setImgBgPreviewEffect(selectedOption.image);
         }
-      }
+    }
 
-      useEffect(() => { // when exited app, make set everything to null to prevent bug when reopen
+    useEffect(() => { // when exited app, make set everything to null to prevent bug when reopen
 
-        if(!BgSettingExpand.show) {
-          setImgBgPreview(null) // set default preview to teal green
-          setImgBgPreviewEffect(null)
-          setSelectedBg2(null)
-          setSelectedBg2Effect(null)
-          setEffectTap(false)
-          setBgTap(true)
+        if (!BgSettingExpand.show) {
+            setImgBgPreview(null) // set default preview to teal green
+            setImgBgPreviewEffect(null)
+            setSelectedBg2(null)
+            setSelectedBg2Effect(null)
+            setEffectTap(false)
+            setBgTap(true)
         }
 
-      },[BgSettingExpand])
+    }, [BgSettingExpand])
 
 
-      useEffect(() => {
+    useEffect(() => {
         const bodyBG = document.getElementsByTagName('body')[0];
         const rootEffect = document.getElementById('root');
 
         if (localEffect) { // for effect
-          rootEffect.style.setProperty('--before-bg-image', `url(${localEffect})`);
-
+            rootEffect.style.setProperty('--before-bg-image', `url(${localEffect})`);
         }
 
         if (localBg) { // for background
-          bodyBG.style.backgroundColor = localtheme
-          bodyBG.style.backgroundImage = `url(${localBg})`;
+            bodyBG.style.backgroundColor = localtheme
+            bodyBG.style.backgroundImage = `url(${localBg})`;
         }
-      },[])
+    }, [])
 
-      function appleBG() {
+    function appleBG() {
         const bodyBG = document.getElementsByTagName('body')[0];
         const rootEffect = document.getElementById('root');
 
         if (ImgBgPreviewEffect) { // for Effect
-          rootEffect.style.setProperty('--before-bg-image', `url(${ImgBgPreviewEffect})`);
-
+            rootEffect.style.setProperty('--before-bg-image', `url(${ImgBgPreviewEffect})`);
         }
 
         if (ImgBgPreview) { // for background
-          bodyBG.style.backgroundColor = themeColor
-          bodyBG.style.backgroundImage = `url(${ImgBgPreview})`;
-          setThemeDragBar(barcolor)
+            bodyBG.style.backgroundColor = themeColor
+            bodyBG.style.backgroundImage = `url(${ImgBgPreview})`;
+            setThemeDragBar(barcolor)
         } else {
-          return;
+            return;
         }
-      }
+    }
 
-      function cancelBg() {
+    function cancelBg() {
         const bodyBG = document.getElementsByTagName('body')[0];
         const rootEffect = document.getElementById('root');
         const localBarColor = localStorage.getItem('barcolor')
 
         if (localEffect) { // for Effect
-          rootEffect.style.setProperty('--before-bg-image', `url(${localEffect})`);
+            rootEffect.style.setProperty('--before-bg-image', `url(${localEffect})`);
         }
 
         if (localBg) { // for background
-          bodyBG.style.backgroundColor = localtheme
-          bodyBG.style.backgroundImage = `url(${localBg})`;
-          setThemeDragBar(localBarColor)
+            bodyBG.style.backgroundColor = localtheme
+            bodyBG.style.backgroundImage = `url(${localBg})`;
+            setThemeDragBar(localBarColor)
         } else {
-          return;
+            return;
         }
-      }
+    }
 
 
-      function okBg() {
+    function okBg() {
 
         const bodyBG = document.getElementsByTagName('body')[0]
         const rootEffect = document.getElementById('root');
 
 
         if (ImgBgPreviewEffect) { // for effect
-          rootEffect.style.setProperty('--before-bg-image', `url(${ImgBgPreviewEffect})`);
+            rootEffect.style.setProperty('--before-bg-image', `url(${ImgBgPreviewEffect})`);
         }
 
         if (ImgBgPreviewEffect) { // for effect
-          localStorage.setItem('effect', ImgBgPreviewEffect); // set background in localstroage
-          setLocalEffect(ImgBgPreviewEffect)
-          setLocalEffect(localEffect)
+            localStorage.setItem('effect', ImgBgPreviewEffect); // set background in localstroage
+            setLocalEffect(ImgBgPreviewEffect)
+            setLocalEffect(localEffect)
         }
 
         if (ImgBgPreview) { // for background
-          bodyBG.style.backgroundColor = themeColor
-          bodyBG.style.backgroundImage = `url(${ImgBgPreview})`;
-          setThemeDragBar(barcolor)
+            bodyBG.style.backgroundColor = themeColor
+            bodyBG.style.backgroundImage = `url(${ImgBgPreview})`;
+            setThemeDragBar(barcolor)
         }
 
         if (ImgBgPreview) { // for background
-          localStorage.setItem('theme', themeColor); // set theme in localstroage
-          localStorage.setItem('background', ImgBgPreview); // set background in localstroage
-          localStorage.setItem('barcolor', barcolor); // set barcolor in localstroage
-          setLocalBg(ImgBgPreview)
-          setLocalTheme(themeColor)
+            localStorage.setItem('theme', themeColor); // set theme in localstroage
+            localStorage.setItem('background', ImgBgPreview); // set background in localstroage
+            localStorage.setItem('barcolor', barcolor); // set barcolor in localstroage
+            setLocalBg(ImgBgPreview)
+            setLocalTheme(themeColor)
         }
         return;
-      }
+    }
 
   return (
     <>

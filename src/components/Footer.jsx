@@ -1,6 +1,6 @@
 import { useEffect, useRef, useContext, useState } from 'react';
 import UseContext from '../Context'
-import { motion, AnimatePresence  } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import startIcon from '../assets/logoblack32x32.png';
 import run from '../assets/run.png';
 import github from '../assets/github.png';
@@ -12,15 +12,14 @@ import resume from '../assets/folder.png';
 import shutdownicon from '../assets/shutdownicon.png';
 import settings from '../assets/setting.png';
 import { clippyPhrase, clippySuggest } from './function/ClippyFunction';
-import { BsCheck  } from "react-icons/bs";
+import { BsCheck } from 'react-icons/bs';
 import Calendar from 'react-calendar';
-import { BsFillCaretRightFill } from "react-icons/bs";
+import { BsFillCaretRightFill } from 'react-icons/bs';
 import binEmp from '../assets/bin2.png'
 import bin from '../assets/bin.png'
 
-
 export default function Footer() {
-    
+
     const wheelTapContainer = useRef(null)
     const startRef = useRef(null);
     const iconSizeRef = useRef(null);
@@ -29,7 +28,6 @@ export default function Footer() {
     const projectRef = useRef(null)
     const resumeRef = useRef(null)
     const [calValue, calOnChange] = useState(new Date());
-   
 
     const {
         onlineUser,
@@ -55,7 +53,7 @@ export default function Footer() {
         randomClippyPopup, setRandomClippyPopup,
         clippyTouched, setClippyTouched,
         clippyThanks,
-        clippySendemail, 
+        clippySendemail,
         firstTimoutShowclippy,
         RandomTimeoutShowClippy,
         SecondRandomTimeoutShowClippy,
@@ -69,10 +67,9 @@ export default function Footer() {
         setShutdownWindow,
         ClearTOclippyUsernameFunction,
         clippyUsername,
-     } = useContext(UseContext);
+    } = useContext(UseContext);
 
-
-     const footerItems = [
+    const footerItems = [
         {
             className: "project",
             imgSrc: project,
@@ -116,7 +113,7 @@ export default function Footer() {
             className: "ghithub",
             imgSrc: github,
             imgAlt: "github",
-            style: { borderRadius: '5px' },
+            style: {borderRadius: '5px'},
             spanText: "Github",
             onClick: () => {
                 handleDoubleClickEnterLink('Github', handleShow)
@@ -153,7 +150,7 @@ export default function Footer() {
             },
         },
         {
-            className: "groove" 
+            className: "groove"
         },
         {
             className: "shutdownicon",
@@ -170,69 +167,66 @@ export default function Footer() {
             },
         }
     ];
-    
-    
-    
-     const handleWheelScroll = (e) => { // wheel from x to Y on tap
+
+    const handleWheelScroll = (e) => { // wheel from x to Y on tap
         const container = wheelTapContainer.current;
         container.scrollLeft += e.deltaY;
-      };
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         const handleMouseMove = (event) => {
-          const startPopupContainer = startPopUpRef.current;
-          const projectContainer = projectRef.current;
-          const resumeContainer = resumeRef.current;
-      
-          if (startPopupContainer) {
-            const startRect = startPopupContainer.getBoundingClientRect();
-      
-            let projectRect = null;
-            let resumeRect = null;
-      
-            if (projectContainer) {
-              projectRect = projectContainer.getBoundingClientRect();
+            const startPopupContainer = startPopUpRef.current;
+            const projectContainer = projectRef.current;
+            const resumeContainer = resumeRef.current;
+
+            if (startPopupContainer) {
+                const startRect = startPopupContainer.getBoundingClientRect();
+
+                let projectRect = null;
+                let resumeRect = null;
+
+                if (projectContainer) {
+                    projectRect = projectContainer.getBoundingClientRect();
+                }
+                if (resumeContainer) {
+                    resumeRect = resumeContainer.getBoundingClientRect();
+                }
+
+                const isMouseOutsideStart =
+                    event.clientX < startRect.left ||
+                    event.clientX > startRect.right ||
+                    event.clientY < startRect.top ||
+                    event.clientY > startRect.bottom;
+
+                const isMouseOutsideProject = projectRect
+                    ? event.clientX < projectRect.left ||
+                    event.clientX > projectRect.right ||
+                    event.clientY < projectRect.top ||
+                    event.clientY > projectRect.bottom
+                    : true;
+
+                const isMouseOutsideResume = resumeRect
+                    ? event.clientX < resumeRect.left ||
+                    event.clientX > resumeRect.right ||
+                    event.clientY < resumeRect.top ||
+                    event.clientY > resumeRect.bottom
+                    : true;
+
+                if (isMouseOutsideStart && isMouseOutsideProject && isMouseOutsideResume) {
+                    setProjectStartBar(false);
+                    setResumejectStartBar(false);
+                }
             }
-            if (resumeContainer) {
-              resumeRect = resumeContainer.getBoundingClientRect();
-            }
-      
-            const isMouseOutsideStart =
-              event.clientX < startRect.left ||
-              event.clientX > startRect.right ||
-              event.clientY < startRect.top ||
-              event.clientY > startRect.bottom;
-      
-            const isMouseOutsideProject = projectRect
-              ? event.clientX < projectRect.left ||
-                event.clientX > projectRect.right ||
-                event.clientY < projectRect.top ||
-                event.clientY > projectRect.bottom
-              : true;
-      
-            const isMouseOutsideResume = resumeRect
-              ? event.clientX < resumeRect.left ||
-                event.clientX > resumeRect.right ||
-                event.clientY < resumeRect.top ||
-                event.clientY > resumeRect.bottom
-              : true;
-      
-            if (isMouseOutsideStart && isMouseOutsideProject && isMouseOutsideResume) {
-              setProjectStartBar(false);
-              setResumejectStartBar(false);
-            }
-          }
         };
-      
+
         document.addEventListener('mousemove', handleMouseMove);
-      
+
         return () => {
-          document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mousemove', handleMouseMove);
         };
-      }, []);
-      
-      
-    
+    }, []);
+
+
     useEffect(() => { // set local time
         getCurrentLocalTime12Hour();
         const intervalId = setInterval(getCurrentLocalTime12Hour, 1000); // update every 1 second
@@ -240,11 +234,11 @@ export default function Footer() {
     }, []);
 
     useEffect(() => {
-        if(!startActive){
+        if (!startActive) {
             setProjectStartBar(false)
             setResumejectStartBar(false)
         }
-    },[startActive])
+    }, [startActive])
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -252,7 +246,7 @@ export default function Footer() {
             if (startRef.current && !startRef.current.contains(event.target)) {
                 setStartActive(false);
             }
-            
+
             // Check if the click is outside the icon size element
             if (iconSizeRef.current && !iconSizeRef.current.contains(event.target)) {
                 setIconSize(false);
@@ -262,14 +256,13 @@ export default function Footer() {
                 setCalenderToggle(false);
             }
         };
-    
+
         document.addEventListener('click', handleClickOutside);
-    
+
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
     }, []);
-    
 
     const getCurrentLocalTime12Hour = () => {
         const now = new Date();
@@ -287,40 +280,39 @@ export default function Footer() {
     function handleHideFolder(index) { // unhide icon from tap
 
         const lowerCaseName = tap[index].toLowerCase().split(' ').join('');
-      
-        const allSetItems =  ObjectState() // all the usestate name to toggle
-        
-      
+
+        const allSetItems = ObjectState() // all the usestate name to toggle
+
         allSetItems.forEach((item) => {
-      
-          const itemName = item.name.toLowerCase().trim();
-          if(item.type === 'userCreatedFolder') { // for user created folder
-          item.setter({
-            focusItem: tap[index] === item.name,
-            hide: tap[index] === item.name ? false : item.usestate.hide,
-          });
-        }
-          if(itemName === lowerCaseName) {
-            item.setter(prev => ({...prev, focusItem: true}));
-            if(item.usestate.hide) {
-                item.setter(prev => ({...prev, hide: false}));  
-                if(lowerCaseName === 'winamp') {
-                    const webampElement = document.querySelector('#webamp');
-                    if (webampElement) {
-                        webampElement.style.opacity = 1;
-                        webampElement.style.pointerEvents = 'auto';
-                        webampElement.style.touchAction = 'auto'
-                        setWinampExpand(prev => ({...prev, hide: false}));
+
+            const itemName = item.name.toLowerCase().trim();
+            if (item.type === 'userCreatedFolder') { // for user created folder
+                item.setter({
+                    focusItem: tap[index] === item.name,
+                    hide: tap[index] === item.name ? false : item.usestate.hide,
+                });
+            }
+            if (itemName === lowerCaseName) {
+                item.setter(prev => ({...prev, focusItem: true}));
+                if (item.usestate.hide) {
+                    item.setter(prev => ({...prev, hide: false}));
+                    if (lowerCaseName === 'winamp') {
+                        const webampElement = document.querySelector('#webamp');
+                        if (webampElement) {
+                            webampElement.style.opacity = 1;
+                            webampElement.style.pointerEvents = 'auto';
+                            webampElement.style.touchAction = 'auto'
+                            setWinampExpand(prev => ({...prev, hide: false}));
+                        }
                     }
                 }
             }
-          }
 
-          if(itemName !== lowerCaseName) {
-            item.setter(prev => ({...prev, focusItem: false}));
-          }
+            if (itemName !== lowerCaseName) {
+                item.setter(prev => ({...prev, focusItem: false}));
+            }
         });
-      }
+    }
 
 
     useEffect(() => { // display clippy when windows start
@@ -332,14 +324,13 @@ export default function Footer() {
 
         setShowClippy(true)
         firstTimoutShowclippy.current = setTimeout(() => {
-            setShowClippy(false) 
+            setShowClippy(false)
         }, 10000);
-        
+
         return () => {
             clearTimeout(firstTimoutShowclippy.current);
         };
-    },[])
-
+    }, [])
 
     useEffect(() => { //random clippy time
         clearTimeout(SecondRandomTimeoutShowClippy.current)
@@ -348,29 +339,28 @@ export default function Footer() {
         clearTimeout(ClearTOclippySendemailfunction.current)
         clearTimeout(ClearTOclippyThanksYouFunction.curremt)
         clearTimeout(ClearTOSongfunction.current)
-        
+
         RandomTimeoutShowClippy.current = setTimeout(() => { // random clippy index from length
-        const randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length)
-                setClippyIndex(randomIndex);
-                setShowClippy(true);
-        SecondRandomTimeoutShowClippy.current = setTimeout(() => {
+            const randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length)
+            setClippyIndex(randomIndex);
+            setShowClippy(true);
+            SecondRandomTimeoutShowClippy.current = setTimeout(() => {
                 setShowClippy(false);
                 setRandomClippyPopup(prev => !prev);
-            }, 10000); 
-        }, randomTime); 
-    
+            }, 10000);
+        }, randomTime);
+
         return () => {
             clearTimeout(RandomTimeoutShowClippy.current);
             clearTimeout(SecondRandomTimeoutShowClippy.current);
         };
     }, [randomClippyPopup]);
 
-
     function dontTouch() { // click on clippy while speaking, will active angry clippy
         clearTimeout(ClearTOdonttouch.current)
         ClearTOdonttouch.current = setClippyTouched(true)
         setTimeout(() => {
-            setClippyTouched(false)   
+            setClippyTouched(false)
         }, 3500);
 
         return () => {
@@ -379,36 +369,36 @@ export default function Footer() {
     }
 
     function handleClipperTalk() {
-        if(clippyThanks) return clippySuggest[1];
-        if(clippyTouched) return clippyPhrase.interruption[0].phrase;
-        if(clippySendemail) return clippySuggest[0]
-        if(clippySong) return clippySuggest[2]
-        if(clippyUsername) return chatDown? clippySuggest[4] : onlineUser < 2 ? clippySuggest[5] : clippySuggest[3]
-        
+        if (clippyThanks) return clippySuggest[1];
+        if (clippyTouched) return clippyPhrase.interruption[0].phrase;
+        if (clippySendemail) return clippySuggest[0]
+        if (clippySong) return clippySuggest[2]
+        if (clippyUsername) return chatDown ? clippySuggest[4] : onlineUser < 2 ? clippySuggest[5] : clippySuggest[3]
+
         return clippyPhrase.inspiration[clippyIndex].phrase // return default from phrase 
     }
-    
+
     useEffect(() => { /// need useeffect to update state before it returns on handleClipperTalk()
         if (clippySendemail) {
             setClippyIndex(1);
             return;
         }
         if (clippySong) {
-            setClippyIndex(7); 
+            setClippyIndex(7);
             return;
         }
         if (clippyUsername) {
-            setClippyIndex(2); 
+            setClippyIndex(2);
             return;
         }
     }, [clippySendemail, clippySong, clippyUsername]);
 
     const iconSizeSelection = [
-        { label: '360x640', value: 1 },
-        { label: '640x720', value: 2 },
-        { label: '1920x1080', value: 3 },
-        { label: '2560x1440', value: 4 },
-        { label: '3480x2160', value: 5 }
+        {label: '360x640', value: 1},
+        {label: '640x720', value: 2},
+        {label: '1920x1080', value: 3},
+        {label: '2560x1440', value: 4},
+        {label: '3480x2160', value: 5}
     ];
 
     const projectFolderItem = desktopIcon.filter(icon => icon.folderId === 'Project').length
