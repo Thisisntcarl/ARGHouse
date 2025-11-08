@@ -13,7 +13,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emailjs/browser": "4.3.3",
     "axios": "1.7.4",
     "bad-words": "4.0.0",
     "dayjs": "1.11.13",

@@ -1,5 +1,4 @@
 import UseContext from '../Context'
-import emailjs from '@emailjs/browser';
 import { useContext, useRef } from 'react';
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
@@ -25,27 +24,29 @@ function MailFolder() {
         iconFocusIcon,
     } = useContext(UseContext);
 
-// ---------------------- EMAIL JS ---------------------------------------
+// ---------------------- Call Email Backend ---------------------------------------
 
     const form = useRef();
 
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
 
-        emailjs
-            .sendForm('service_3jp9sce', 'template_mwqeuol', form.current, {
-                publicKey: 'VEMHa6EGtulAzDYSH',
-            })
-            .then(
-                () => {
-                    clippyThanksYouFunction()
-                    alert('Thank you for your interest, will contact you back shortly!')
-                    form.current.reset();
-                },
-                (error) => {
-                    console.log('FAILED...', error.text);
-                },
-            );
+        const formDate = new FormData();
+        formDate.append("name", form.current.from_name.value);
+        formDate.append("email", form.current.from_email.value);
+        formDate.append("message", form.current.message.value);
+
+        const response = await fetch("https://www.arghouse.com/send_email.php", {
+            method: "POST",
+            body: formDate,
+        });
+
+        if (response.ok) {
+            alert("Message sent!");
+            form.current.reset();
+        } else {
+            alert("Something went wrong. Try again later.");
+        }
     };
 
 // ------------------------------------------------------------------------------
@@ -171,7 +172,7 @@ function MailFolder() {
                 <div className="sendmail_icon">
                   <input className="sendmail_img_container" type="submit" value="Send"></input>
                 </div>
-                  <input className="myemail_container" placeholder='yudthsoponvit@gmail.com' disabled style={{background: '#d4d1d1'}} />
+                  <input className="myemail_container" placeholder='carl@arghouse.com' disabled style={{background: '#d4d1d1'}} />
                 </div>
                 <div className="to_container">
                   <div className="to_icon"
