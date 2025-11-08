@@ -16,7 +16,6 @@
     -ms-user-select: none;
     user-select: none;
 }
-   
 
 /* @media screen and (max-width: 450px) {
     .folder_folder_run {
@@ -25,14 +24,14 @@
 } */
 
 .folder_folder_run .folder_dragbar_run {
-   display: flex;
-   position: relative;
-   height: 20px;
-   width: 100%;
-   margin-bottom: 1px;
-   align-items: center;
-   justify-content: space-between;
-   -webkit-user-select: none;
+    display: flex;
+    position: relative;
+    height: 20px;
+    width: 100%;
+    margin-bottom: 1px;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -43,7 +42,6 @@
     font-size: 13px;
     color: white;
     margin-left: 5px;
-    
 }
 
 .folder_folder_run .folder_barbtn_run {
@@ -59,14 +57,17 @@
     background: #c9c9c9;
     font-weight: bold;
     border: 1px solid black;
-    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    border-top-color: rgb(198, 198, 198);
+    border-left-color: rgb(198, 198, 198);
     box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
     cursor: default;
 }
 
 .folder_barbtn_run div:not(.expand):active {
-    border-top-color: black;border-left-color: black;
-    border-bottom-color: white;border-right-color: white;
+    border-top-color: black;
+    border-left-color: black;
+    border-bottom-color: white;
+    border-right-color: white;
 }
 
 .folder_barbtn_run .x {
@@ -74,7 +75,6 @@
     text-align: center;
     font-size: 16px;
     bottom: 6px;
-
 }
 
 /* support only safari */
@@ -93,7 +93,6 @@
     gap: 10px;
     margin-top: 1.2rem;
     margin-left: .5rem;
-
 }
 
 .run_top_container img {
@@ -112,7 +111,7 @@
     margin-left: .5rem;
     margin-top: .5rem;
     gap: 17px;
-    
+
 }
 
 .run_middle_container p {
@@ -224,12 +223,11 @@
 }
 
 .run_dropdown_box p {
-   font-size: 11px;
-   padding: 1px 5px;
+    font-size: 11px;
+    padding: 1px 5px;
 }
 
 .run_dropdown_box p:hover {
-   background: #040482;
-   color: white;
+    background: #040482;
+    color: white;
 }
-
