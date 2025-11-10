@@ -15,7 +15,6 @@
     overflow: hidden;
     resize: both;
 }
-   
 
 @media screen and (max-width: 450px) {
     .folder_folder-resumefile {
@@ -26,14 +25,14 @@
 }
 
 .folder_folder-resumefile .folder_dragbar-resumefile {
-   display: flex;
-   position: relative;
-   height: 24px;
-   width: 100%;
-   margin-bottom: 1px;
-   align-items: center;
-   justify-content: space-between;
-   -webkit-user-select: none;
+    display: flex;
+    position: relative;
+    height: 24px;
+    width: 100%;
+    margin-bottom: 1px;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -68,14 +67,17 @@
     background: #c9c9c9;
     font-weight: bold;
     border: 1px solid black;
-    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    border-top-color: rgb(198, 198, 198);
+    border-left-color: rgb(198, 198, 198);
     box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
     cursor: default;
 }
 
 .folder_barbtn-resumefile div:not(.expand-resumefile):active {
-    border-top-color: black;border-left-color: black;
-    border-bottom-color: white;border-right-color: white;
+    border-top-color: black;
+    border-left-color: black;
+    border-bottom-color: white;
+    border-right-color: white;
 }
 
 .folder_barbtn-resumefile .x-resumefile {
@@ -88,7 +90,7 @@
 /* support only safari */
 @supports (-webkit-touch-callout: none) {
     .folder_barbtn-resumefile .x-resumefile {
-        bottom: 7px; 
+        bottom: 7px;
     }
 }
 
@@ -99,6 +101,7 @@
     margin: 0 auto;
     border-bottom: 2px solid black;
 }
+
 .folder_barbtn-resumefile .expand-resumefile {
     position: relative;
     width: 10px;
@@ -143,7 +146,6 @@
     padding-bottom: 5px;
     cursor: default;
 }
-
 
 .folder_folder-resumefile .folder_content-resumefile {
     position: relative;
@@ -223,7 +225,6 @@
     border-bottom: 1px solid black;
     gap: 1px;
     z-index: 99;
-    
 }
 
 .btn_option_btm_container .file_resume_select-hide {
@@ -256,7 +257,6 @@
 .btn_option_btm_container .btn_download_conainer p:hover {
     color: white;
 }
-
 
 .btn_option_btm_container .btn_Open_conainer {
     display: flex;
@@ -301,12 +301,12 @@
         width: 500px;
     }
 }
+
 @media screen and (width >= 1000px) {
     .folder_folder-resumefile {
         width: 650px;
     }
 }
-
 
 iframe {
     position: absolute;
@@ -315,13 +315,8 @@ iframe {
     height: 100%;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
-    .folder_barbtn-resumefile .x-resumefile {      
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: .001dpcm) and (min-width: 0px) {
+    .folder_barbtn-resumefile .x-resumefile {
         left: 1px;
     }
 }
-
-
-
-
-

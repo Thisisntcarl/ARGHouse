@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState } from "react";
+import { useContext, useState } from 'react';
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import { imageMapping } from './function/AppFunctions';
@@ -7,73 +7,69 @@ import '../css/TaskManager.css'
 
 function TaskManager() {
 
-  const [itemSelected, setItemSelected] = useState(null);
-  const [selectedItemToClose, setSelectedItemToClose] = useState('');
+    const [itemSelected, setItemSelected] = useState(null);
+    const [selectedItemToClose, setSelectedItemToClose] = useState('');
 
     const {
-    setShutdownWindow,
-    TaskManagerExpand, setTaskManagerExpand,
-    themeDragBar,
-    ObjectState,
-    StyleHide,
-    isTouchDevice,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    iconFocusIcon,
-    deleteTap,
+        setShutdownWindow,
+        TaskManagerExpand, setTaskManagerExpand,
+        themeDragBar,
+        ObjectState,
+        StyleHide,
+        isTouchDevice,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        iconFocusIcon,
+        deleteTap,
+    } = useContext(UseContext);
 
-   } = useContext(UseContext);
-
-
-
-      function handleDragStop(event, data) {
-        const positionX = data.x 
+    function handleDragStop(event, data) {
+        const positionX = data.x
         const positionY = data.y
         setTaskManagerExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
+            ...prev,
+            x: positionX,
+            y: positionY
         }))
-
-      }
-
-  const allState = ObjectState()
-
-  const bannedItems = ['Fortune', 'TaskManager', '3dObject']
-
-  const activeStateAll = allState.filter(item => { // from objectState
-    if(bannedItems.includes(item.name)) {
-      return ;
     }
-    return item.usestate.show === true
-  });
 
-  const additionalItems = [ // added items
-  ];
+    const allState = ObjectState()
 
-  const activeState = [
-  ...activeStateAll,
-  ...additionalItems.filter(item => item.state)
-  ];
+    const bannedItems = ['Fortune', 'TaskManager', '3dObject']
+
+    const activeStateAll = allState.filter(item => { // from objectState
+        if (bannedItems.includes(item.name)) {
+            return;
+        }
+        return item.usestate.show === true
+    });
+
+    const additionalItems = [ // added items
+    ];
+
+    const activeState = [
+        ...activeStateAll,
+        ...additionalItems.filter(item => item.state)
+    ];
 
   return (
     <>
       <Draggable
-        axis="both" 
+        axis="both"
         handle={'.folder_dragbar'}
         grid={[1, 1]}
         scale={1}
         disabled={TaskManagerExpand.expand}
         bounds={{top: 0}}
-        defaultPosition={{ 
+        defaultPosition={{
           x: window.innerWidth <= 500 ? 5 : 80,
           y: window.innerWidth <= 500 ? 100 : 90,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
         onStart={() => handleSetFocusItemTrue('TaskManager')}
       >
-        <div className='folder_folder-taskmanager' 
+        <div className='folder_folder-taskmanager'
             onClick={(e) => {
               e.stopPropagation();
               handleSetFocusItemTrue('TaskManager');
@@ -94,7 +90,7 @@ function TaskManager() {
               <div onClick={ !isTouchDevice? (e) => {
                 e.stopPropagation()
                 setTaskManagerExpand(prev => ({...prev, hide: true, focusItem: false}))
-                StyleHide('TaskManager') 
+                StyleHide('TaskManager')
               } : undefined
             }
                    onTouchEnd={(e) => {
@@ -111,7 +107,7 @@ function TaskManager() {
                   style={{ borderColor: 'grey'}}
                 >
                 </motion.div>
-                {TaskManagerExpand.expand ? 
+                {TaskManagerExpand.expand ?
                 (
                 <div className="expand_2"></div>
                 )
@@ -136,17 +132,17 @@ function TaskManager() {
               iconFocusIcon('TaskManager');
               setSelectedItemToClose('');
             }}
-            style={TaskManagerExpand.expand ? 
-              { height: 'calc(100svh - 80px)'} 
-              : 
+            style={TaskManagerExpand.expand ?
+              { height: 'calc(100svh - 80px)'}
+              :
               {}
             }
           >
               {activeState.map((item, index) => (
                 <>
-                  <p 
-                    style={itemSelected === index ? 
-                      { background: '#040482', color: 'white' } 
+                  <p
+                    style={itemSelected === index ?
+                      { background: '#040482', color: 'white' }
                       : {}
                     }
                     key={index}
@@ -160,7 +156,7 @@ function TaskManager() {
                   </p>
                 </>
               ))}
-  
+
           </div>
           <div className="taskmanager_text_btn">
             <p>

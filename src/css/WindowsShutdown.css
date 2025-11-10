@@ -17,16 +17,24 @@
 }
 
 @media screen and (width < 500px) {
-    .shitdown_bg_container img{
+    .shitdown_bg_container img {
         transform: scale(1.6)
     }
 }
 
 @keyframes shuttingDown {
-    0% {opacity: 0;}
-    20% {opacity: 1;}
-    90% {opacity: 1;}
-    100% {opacity: 0;}
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .shitdown_bg_container .text_1_shutdown {
@@ -57,14 +65,20 @@
 
 @media screen and (min-width: 1200px) {
     .shitdown_bg_container .text_1_shutdown, .shitdown_bg_container .text_2_shutdown {
-       font-size: 45px;
+        font-size: 45px;
     }
 }
 
 @keyframes shuttingDownText {
-    0% {opacity: 0;}
-    20% {opacity: 1;}
-    100% {opacity: 1;}
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 

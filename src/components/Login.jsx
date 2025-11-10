@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from 'react';
 import login_icon from '../assets/login.png'
 import mario from '../assets/mario.gif'
 import tunnel from '../assets/tunnel.png'
@@ -7,55 +7,55 @@ import '../css/Login.css'
 
 function Login() {
 
-    const [ username, setUsername ] = useState('admin')
-    const [ password, setPassword ] = useState('1234')
-    const [ sizeUp, setSizeUp ] = useState(1)
+    const [username, setUsername] = useState('admin')
+    const [password, setPassword] = useState('1234')
+    const [sizeUp, setSizeUp] = useState(1)
 
-    const { setLogin, themeDragBar } = useContext(UseContext);
+    const {setLogin, themeDragBar} = useContext(UseContext);
 
     function handleLogin(e) {
         e.preventDefault()
 
-        if(username === 'admin' && password === '1234'){
+        if (username === 'admin' && password === '1234') {
             setLogin(false)
         }
         return;
     }
 
     function handleMarioSizeUp() {
-        if(sizeUp >= 3) {
+        if (sizeUp >= 3) {
             return
         }
         setSizeUp(prev => prev + 0.1)
     }
 
-    useEffect(() =>{
-      const sectionBG = document.getElementsByClassName('login_section')[0];
-      const localtheme = localStorage.getItem('theme')
-      const localbg = localStorage.getItem('background')
-      const bodyBG = document.getElementsByTagName('body')[0];
-      const localEffect = localStorage.getItem('effect')
-      
-        if(localEffect) {
-          const rootEffect = document.getElementById('root')
+    useEffect(() => {
+        const sectionBG = document.getElementsByClassName('login_section')[0];
+        const localtheme = localStorage.getItem('theme')
+        const localbg = localStorage.getItem('background')
+        const bodyBG = document.getElementsByTagName('body')[0];
+        const localEffect = localStorage.getItem('effect')
 
-          rootEffect.style.setProperty('--before-bg-image', `url(${localEffect})`);
+        if (localEffect) {
+            const rootEffect = document.getElementById('root')
+
+            rootEffect.style.setProperty('--before-bg-image', `url(${localEffect})`);
         }
         if (localtheme && localbg) {
-          bodyBG.style.backgroundColor = localtheme
-          sectionBG.style.backgroundColor = localtheme
-          bodyBG.style.backgroundImage = `url(${bodyBG})`
+            bodyBG.style.backgroundColor = localtheme
+            sectionBG.style.backgroundColor = localtheme
+            bodyBG.style.backgroundImage = `url(${bodyBG})`
         } else {
-          bodyBG.style.backgroundColor = '#098684'
-          sectionBG.style.backgroundColor = '#098684'
+            bodyBG.style.backgroundColor = '#098684'
+            sectionBG.style.backgroundColor = '#098684'
         }
-      
-    },[])
+
+    }, [])
 
     useEffect(() => {
         // Create a <style> element
-            const style = document.createElement('style');
-            style.innerHTML = `
+        const style = document.createElement('style');
+        style.innerHTML = `
               @keyframes run {
                 0% {
                   left: -3%;
@@ -97,14 +97,14 @@ function Login() {
                 }
               }
             `;
-            
-            // Append the <style> element to the document head
-            document.head.appendChild(style);
-            
-            return () => {
-              document.head.removeChild(style);
-            };
-          }, [sizeUp]);
+
+        // Append the <style> element to the document head
+        document.head.appendChild(style);
+
+        return () => {
+            document.head.removeChild(style);
+        };
+    }, [sizeUp]);
   
     return (
     <section className='login_section'>

@@ -4,15 +4,15 @@ import WebampPlayer from './WebampPlayer';
 
 function WinampPlayer() {
 
-  const { 
-    WinampExpand,
-  } = useContext(UseContext);
+    const {
+        WinampExpand,
+    } = useContext(UseContext);
 
-  return (
-    <div>
-      {WinampExpand.show? (<WebampPlayer/>):(null)}
-    </div>
-  );
+    return (
+        <div>
+            {WinampExpand.show ? (<WebampPlayer/>) : (null)}
+        </div>
+    );
 }
 
 export default WinampPlayer;

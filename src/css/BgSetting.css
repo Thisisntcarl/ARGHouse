@@ -17,14 +17,14 @@
 
 
 .bgsetting_folder .folder_dragbar_bgsetting {
-   display: flex;
-   position: relative;
-   height: 24px;
-   width: 100%;
-   margin-bottom: 1px;
-   align-items: center;
-   justify-content: space-between;
-   -webkit-user-select: none;
+    display: flex;
+    position: relative;
+    height: 24px;
+    width: 100%;
+    margin-bottom: 1px;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -57,14 +57,17 @@
     background: #c9c9c9;
     font-weight: bold;
     border: 1px solid black;
-    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    border-top-color: rgb(198, 198, 198);
+    border-left-color: rgb(198, 198, 198);
     box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
     cursor: default;
 }
 
 .bgsetting_barbtn div:not(.expand):active {
-    border-top-color: black;border-left-color: black;
-    border-bottom-color: white;border-right-color: white;
+    border-top-color: black;
+    border-left-color: black;
+    border-bottom-color: white;
+    border-right-color: white;
 }
 
 .bgsetting_barbtn .x {
@@ -77,7 +80,7 @@
 /* support only safari */
 @supports (-webkit-touch-callout: none) {
     .bgsetting_barbtn .x {
-        bottom: 7px; 
+        bottom: 7px;
         left: 1px;
     }
 }
@@ -89,6 +92,7 @@
     margin: 0 auto;
     border-bottom: 2px solid black;
 }
+
 .bgsetting_barbtn .expand {
     position: relative;
     width: 10px;
@@ -100,6 +104,7 @@
     top: 3px;
     z-index: 1;
 }
+
 .bgsetting_barbtn .expand.full {
     position: relative;
     width: 8px;
@@ -151,7 +156,6 @@
     position: relative;
     height: fit-content;
     padding: 1px 4px;
-    
 }
 
 @supports (-webkit-touch-callout: none) {
@@ -160,7 +164,6 @@
         padding: 0px 4px;
     }
 }
-
 
 .bgsetting_folder .folder_content {
     position: relative;
@@ -210,7 +213,7 @@
     overflow: hidden;
 }
 
-.preview_bg img{
+.preview_bg img {
     width: 100%;
     height: 100%;
 }
@@ -222,15 +225,14 @@
     }
 }
 
-
 .bgsetting_btn_container {
     display: flex;
     position: absolute;
     gap: 6px;
     right: 5px;
     margin-top: 6px;
-
 }
+
 .bgsetting_btn_container div {
     position: relative;
     width: 70px;
@@ -242,15 +244,16 @@
     user-select: none;
 }
 
-
 .bgsetting_btn_container span {
     font-size: 13px;
 }
+
 .bgsetting_btn_container .bgsetting_btn_ok {
     border-top-color: #f0efef;
     border-left-color: #f0efef;
     cursor: pointer;
 }
+
 .bgsetting_btn_container .bgsetting_btn_cancel {
     border-top-color: #f0efef;
     border-left-color: #f0efef;
@@ -266,11 +269,11 @@
 }
 
 .folder_content .bgsettingtext_container {
-   display: flex;
-   justify-content: space-between;
-   gap: 1rem;
-   font-size: 13px;
-   margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 13px;
+    margin-top: 1rem;
 }
 
 .bgsettingtext_container .pattern, .wallpaper {
@@ -304,7 +307,7 @@
     left: 3px;
 }
 
-.pattern_container {  
+.pattern_container {
     position: relative;
     height: 80px;
     width: 90%;
@@ -316,7 +319,7 @@
     bottom: 5px;
 }
 
-.wallpaper_container {  
+.wallpaper_container {
     position: relative;
     height: 80px;
     width: 90%;
@@ -327,7 +330,6 @@
     margin: 0 auto;
     bottom: 5px;
     overflow-y: scroll;
-    
 }
 
 .wallpaper_container ul {
@@ -345,15 +347,14 @@
 }
 
 
-
 @media screen and (width <= 500px) {
     .bgsetting_folder {
         width: 370px;
     }
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
-    .x {      
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: .001dpcm) and (min-width: 0px) {
+    .x {
         left: 1px;
     }
 }

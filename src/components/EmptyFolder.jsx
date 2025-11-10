@@ -1,7 +1,7 @@
 import UseContext from '../Context';
-import { Fragment, useContext, useEffect, useRef, useState} from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import '../css/ResumeFolder.css';
 import PropTypes from 'prop-types';
 import photoicon from '../assets/jpeg.png';
@@ -10,101 +10,101 @@ import bin from '../assets/bin.png'
 
 function EmptyFolder({state, setState, refState, folderName, photoMode, paintMode, userCreatedFolderMode, type}) {
 
-  const iconRefs = useRef([]);
+    const iconRefs = useRef([]);
 
-  const { 
-    setCurrentRightClickFolder,
-    keyRef, setKeyRef,
-    handleMobileLongPressBin,
-    refBeingClicked,
-    setRightClickBin,
-    timerRef,
-    handleMobileLongPress,
-    setRightClickIcon,
-    setIconBeingRightClicked,
-    currentPhoto,
-    iconContainerSize, iconImgSize, iconTextSize,
-    iconScreenSize,
-    key,
-    dragging,
-    handleOnDrag,
-    handleDrop,
-    dropTargetFolder, setDropTargetFolder,
-    imageMapping,
-    desktopIcon, 
-    themeDragBar,
-    lastTapTime, setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    handleShowMobile,
-    handleShow,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    iconFocusIcon,
-    deleteTap,
-  } = useContext(UseContext);
+    const {
+        setCurrentRightClickFolder,
+        keyRef, setKeyRef,
+        handleMobileLongPressBin,
+        refBeingClicked,
+        setRightClickBin,
+        timerRef,
+        handleMobileLongPress,
+        setRightClickIcon,
+        setIconBeingRightClicked,
+        currentPhoto,
+        iconContainerSize, iconImgSize, iconTextSize,
+        iconScreenSize,
+        key,
+        dragging,
+        handleOnDrag,
+        handleDrop,
+        dropTargetFolder, setDropTargetFolder,
+        imageMapping,
+        desktopIcon,
+        themeDragBar,
+        lastTapTime, setLastTapTime,
+        StyleHide,
+        isTouchDevice,
+        handleShowMobile,
+        handleShow,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        iconFocusIcon,
+        deleteTap,
+    } = useContext(UseContext);
 
-  function handleDragStop(event, data) {
-    const positionX = data.x;
-    const positionY = data.y;
-    if(userCreatedFolderMode) { // for user created folder
-      setState({
-        x: positionX,
-        y: positionY,
-      })
+    function handleDragStop(event, data) {
+        const positionX = data.x;
+        const positionY = data.y;
+        if (userCreatedFolderMode) { // for user created folder
+            setState({
+                x: positionX,
+                y: positionY,
+            })
+        }
+
+        setState(prev => ({
+            ...prev,
+            x: positionX,
+            y: positionY,
+        }));
     }
 
-    setState(prev => ({
-      ...prev,
-      x: positionX,
-      y: positionY,
-    }));
-  }
+    function handleExpandStateToggle() {
 
-  function handleExpandStateToggle() {
-
-    if(userCreatedFolderMode) { // for user created folder
-      setState({expand: !state.expand});
-    }
-    setState(prevState => ({
-      ...prevState,
-      expand: !prevState.expand,
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
-
-      if(userCreatedFolderMode) { // for user created folder
-      setState({expand: !state.expand});
+        if (userCreatedFolderMode) { // for user created folder
+            setState({expand: !state.expand});
+        }
+        setState(prevState => ({
+            ...prevState,
+            expand: !prevState.expand,
+        }));
     }
 
-      setState(prevState => ({
-        ...prevState,
-        expand: !prevState.expand,
-      }));
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+
+            if (userCreatedFolderMode) { // for user created folder
+                setState({expand: !state.expand});
+            }
+
+            setState(prevState => ({
+                ...prevState,
+                expand: !prevState.expand,
+            }));
+        }
+        setLastTapTime(now);
     }
-    setLastTapTime(now);
-  }
 
-  const parentItemContainerStyle = {
-    background: '#c5c4c4',
-    padding: '0',
-    display: 'flex',
-    justifyContent: 'center',
-    height: '100%',
-    scrollbarWidth : 'none',
-    TouchEvent: 'auto',
-  }
+    const parentItemContainerStyle = {
+        background: '#c5c4c4',
+        padding: '0',
+        display: 'flex',
+        justifyContent: 'center',
+        height: '100%',
+        scrollbarWidth: 'none',
+        TouchEvent: 'auto',
+    }
 
-  const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
-  const recycleBinLength = recycleBin.length;
+    const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
+    const recycleBinLength = recycleBin.length;
 
-  useEffect(() => { // force re-render, ref can be tracked
-    setKeyRef(prev => prev + 1)
-  },[useState.show])
+    useEffect(() => { // force re-render, ref can be tracked
+        setKeyRef(prev => prev + 1)
+    }, [useState.show])
 
   return (
     <Draggable

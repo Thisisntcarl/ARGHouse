@@ -6,10 +6,11 @@ import '../css/Shutdown.css';
 function Shutdown() {
     const [selectedOption, setSelectedOption] = useState(null);
 
-    const { shutdownWindow, setShutdownWindow, 
-            setLogin, setWindowsShutDownAnimation,
-            themeDragBar,
-        } = useContext(UseContext);
+    const {
+        shutdownWindow, setShutdownWindow,
+        setLogin, setWindowsShutDownAnimation,
+        themeDragBar,
+    } = useContext(UseContext);
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -31,7 +32,7 @@ function Shutdown() {
         if (selectedOption === "option1") {
             setWindowsShutDownAnimation(true)
             const bodyBG = document.getElementsByTagName('body')[0];
-            bodyBG.style.background = '#040404'; 
+            bodyBG.style.background = '#040404';
         }
 
         if (selectedOption === "option2") {
@@ -51,13 +52,13 @@ function Shutdown() {
 
     // useEffect(() => { // change body bg darker tone, when shutdown is toggled
     //     const bodyElement = document.body;
-    
+
     //     if (shutdownWindow) {
     //         bodyElement.style.background = '#09807e';
     //     } else {
     //         bodyElement.style.background = '';
     //     }
-    
+
     // }, [shutdownWindow]);
     
 

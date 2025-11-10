@@ -7,20 +7,19 @@ const WebampPlayer = () => {
 
     const [focus, setFocus] = useState(false)
 
-    const { 
+    const {
         ObjectState,
         maxZindexRef,
         WinampExpand, setWinampExpand,
-
         deleteTap,
-      } = useContext(UseContext);
+    } = useContext(UseContext);
 
     const appRef = useRef(null);
 
     useEffect(() => {
         let webampInstance;
-        let disposed = false; 
-    
+        let disposed = false;
+
         const startWebamp = () => {
             if (Webamp.browserIsSupported()) {
                 const options = {
@@ -36,20 +35,20 @@ const WebampPlayer = () => {
                 };
                 const webamp = new Webamp(options);
                 webampInstance = webamp;
-    
+
                 const handleClose = () => {
                     if (!disposed) {
-                        disposed = true; 
+                        disposed = true;
                         webamp.dispose();
                         deleteTap('Winamp')
                     }
                 };
-    
+
                 webamp.onClose(handleClose);
-    
+
                 webamp.onMinimize(() => {
                     const webampElement = document.querySelector('#webamp');
-      
+
                     if (webampElement) {
                         webampElement.style.opacity = 0;
                         webampElement.style.pointerEvent = 'none'
@@ -59,16 +58,16 @@ const WebampPlayer = () => {
                         setFocus(false)
                     }
                 });
-    
+
                 webamp.renderWhenReady(appRef.current);
             }
         };
-    
+
         startWebamp();
-    
+
         return () => {
             if (webampInstance && !disposed) {
-                disposed = true; 
+                disposed = true;
                 webampInstance.dispose();
             }
         };
@@ -77,31 +76,29 @@ const WebampPlayer = () => {
 
     useEffect(() => {
         const webampElement = document.querySelector('#webamp');
-    
+
         if (webampElement) {
 
             if (WinampExpand.focusItem) {
                 webampElement.style.zIndex = 999;
-            } 
+            }
 
             // if(WinampExpand.focusItem && WinampExpand.hide) {
             //     webampElement.style.touchAction = 'none'
             //     webampElement.style.zIndex = -1;
             // }
-            
-            if(!WinampExpand.focusItem && !WinampExpand.hide) {
-                const maxZindex = (maxZindexRef.current || 0 ) + 1;
+
+            if (!WinampExpand.focusItem && !WinampExpand.hide) {
+                const maxZindex = (maxZindexRef.current || 0) + 1;
                 webampElement.style.zIndex = maxZindex;
                 maxZindexRef.cururent = maxZindex;
             }
-               
-        } 
-    }, [WinampExpand.focusItem]);
-    
-    useEffect(() => {
-        
-        const handleFocusWinamp = (event) => {
 
+        }
+    }, [WinampExpand.focusItem]);
+
+    useEffect(() => {
+        const handleFocusWinamp = (event) => {
             if (event.target.closest('#webamp' || event.target.closest('#winamp-container')) && !focus) {
                 const allState = ObjectState()
                 allState.forEach(item => {
@@ -109,23 +106,21 @@ const WebampPlayer = () => {
                 })
             }
         };
-    
+
         document.addEventListener('click', () => {
             handleFocusWinamp()
             setFocus(true)
         });
         document.addEventListener('touchstart', handleFocusWinamp);
         document.addEventListener('mousedown', handleFocusWinamp);
-    
+
         return () => {
             document.removeEventListener('click', handleFocusWinamp);
             document.removeEventListener('touchstart', handleFocusWinamp);
             document.removeEventListener('mousedown', handleFocusWinamp);
         };
     }, []);
-    
-    
-    
+
 
     return(   
         <div ref={appRef} className='winampRef'></div>

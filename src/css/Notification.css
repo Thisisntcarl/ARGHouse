@@ -27,8 +27,8 @@
     margin-bottom: .5rem;
     padding: .4rem;
     background: #f3f3f38f;
-
 }
+
 .noti_container .noti_icon img {
     position: relative;
     width: 24px;
@@ -72,7 +72,7 @@
     100%{top: -500px;}
 } */
 
-@media screen and (width <= 500px){
+@media screen and (width <= 500px) {
     .noti_container {
         width: 90%;
         left: 50%;

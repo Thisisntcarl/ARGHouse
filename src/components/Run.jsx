@@ -1,137 +1,126 @@
 import ErrorBtn from './ErrorBtn';
 import UseContext from '../Context'
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from 'react';
 import Draggable from 'react-draggable'
 import RunIcon from '../assets/run.png'
 import '../css/Run.css'
-import { BsCaretDownFill } from "react-icons/bs";
-import {imageMapping} from './function/AppFunctions' 
-
-
+import { BsCaretDownFill } from 'react-icons/bs';
+import { imageMapping } from './function/AppFunctions'
 
 function Run() {
 
-  const { 
-    desktopIcon,
-    textError,
-    runItemBox, setRunItemBox,
-    RunInputVal, setRunInputVal,
-    remountRunPosition,
-    ErrorPopup, setErrorPopup,
-    reMountRun,
-    ObjectState,
-    themeDragBar,
-    RunExpand, setRunExpand,
-    lastTapTime, setLastTapTime,
-    isTouchDevice,
-    handleShow,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    deleteTap,
-    setRegErrorPopUp,
-    setRegErrorPopUpVal,
-    setCurrentFolder,
-    setSelectedFolder,
-   } = useContext(UseContext);
+    const {
+        desktopIcon,
+        textError,
+        runItemBox, setRunItemBox,
+        RunInputVal, setRunInputVal,
+        remountRunPosition,
+        ErrorPopup, setErrorPopup,
+        reMountRun,
+        ObjectState,
+        themeDragBar,
+        RunExpand, setRunExpand,
+        lastTapTime, setLastTapTime,
+        isTouchDevice,
+        handleShow,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        deleteTap,
+        setRegErrorPopUp,
+        setRegErrorPopUpVal,
+        setCurrentFolder,
+        setSelectedFolder,
+    } = useContext(UseContext);
 
-  const cannotOpenFile = ['internet', 'type', 'run', 'hard disk (c:)', 'hard disk (d:)', 'cd-rom' ]; // files that should not be opened by RUN
+    const cannotOpenFile = ['internet', 'type', 'run', 'hard disk (c:)', 'hard disk (d:)', 'cd-rom']; // files that should not be opened by RUN
 
     function handleRunOpenFile(ObjectState, name) {
-      const lowerCaseName = name.toLowerCase().trim();
-      const matchedItem = desktopIcon.find(
-        item => item.name.toLowerCase().trim() === lowerCaseName
-      );
+        const lowerCaseName = name.toLowerCase().trim();
+        const matchedItem = desktopIcon.find(
+            item => item.name.toLowerCase().trim() === lowerCaseName
+        );
 
-      const closeRun = () => {
-        deleteTap('Run');
-        setRunInputVal('');
-        setRunItemBox(false);
-      };
+        const closeRun = () => {
+            deleteTap('Run');
+            setRunInputVal('');
+            setRunItemBox(false);
+        };
 
-      
-      if(!matchedItem) {
-        setRegErrorPopUp(true);
-        setRegErrorPopUpVal(name);
-        closeRun();
-        return;
-      }
-
-      // Prevent opening restricted files
-      if (cannotOpenFile.includes(lowerCaseName)) {
-        closeRun();
-        return;
-      }
-
-      switch (lowerCaseName) {
-        
-
-        case 'resume': // Resume File
-          setTimeout(() => {
-            handleShow('ResumeFile');
+        if (!matchedItem) {
+            setRegErrorPopUp(true);
+            setRegErrorPopUpVal(name);
             closeRun();
-          }, 100);
-          break;
+            return;
+        }
 
-
-        default:
-          setTimeout(() => {
-            const passedName = matchedItem ? matchedItem.name : name;
-            handleShow(passedName);
+        // Prevent opening restricted files
+        if (cannotOpenFile.includes(lowerCaseName)) {
             closeRun();
-          }, 100);
-          break;
-      }
+            return;
+        }
+
+        switch (lowerCaseName) {
+            case 'resume': // Resume File
+                setTimeout(() => {
+                    handleShow('ResumeFile');
+                    closeRun();
+                }, 100);
+                break;
+            default:
+                setTimeout(() => {
+                    const passedName = matchedItem ? matchedItem.name : name;
+                    handleShow(passedName);
+                    closeRun();
+                }, 100);
+                break;
+        }
     }
 
     // Generate allowed desktop items in run's list
     const listItems = desktopIcon
-      .filter(item => {
-        const lowerCaseName = item.name.toLowerCase();
-        return (
-          !cannotOpenFile.includes(lowerCaseName) &&
-          lowerCaseName !== 'resumefile' &&
-          !lowerCaseName.startsWith('0')
-        );
-      })
-      .map(item => item.name);
+        .filter(item => {
+            const lowerCaseName = item.name.toLowerCase();
+            return (
+                !cannotOpenFile.includes(lowerCaseName) &&
+                lowerCaseName !== 'resumefile' &&
+                !lowerCaseName.startsWith('0')
+            );
+        })
+        .map(item => item.name);
 
-
-
-      function handleDragStop(event, data) {
-        const positionX = data.x 
+    function handleDragStop(event, data) {
+        const positionX = data.x
         const positionY = data.y
         setRunExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
+            ...prev,
+            x: positionX,
+            y: positionY
         }))
+    }
 
-      }
-
-   function handleExpandStateToggle() {
-    setRunExpand(prevState => ({
-      ...prevState,
-      expand: !prevState.expand
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
+    function handleExpandStateToggle() {
         setRunExpand(prevState => ({
             ...prevState,
             expand: !prevState.expand
         }));
     }
-    setLastTapTime(now);
-}
 
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            setRunExpand(prevState => ({
+                ...prevState,
+                expand: !prevState.expand
+            }));
+        }
+        setLastTapTime(now);
+    }
 
-    useEffect(() => { 
-      remountRunPosition()
-      
-    },[RunExpand.show])
+    useEffect(() => {
+        remountRunPosition()
+
+    }, [RunExpand.show])
 
   return (
     <>

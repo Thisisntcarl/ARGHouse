@@ -1,59 +1,54 @@
 import UseContext from '../Context'
-import { useContext } from "react";
+import { useContext } from 'react';
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import ie from '../assets/ie.png'
 import '../css/OpenProject.css'
 
-
 function OpenProject() {
 
-  const { 
-    themeDragBar,
-    projectname,
-    projectUrl,
-    openProjectExpand, setOpenProjectExpand,
-    lastTapTime, setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    iconFocusIcon,
-    deleteTap,
+    const {
+        themeDragBar,
+        projectname,
+        projectUrl,
+        openProjectExpand, setOpenProjectExpand,
+        lastTapTime, setLastTapTime,
+        StyleHide,
+        isTouchDevice,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        iconFocusIcon,
+        deleteTap,
+    } = useContext(UseContext);
 
-   } = useContext(UseContext);
-
-
-
-      function handleDragStop(event, data) {
-        const positionX = data.x 
+    function handleDragStop(event, data) {
+        const positionX = data.x
         const positionY = data.y
         setOpenProjectExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
+            ...prev,
+            x: positionX,
+            y: positionY
         }))
+    }
 
-      }
-
-   function handleExpandStateToggle() {
-    setOpenProjectExpand(prevState => ({
-      ...prevState,
-      expand: !prevState.expand
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
+    function handleExpandStateToggle() {
         setOpenProjectExpand(prevState => ({
             ...prevState,
             expand: !prevState.expand
         }));
     }
-    setLastTapTime(now);
-}
+
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            setOpenProjectExpand(prevState => ({
+                ...prevState,
+                expand: !prevState.expand
+            }));
+        }
+        setLastTapTime(now);
+    }
 
   return (
     <>

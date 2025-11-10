@@ -1,57 +1,54 @@
 import UseContext from '../Context'
-import { useContext, useState } from "react";
+import { useContext, useState } from 'react';
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import resumefile from '../assets/resume.png'
 import '../css/ResumeFile.css'
 
-
-
 function ResumeFile() {
 
-  const { 
-    themeDragBar,
-    ResumeFileExpand, setResumeFileExpand,
-    lastTapTime, setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    deleteTap,
+    const {
+        themeDragBar,
+        ResumeFileExpand, setResumeFileExpand,
+        lastTapTime, setLastTapTime,
+        StyleHide,
+        isTouchDevice,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        deleteTap,
 
-   } = useContext(UseContext);
+    } = useContext(UseContext);
 
-   const [ downloadBox, setDownloadBox ] = useState(false)
+    const [downloadBox, setDownloadBox] = useState(false)
 
-      function handleDragStop(event, data) {
-        const positionX = data.x 
+    function handleDragStop(event, data) {
+        const positionX = data.x
         const positionY = data.y
         setResumeFileExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
+            ...prev,
+            x: positionX,
+            y: positionY
         }))
+    }
 
-      }
-
-   function handleExpandStateToggle() {
-    setResumeFileExpand(prevState => ({
-      ...prevState,
-      expand: !prevState.expand
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
+    function handleExpandStateToggle() {
         setResumeFileExpand(prevState => ({
             ...prevState,
             expand: !prevState.expand
         }));
     }
-    setLastTapTime(now);
-}
+
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            setResumeFileExpand(prevState => ({
+                ...prevState,
+                expand: !prevState.expand
+            }));
+        }
+        setLastTapTime(now);
+    }
 
   return (
     <>

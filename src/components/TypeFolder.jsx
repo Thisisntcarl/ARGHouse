@@ -1,61 +1,59 @@
 import UseContext from '../Context'
-import { useContext } from "react";
+import { useContext } from 'react';
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import file4 from '../assets/file4.png'
 import folder from '../assets/regFolder.png'
 import '../css/ResumeFolder.css'
 
-
 function TypeFolder() {
 
-  const { 
-    themeDragBar,
-    handleShow, handleShowMobile,
-    handleDoubleClickiframe, handleDoubleTapiframeMobile,
-    setOpenProjectExpand,
-    setProjectUrl,
-    TypeExpand, setTypeExpand,
-    lastTapTime, setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    handleDoubleTapEnterMobile,
-    handleDoubleClickEnterLink,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    iconFocusIcon,
-    deleteTap,
-   } = useContext(UseContext);
+    const {
+        themeDragBar,
+        handleShow, handleShowMobile,
+        handleDoubleClickiframe, handleDoubleTapiframeMobile,
+        setOpenProjectExpand,
+        setProjectUrl,
+        TypeExpand, setTypeExpand,
+        lastTapTime, setLastTapTime,
+        StyleHide,
+        isTouchDevice,
+        handleDoubleTapEnterMobile,
+        handleDoubleClickEnterLink,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        iconFocusIcon,
+        deleteTap,
+    } = useContext(UseContext);
 
-      function handleDragStop(event, data) {
-        const positionX = data.x 
+    function handleDragStop(event, data) {
+        const positionX = data.x
         const positionY = data.y
         setTypeExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
+            ...prev,
+            x: positionX,
+            y: positionY
         }))
+    }
 
-      }
-
-   function handleExpandStateToggle() {
-    setTypeExpand(prevState => ({
-      ...prevState,
-      expand: !prevState.expand
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
+    function handleExpandStateToggle() {
         setTypeExpand(prevState => ({
             ...prevState,
             expand: !prevState.expand
         }));
     }
-    setLastTapTime(now);
-}
+
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            setTypeExpand(prevState => ({
+                ...prevState,
+                expand: !prevState.expand
+            }));
+        }
+        setLastTapTime(now);
+    }
 
 
   return (

@@ -1,195 +1,192 @@
 import UseContext from '../Context';
-import { Fragment, useContext, useEffect, useRef, useState} from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 import '../css/MyComputer.css';
 import undoIcon from '../assets/arrowback.png'
-import { BsCaretDownFill } from "react-icons/bs";
+import { BsCaretDownFill } from 'react-icons/bs';
 
 function MyComputer() {
 
-  const iconRefs = useRef([]);
-  const [popUpFolder, setPopUpFolder] = useState(false)
+    const iconRefs = useRef([]);
+    const [popUpFolder, setPopUpFolder] = useState(false)
 
-  const { 
-    setCurrentRightClickFolder,
-    refBeingClicked,
-    inFolder, setInFolder,
-    handleShowInfolderMobile, handleShowInfolder,
-    handleMobileLongPress,
-    setRightClickIcon,
-    setIconBeingRightClicked,
-    setRightClickDefault,
-    timerRef,
-    undo, setUndo,
-    DiskRef,
-    selectedFolder, setSelectedFolder,
-    currentFolder, setCurrentFolder,
-    iconContainerSize, iconImgSize, iconTextSize,
-    iconScreenSize,
-    key,
-    dragging,
-    handleOnDrag,
-    handleDrop,
-    dropTargetFolder, setDropTargetFolder,
-    imageMapping,
-    desktopIcon, 
-    themeDragBar,
-    MyComputerExpand, setMyComputerExpand,
-    lastTapTime, setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    handleShowMobile,
-    handleShow,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    iconFocusIcon,
-    deleteTap,
-  } = useContext(UseContext);
+    const {
+        setCurrentRightClickFolder,
+        refBeingClicked,
+        inFolder, setInFolder,
+        handleShowInfolderMobile, handleShowInfolder,
+        handleMobileLongPress,
+        setRightClickIcon,
+        setIconBeingRightClicked,
+        setRightClickDefault,
+        timerRef,
+        undo, setUndo,
+        DiskRef,
+        selectedFolder, setSelectedFolder,
+        currentFolder, setCurrentFolder,
+        iconContainerSize, iconImgSize, iconTextSize,
+        iconScreenSize,
+        key,
+        dragging,
+        handleOnDrag,
+        handleDrop,
+        dropTargetFolder, setDropTargetFolder,
+        imageMapping,
+        desktopIcon,
+        themeDragBar,
+        MyComputerExpand, setMyComputerExpand,
+        lastTapTime, setLastTapTime,
+        StyleHide,
+        isTouchDevice,
+        handleShowMobile,
+        handleShow,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        iconFocusIcon,
+        deleteTap,
+    } = useContext(UseContext);
 
-   // popup select folder
-   const popUpiconList = [ // important default folderand disks
-    {name: 'MyComputer', pic: imageMapping('MyComputer'), at: 'MyComputer'},
-    {name: 'Hard Disk (C:)', pic: imageMapping('Hard Disk (C:)'), at: 'DiskC'},
-    {name: 'Hard Disk (D:)', pic: imageMapping('Hard Disk (D:)'), at: 'DiskD'},
-    {name: 'CD-ROM', pic: imageMapping('CD-ROM'), at: 'CD-ROM'},
-  ]
+    // popup select folder
+    const popUpiconList = [ // important default folderand disks
+        {name: 'MyComputer', pic: imageMapping('MyComputer'), at: 'MyComputer'},
+        {name: 'Hard Disk (C:)', pic: imageMapping('Hard Disk (C:)'), at: 'DiskC'},
+        {name: 'Hard Disk (D:)', pic: imageMapping('Hard Disk (D:)'), at: 'DiskD'},
+        {name: 'CD-ROM', pic: imageMapping('CD-ROM'), at: 'CD-ROM'},
+    ]
 
-  const folderMap = [ // important all the folder name
-    {folder: 'MyComputer', label: 'MyComputer', img: imageMapping('MyComputer')},
-    {folder: 'DiskC',label: 'Hard Disk (C:)', img: imageMapping('Hard Disk (C:)')},
-    {folder: 'DiskD',label: 'Hard Disk (D:)', img: imageMapping('Hard Disk (D:)')},
-    {folder: 'CD-ROM',label: 'CD-ROM', img: imageMapping('CD-ROM')},
-    {folder: 'Resume',label: 'Resume', img: imageMapping('Resume')},
-    {folder: 'Project',label: 'Project', img: imageMapping('Project')},
-    {folder: 'Picture',label: 'Picture', img: imageMapping('Picture')},
-    {folder: 'Utility',label: 'Utility', img: imageMapping('Utility')},
-  ]
+    const folderMap = [ // important all the folder name
+        {folder: 'MyComputer', label: 'MyComputer', img: imageMapping('MyComputer')},
+        {folder: 'DiskC', label: 'Hard Disk (C:)', img: imageMapping('Hard Disk (C:)')},
+        {folder: 'DiskD', label: 'Hard Disk (D:)', img: imageMapping('Hard Disk (D:)')},
+        {folder: 'CD-ROM', label: 'CD-ROM', img: imageMapping('CD-ROM')},
+        {folder: 'Resume', label: 'Resume', img: imageMapping('Resume')},
+        {folder: 'Project', label: 'Project', img: imageMapping('Project')},
+        {folder: 'Picture', label: 'Picture', img: imageMapping('Picture')},
+        {folder: 'Utility', label: 'Utility', img: imageMapping('Utility')},
+    ]
 
-  // const popUpiconList = desktopIcon.filter(a => {
-  //   if(a.type === 'Drive') {
-  //     return true
-  //   }
-  //   return false
-  // })
+    // const popUpiconList = desktopIcon.filter(a => {
+    //   if(a.type === 'Drive') {
+    //     return true
+    //   }
+    //   return false
+    // })
 
-  const subFolders = desktopIcon.filter(a => { // get all the folder
-    if(a.type === 'folder'){
-      return true
-    }
-    return false
-  })
+    const subFolders = desktopIcon.filter(a => { // get all the folder
+        if (a.type === 'folder') {
+            return true
+        }
+        return false
+    })
 
-  function handleDragStop(event, data) {
-    const positionX = data.x;
-    const positionY = data.y;
-    setMyComputerExpand(prev => ({
-      ...prev,
-      x: positionX,
-      y: positionY,
-    }));
-  }
-
-  function handleExpandStateToggle() {
-    setMyComputerExpand(prevState => ({
-      ...prevState,
-      expand: !prevState.expand,
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
-      setMyComputerExpand(prevState => ({
-        ...prevState,
-        expand: !prevState.expand,
-      }));
-    }
-    setLastTapTime(now);
-  }
-
-
-  function NevigateToFolder(name) {
-    let foldername = name;
-    
-    switch (name) {
-      case 'Hard Disk (C:)':
-        foldername = 'DiskC';
-        break;
-
-      case 'Hard Disk (D:)':
-        foldername = 'DiskD';
-        break;
-
-      default:
-        foldername = name;
-        break;
+    function handleDragStop(event, data) {
+        const positionX = data.x;
+        const positionY = data.y;
+        setMyComputerExpand(prev => ({
+            ...prev,
+            x: positionX,
+            y: positionY,
+        }));
     }
 
-    setCurrentFolder(foldername);
-    setUndo(prev => [...prev, foldername]);
-  }
-
-
-  useEffect(() => {
-    // defaulting to Mycomputer
-      setSelectedFolder({label: 'MyComputer', img: imageMapping('MyComputer')})
-      setCurrentFolder('MyComputer')
-      setPopUpFolder(false)
-      setUndo(['MyComputer'])
-    
-  },[MyComputerExpand.show])
-  
-
-  // margin to popup select folder
-  function MarginOnSelectedIcon(name, sub) {
-    if(name === 'MyComputer') return '0.2rem';
-    if(name.includes('Disk') || name.includes('CD-ROM')) return '1.1rem'
-    if(sub === 'sub1') return '2rem'
-    if(sub === 'sub2') return '2.9rem'
-    return;
-  }
-
-  // undo function
-  function UndoFunction() {
-
-    if (undo.length === 1) return; 
-  
-    const updatedUndo = undo.slice(0, -1);
-  
-    // Update the undo stack and set the current folder
-    setUndo(updatedUndo);
-    setCurrentFolder(updatedUndo[updatedUndo.length - 1] || 'MyComputer');
-    
-
-    const selectedFolder = folderMap.find(item => item.folder === updatedUndo[updatedUndo.length - 1]);
-  
-    // Update the selected folder state if a match is found, else fallback
-    if (selectedFolder) {
-      setSelectedFolder({ label: selectedFolder.label, img: selectedFolder.img });
-    } else {
-      setSelectedFolder({ label: 'MyComputer', img: imageMapping('MyComputer') }); 
+    function handleExpandStateToggle() {
+        setMyComputerExpand(prevState => ({
+            ...prevState,
+            expand: !prevState.expand,
+        }));
     }
-  }
+
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            setMyComputerExpand(prevState => ({
+                ...prevState,
+                expand: !prevState.expand,
+            }));
+        }
+        setLastTapTime(now);
+    }
+
+    function NevigateToFolder(name) {
+        let foldername = name;
+
+        switch (name) {
+            case 'Hard Disk (C:)':
+                foldername = 'DiskC';
+                break;
+
+            case 'Hard Disk (D:)':
+                foldername = 'DiskD';
+                break;
+
+            default:
+                foldername = name;
+                break;
+        }
+
+        setCurrentFolder(foldername);
+        setUndo(prev => [...prev, foldername]);
+    }
+
+    useEffect(() => {
+        // defaulting to Mycomputer
+        setSelectedFolder({label: 'MyComputer', img: imageMapping('MyComputer')})
+        setCurrentFolder('MyComputer')
+        setPopUpFolder(false)
+        setUndo(['MyComputer'])
+
+    }, [MyComputerExpand.show])
+
+    // margin to popup select folder
+    function MarginOnSelectedIcon(name, sub) {
+        if (name === 'MyComputer') return '0.2rem';
+        if (name.includes('Disk') || name.includes('CD-ROM')) return '1.1rem'
+        if (sub === 'sub1') return '2rem'
+        if (sub === 'sub2') return '2.9rem'
+        return;
+    }
+
+    // undo function
+    function UndoFunction() {
+
+        if (undo.length === 1) return;
+
+        const updatedUndo = undo.slice(0, -1);
+
+        // Update the undo stack and set the current folder
+        setUndo(updatedUndo);
+        setCurrentFolder(updatedUndo[updatedUndo.length - 1] || 'MyComputer');
+
+
+        const selectedFolder = folderMap.find(item => item.folder === updatedUndo[updatedUndo.length - 1]);
+
+        // Update the selected folder state if a match is found, else fallback
+        if (selectedFolder) {
+            setSelectedFolder({label: selectedFolder.label, img: selectedFolder.img});
+        } else {
+            setSelectedFolder({label: 'MyComputer', img: imageMapping('MyComputer')});
+        }
+    }
 
 
   return (
     <Draggable
-      axis="both" 
+      axis="both"
       handle={'.folder_dragbar'}
       grid={[1, 1]}
       scale={1}
       disabled={MyComputerExpand.expand}
       bounds={{ top: 0 }}
-      defaultPosition={{ 
+      defaultPosition={{
         x: window.innerWidth <= 500 ? 30 : 60,
         y: window.innerWidth <= 500 ? 30 : 80,
       }}
       onStop={(event, data) => {handleDragStop(event, data)}}
       onStart={() => {handleSetFocusItemTrue('MyComputer')}}
     >
-        <motion.div 
+        <motion.div
         onContextMenu={() => setCurrentRightClickFolder(currentFolder)}
           onTouchStart={() => setCurrentRightClickFolder(currentFolder)}
           ref={DiskRef}
@@ -220,7 +217,7 @@ function MyComputer() {
             <div onClick={ !isTouchDevice ? (e) => {
               e.stopPropagation();
               setMyComputerExpand(prev => ({ ...prev, hide: true, focusItem: false }));
-              StyleHide('MyComputer'); 
+              StyleHide('MyComputer');
             } : undefined}
             onTouchEnd={(e) => {
               e.stopPropagation()
@@ -231,7 +228,7 @@ function MyComputer() {
             >
               <p className='dash'></p>
             </div>
-            <div 
+            <div
               onClick={ !isTouchDevice ? handleExpandStateToggle : undefined}
               onTouchEnd={handleExpandStateToggleMobile}
             >
@@ -256,7 +253,7 @@ function MyComputer() {
         <div className="drive_control" >
           <div className="drive_link">
             {popUpFolder && (
-              
+
                 <div className="popup_select_folder">
                 <div className="selected_icon">
                   <ul>
@@ -269,7 +266,7 @@ function MyComputer() {
                           NevigateToFolder(icon.name)
                         }}
                       >
-                        <img src={imageMapping(icon.name)} alt="" 
+                        <img src={imageMapping(icon.name)} alt=""
                           style={{marginLeft: MarginOnSelectedIcon(icon.name)}}
                         />
                         <span>{icon.name}</span>
@@ -289,8 +286,8 @@ function MyComputer() {
                               />
                             <span>{subFolder.name}</span>
                             </li>
-                            {subFolders.map((subSubFolder, index) => 
-                              subSubFolder.folderId === subFolder.name ? 
+                            {subFolders.map((subSubFolder, index) =>
+                              subSubFolder.folderId === subFolder.name ?
                               <li key={index} onClick={() => {
                                 setSelectedFolder({label: subSubFolder.name, img: imageMapping(subSubFolder.name) === null ? imageMapping(subSubFolder.name, 'folder') : imageMapping(subSubFolder.name)})
                                 setPopUpFolder(false)
@@ -300,7 +297,7 @@ function MyComputer() {
                                 style={{ marginLeft: MarginOnSelectedIcon(subSubFolder.name, 'sub2') }}
                               />
                               <span>{subSubFolder.name}</span>
-                              </li> 
+                              </li>
                               : null
                             )}
                           </>
@@ -339,16 +336,16 @@ function MyComputer() {
         </div>
         <div className="folder_content-mypc"
           onClick={(e) =>  e.stopPropagation()}
-          style={{ 
+          style={{
             height: MyComputerExpand.expand ? 'calc(100svh - 122px)' : '',
-            overflow: dragging? '' : 'hidden' 
+            overflow: dragging? '' : 'hidden'
           }}
         >
           <div className='parent_item_container' key={key}
             onClick={() => handleSetFocusItemTrue('MyComputer')}
           >
 
-            <div className="item_container" 
+            <div className="item_container"
             onClick={(e) => {
               e.stopPropagation();
               setPopUpFolder(false)
@@ -388,11 +385,11 @@ function MyComputer() {
                       setInFolder(icon.name);
                       refBeingClicked.current = iconRefs.current[icon.name]
                     }}
-                    onDoubleClick={() => handleShowInfolder(icon.name, icon.type)}                      
+                    onDoubleClick={() => handleShowInfolder(icon.name, icon.type)}
                     onClick={!isTouchDevice ? (e) => {
                       iconFocusIcon(icon.name);
                       e.stopPropagation();
-                    }: undefined}           
+                    }: undefined}
                     onTouchStart={(e) => {
                       e.stopPropagation();
                       handleShowInfolderMobile(icon.name, icon.type);
@@ -420,7 +417,7 @@ function MyComputer() {
         <div className="btm_bar_container">
           <div className="object_bar">
             <p>
-              {desktopIcon.filter(icon => icon.folderId === currentFolder).some(icon => icon.focus) ? 
+              {desktopIcon.filter(icon => icon.folderId === currentFolder).some(icon => icon.focus) ?
                 '1 object(s) selected'
                 :
                 desktopIcon.filter(icon => icon.folderId === currentFolder).length + ' ' + 'object(s)'
@@ -435,12 +432,12 @@ function MyComputer() {
                 const allNotFocused = filteredIcons.every(icon => !icon.focus);
 
                 if (allNotFocused) {
-                  return totalSize; 
+                  return totalSize;
                 } else {
                   return filteredIcons
                     .filter(icon => icon.focus)
-                    .map(icon => icon.size) 
-                    .reduce((sum, size) => sum + size, 0); 
+                    .map(icon => icon.size)
+                    .reduce((sum, size) => sum + size, 0);
                 }
               })()} KB
             </p>

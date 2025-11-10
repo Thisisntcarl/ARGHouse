@@ -1,5 +1,5 @@
 import UseContext from '../Context';
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useState, useRef, useEffect } from 'react';
 import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 import msnPic from '../assets/msn.png';
@@ -10,140 +10,137 @@ import '../css/MSN.css';
 
 function MsnFolder() {
 
-  const {
-    handleShow,
-    ringMsnOff,
-    ringMsn, setRingMsn,
-    connectWebSocket,
-    websocketConnection,
-    chatBotActive, setChatBotActive,
-    onlineUser,
-    loadedMessages, setLoadedMessages,
-    themeDragBar,
-    sendDisable,
-    endOfMessagesRef,
-    createChat,
-    userNameValue, setUserNameValue,
-    chatValue, setChatValue,
-    chatData,
-    MSNExpand, setMSNExpand,
-    lastTapTime, setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    deleteTap,
-  } = useContext(UseContext);
+    const {
+        handleShow,
+        ringMsnOff,
+        ringMsn, setRingMsn,
+        connectWebSocket,
+        websocketConnection,
+        chatBotActive, setChatBotActive,
+        onlineUser,
+        loadedMessages, setLoadedMessages,
+        themeDragBar,
+        sendDisable,
+        endOfMessagesRef,
+        createChat,
+        userNameValue, setUserNameValue,
+        chatValue, setChatValue,
+        chatData,
+        MSNExpand, setMSNExpand,
+        lastTapTime, setLastTapTime,
+        StyleHide,
+        isTouchDevice,
+        handleSetFocusItemTrue,
+        inlineStyleExpand,
+        inlineStyle,
+        deleteTap,
+    } = useContext(UseContext);
 
 
-  const [userName, setUserName] = useState(false);
-  const topOfMessagesRef = useRef(null); // Ref to track the top of the chat container
-  const [initialLoading, setInitialLoading] = useState(false)
-  const hasScrolledRef = useRef(false);
+    const [userName, setUserName] = useState(false);
+    const topOfMessagesRef = useRef(null); // Ref to track the top of the chat container
+    const [initialLoading, setInitialLoading] = useState(false)
+    const hasScrolledRef = useRef(false);
 
-  const lastMessage = chatData.length > 0
-    ? chatData[chatData.length - 1].date.split('').slice(0, 10).join('')
-    : 'No messages yet';
+    const lastMessage = chatData.length > 0
+        ? chatData[chatData.length - 1].date.split('').slice(0, 10).join('')
+        : 'No messages yet';
 
-  useEffect(() => {
-    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [MSNExpand.show])
-  
+    useEffect(() => {
+        endOfMessagesRef.current?.scrollIntoView({behavior: "smooth"});
+    }, [MSNExpand.show])
 
-  useEffect(() => {
-    
-    if (ringMsn) {
-      handleShow('MSN');
-      const audio = new Audio(nudgeSound);
-      audio.play().catch((err) => console.error("Audio play failed:", err));
-      
+    useEffect(() => {
+
+        if (ringMsn) {
+            handleShow('MSN');
+            const audio = new Audio(nudgeSound);
+            audio.play().catch((err) => console.error("Audio play failed:", err));
+
+        }
+    }, [ringMsn]);
+
+    useEffect(() => {
+        if (!hasScrolledRef.current && MSNExpand.show) {
+            const timeoutId = setTimeout(() => {
+                if (loadedMessages.length > 0) {
+                    endOfMessagesRef.current?.scrollIntoView({behavior: "smooth"});
+                    hasScrolledRef.current = true; // Mark as executed
+                }
+            }, 1000);
+
+            return () => clearTimeout(timeoutId); // Cleanup timeout
+        }
+    }, [MSNExpand.show, loadedMessages.length]); // Dependencies to trigger effect
+
+    useEffect(() => {
+        setTimeout(() => {
+            setInitialLoading(true)
+        }, 5000);
+    }, [])
+
+    useEffect(() => {
+        if (initialLoading) {
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    loadMoreMessages();
+                }
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 1.0
+            });
+
+            if (topOfMessagesRef.current) {
+                observer.observe(topOfMessagesRef.current);
+            }
+
+            return () => {
+                if (topOfMessagesRef.current) {
+                    observer.unobserve(topOfMessagesRef.current);
+                }
+            };
+        }
+
+    }, [topOfMessagesRef.current, loadedMessages, initialLoading]);
+
+    function loadMoreMessages() {
+
+        const currentLength = loadedMessages.length;
+        const moreMessages = chatData.slice(Math.max(chatData.length - currentLength - 20, 0), chatData.length - currentLength);
+
+        setTimeout(() => {
+            setLoadedMessages(prevMessages => [...moreMessages, ...prevMessages]);
+        }, 1500);
     }
-  }, [ringMsn]);
 
-
-useEffect(() => {
-  if (!hasScrolledRef.current && MSNExpand.show) {
-    const timeoutId = setTimeout(() => {
-      if (loadedMessages.length > 0) {
-        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-        hasScrolledRef.current = true; // Mark as executed
-      }
-    }, 1000);
-
-    return () => clearTimeout(timeoutId); // Cleanup timeout
-  }
-}, [MSNExpand.show, loadedMessages.length]); // Dependencies to trigger effect
-
-  useEffect(() => {
-    setTimeout(() => {
-      setInitialLoading(true)
-    }, 5000);
-  },[])
-
-  useEffect(() => {
-    if(initialLoading) {
-      const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        loadMoreMessages();
-      }
-    }, {
-      root: null,
-      rootMargin: '0px',
-      threshold: 1.0
-    });
-
-    if (topOfMessagesRef.current) {
-      observer.observe(topOfMessagesRef.current);
+    function handleDragStop(event, data) {
+        const positionX = data.x;
+        const positionY = data.y;
+        setMSNExpand(prev => ({
+            ...prev,
+            x: positionX,
+            y: positionY
+        }));
     }
 
-    return () => {
-      if (topOfMessagesRef.current) {
-        observer.unobserve(topOfMessagesRef.current);
-      }
-    };
+    function handleExpandStateToggle() {
+        setMSNExpand(prevState => ({
+            ...prevState,
+            expand: !prevState.expand
+        }));
     }
-    
-  }, [topOfMessagesRef.current, loadedMessages, initialLoading]);
 
-  function loadMoreMessages() {
-
-    const currentLength = loadedMessages.length;
-    const moreMessages = chatData.slice(Math.max(chatData.length - currentLength - 20, 0), chatData.length - currentLength);
-    
-    setTimeout(() => {
-        setLoadedMessages(prevMessages => [...moreMessages, ...prevMessages]);
-    }, 1500);
-  }
-
-
-  function handleDragStop(event, data) {
-    const positionX = data.x;
-    const positionY = data.y;
-    setMSNExpand(prev => ({
-      ...prev,
-      x: positionX,
-      y: positionY
-    }));
-  }
-
-  function handleExpandStateToggle() {
-    setMSNExpand(prevState => ({
-      ...prevState,
-      expand: !prevState.expand
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
-      setMSNExpand(prevState => ({
-        ...prevState,
-        expand: !prevState.expand
-      }));
+    function handleExpandStateToggleMobile() {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            setMSNExpand(prevState => ({
+                ...prevState,
+                expand: !prevState.expand
+            }));
+        }
+        setLastTapTime(now);
     }
-    setLastTapTime(now);
-  }
 
   return (
     <>
