@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { SketchPicker } from 'react-color';
 import settingIcon from '../assets/setting.png'
 import bgPic from '../assets/bgpc.png'
+<<<<<<< Updated upstream
 import bg0 from '../assets/bg0.png'
 import bg1 from '../assets/bg1.png'
 import bg2 from '../assets/bg2.jpg'
@@ -17,6 +18,11 @@ import bg9 from '../assets/bg9.jpg'
 import bg10 from '../assets/live_grey.gif'
 import bg11 from '../assets/live_light_grey.gif'
 import bg12 from '../assets/Computer_bg.png'
+=======
+import bg0 from '../assets/ARGHousebg.gif'
+import bg1 from '../assets/bg2.png'
+import bg1 from '../assets/bg3.png'
+>>>>>>> Stashed changes
 import eff1 from '../assets/noise.png'
 import eff2 from '../assets/glitch2.jpg'
 import eff3 from '../assets/brokenTV.jpg'
@@ -103,7 +109,43 @@ function BgSetting() {
         { value: 7, label: 'Glitch Two', image: eff6},
       ];
 
+<<<<<<< Updated upstream
       useEffect(() => { // force set background and effect when app opened for color picker
+=======
+    const activeBtnStyle = {
+        bottom: '2px',
+        outline: '1px dotted black',
+        outlineOffset: '-5px',
+        borderBottomColor: '#c5c4c4',
+        zIndex: '3'
+    };
+
+    const colorOptions = [
+        {value: 1, label: 'Digital Dusk', color: '#3F4565', image: bg0, barColor: '#3F4565'},
+        {value: 2, label: 'Endless Horizon', color: '#4B6894', image: bg2, barColor: '#4B6894'},
+        {value: 3, label: 'Teal Explorer', color: '#098684', image: bg3, barColor: '#14045c'},
+        {
+            value: 13,
+            label: 'Choose your favorite color',
+            color: userPickedColor,
+            image: userPickedColor,
+            barColor: userPickedColor
+        }
+    ];
+
+
+    const effectOptions = [
+        {value: 1, label: '(None)', image: 'none'},
+        {value: 2, label: 'Noise', image: eff1},
+        {value: 3, label: 'Glitch noise', image: eff2},
+        {value: 4, label: 'Broken TV', image: eff3},
+        {value: 5, label: 'Noise 2', image: eff4},
+        {value: 6, label: 'Glitch', image: eff5},
+        {value: 7, label: 'Glitch Two', image: eff6},
+    ];
+
+    useEffect(() => { // force set background and effect when app opened for color picker
+>>>>>>> Stashed changes
         if (userPickedColor) {
           setThemeColor(userPickedColor);
           setBarcolor(userPickedColor);
