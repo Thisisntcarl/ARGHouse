@@ -6,6 +6,8 @@ import { SketchPicker } from 'react-color';
 import settingIcon from '../assets/setting.png'
 import bgPic from '../assets/bgpc.png'
 import bg0 from '../assets/ARGHousebg.gif'
+import bg1 from '../assets/bg2.png'
+import bg1 from '../assets/bg3.png'
 import eff1 from '../assets/noise.png'
 import eff2 from '../assets/glitch2.jpg'
 import eff3 from '../assets/brokenTV.jpg'
@@ -77,6 +79,9 @@ function BgSetting() {
 
     const colorOptions = [
         {value: 1, label: 'Digital Dusk', color: '#3F4565', image: bg0, barColor: '#3F4565'},
+        {value: 2, label: 'Endless Horizon', color: '#4B6894', image: bg2, barColor: '#4B6894'},
+        {value: 3, label: 'Teal Explorer', color: '#098684', image: bg3, barColor: '#14045c'},
+
         {
             value: 13,
             label: 'Choose your favorite color',
