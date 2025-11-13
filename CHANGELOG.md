@@ -20,6 +20,7 @@ Changes are relative to Yuteoctober/wins95Portfolio:main from November 2, 2025.
 - Windows logos to ARG House logos throughout
 - Moved Minesweeper, Paint, and Winamp to the desktop
 - Default resolution to 1920x1080
+- Auto-open About app instead of Patch Notes
 
 ### Removed
 
