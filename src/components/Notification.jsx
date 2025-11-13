@@ -24,7 +24,7 @@ function Notification() {
         window.addEventListener('resize', handleResize);
 
         // Show initial notification delay
-        const initialTimeout = setTimeout(() => setNotiOn(true), 6000);
+        const initialTimeout = setTimeout(() => setNotiOn(false), 6000); // Setting this to false disables the initial notification.
 
         return () => {
             window.removeEventListener('resize', handleResize);

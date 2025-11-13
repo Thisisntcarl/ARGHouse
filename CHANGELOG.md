@@ -27,5 +27,6 @@ Changes are relative to Yuteoctober/wins95Portfolio:main from November 2, 2025.
 - Tile page
 - Search bar
 - Windows wallpapers
+- Welcome notification that would pop up 6 seconds after page load
 
 [1.0.0]: https://github.com/Thisisntcarl/ARGHouse/releases/tag/v1.0.0
