@@ -303,7 +303,7 @@ function App() {
 
     useEffect(() => { // force user to update version by clearing their local storage!
         setTimeout(() => {
-            handleShow('Patch');
+            handleShow('About'); // Auto-open the About menu after 2.5 seconds.
         }, 2500);
     }, [])
 

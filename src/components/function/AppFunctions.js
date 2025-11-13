@@ -37,153 +37,142 @@ import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
 import cicadalogot from '../../assets/cicadalogot.png'
 
-
-
 // style function for bg tap
 export function StyleHide(index, tap, ObjectState) {
-  const boxshadowstyleTrue = 'inset 1px 1px #000, 1px 1px #ffffffdd';
-  const bgStyleTrue = '#dddcdc';
+    const boxshadowstyleTrue = 'inset 1px 1px #000, 1px 1px #ffffffdd';
+    const bgStyleTrue = '#dddcdc';
 
-  const boxshadowstyleFalse = 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000';
-  const bgStyleFalse = '#b3b2b2';
+    const boxshadowstyleFalse = 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000';
+    const bgStyleFalse = '#b3b2b2';
 
-  const setState = ObjectState();
+    const setState = ObjectState();
 
-  const namePassed = tap[index].split(' ').join('').toLowerCase();
+    const namePassed = tap[index].split(' ').join('').toLowerCase();
 
-  const foundItem = setState.find(item => {
-    const itemName = item.name.split(' ').join('').toLowerCase();
+    const foundItem = setState.find(item => {
+        const itemName = item.name.split(' ').join('').toLowerCase();
 
-    return itemName === namePassed
-  })
+        return itemName === namePassed
+    })
 
-  if (foundItem) {
-    return foundItem.usestate.focusItem
-      ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
-      : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };
-  }
+    if (foundItem) {
+        return foundItem.usestate.focusItem
+            ? {boxShadow: boxshadowstyleTrue, background: bgStyleTrue}
+            : {boxShadow: boxshadowstyleFalse, background: bgStyleFalse};
+    }
 
-  return {};
-
+    return {};
 }
 
 
 // Mapping image function
-export function imageMapping (name, type) { 
-  switch(name) {
+export function imageMapping(name, type) {
 
-    case 'About':
-    case 'about':
-      return About;
+    switch (name.toLowerCase()) {
 
-    case 'MyComputer':
-    case 'My Computer':
-      return MyComputer;
+        case 'about':
+            return About;
 
-    case 'Resume':
-      return Resume;
+        case 'mycomputer':
+        case 'my computer':
+            return MyComputer;
 
-    case 'Mail':
-      return Mail;
+        case 'resume':
+            return Resume;
 
-    case 'Project':
-    case 'Picture':
-    case 'Utility':
-      return Project;
+        case 'mail':
+            return Mail;
 
-      case 'Nft':
-      case 'Note':
-        return file;
-      
-    case 'Winamp':
-      return Winamp;
+        case 'project':
+        case 'picture':
+        case 'utility':
+            return Project;
 
-    case 'ResumeFile':
-      return resumefile;
+        case 'nft':
+        case 'note':
+            return file;
 
-    case 'MineSweeper':
-    case 'Mine Sweeper':
-      return MineSweeper;
+        case 'winamp':
+            return Winamp;
 
-    case 'MSN':
-      return MSN;
+        case 'resumefile':
+            return resumefile;
 
-    case 'Internet':
-    case 'WebResume':
-      return ie;
+        case 'minesweeper':
+        case 'mine sweeper':
+            return MineSweeper;
 
-    case 'Settings':
-      return settings;
+        case 'msn':
+            return MSN;
 
-    case 'Hard Disk (C:)':
-    case 'Hard Disk (D:)':
-      return disk;
+        case 'internet':
+        case 'webresume':
+            return ie;
 
-    case 'CD-ROM':
-    case 'cd-rom':
-      return rom;
+        case 'settings':
+            return settings;
 
-    case name[0] === '0':
-    case 'Photo':
-    case 'Jpeg':
-      return jpeg;
-    
-    case 'bin':
-    case 'RecycleBin':
-    case 'recyclebin':
-      return binEmp;
+        case 'hard disk (c:)':
+        case 'hard disk (d:)':
+            return disk;
 
-    case 'ResetStorage':
-      return reset;
+        case 'cd-rom':
+            return rom;
 
-    case 'Github':
-      return github;
+        case name[0] === '0':
+        case 'photo':
+        case 'jpeg':
+            return jpeg;
 
-    case "paint":
-    case "Paint":
-      return paint;
+        case 'bin':
+        case 'recycleBin':
+            return binEmp;
 
-    case "patch":
-    case "Patch":
-      return patch;
+        case 'resetstorage':
+            return reset;
 
-    case "3dObject":
-      return ThreedObject;
+        case 'github':
+            return github;
 
-    case "Fortune":
-    case "fortune":
-      return Fortune;
+        case "paint":
+            return paint;
 
-    case "Run":
-      return run;
+        case "patch":
+            return patch;
 
-    case "Exit":
-      return backarrow;
+        case "3dobject":
+            return ThreedObject;
 
-    case "TaskManager":
-    case "taskmanager":
-      return taskmanager;
+        case "fortune":
+            return Fortune;
 
-    case "NewFolder":
-    case "newfolder":
-      return Project;
+        case "run":
+            return run;
 
-    case "NotePad":
-    case "notepad":
-      return notepad
+        case "exit":
+            return backarrow;
 
-    case "CicadaDetroit":
-      return cicadalogot
+        case "taskmanager":
+            return taskmanager;
 
-    default:
-      if(type === 'folder') {
-        return Project;
-      }
-      if(type === 'notepad') {
-        return notepad;
-      }
-      return null;
-  }
+        case "newfolder":
+            return Project;
+
+        case "notepad":
+            return notepad
+
+        case "cicadadetroit":
+            return cicadalogot
+
+        default:
+            if (type === 'folder') {
+                return Project;
+            }
+            if (type === 'notepad') {
+                return notepad;
+            }
+            return null;
+    }
 }
 
 // set photo to the current photo

@@ -62,10 +62,6 @@ function AboutFolder() {
             social media, and physical spaces, every ARG we create is a living narrative designed to captivate, challenge,
             and connect you with your customers. Brands and organizations partner with us to launch unforgettable campaigns
             that user don’t just watch...they play.
-            <br/>
-            <br/>
-            Whether it’s an online treasure hunt, a brand story told through secret clues, or a digital rabbit hole that
-            leads to the heart of your message, ARGHOUSE transforms engagement into adventure.
         </>
     );
 
