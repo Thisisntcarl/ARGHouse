@@ -29,7 +29,6 @@ import reset from '../../assets/reset.png'
 import github from '../../assets/github.png'
 import paint from '../../assets/paint.png'
 import patch from '../../assets/patch.png'
-import ThreedObject from '../../assets/3dObject.png'
 import run from '../../assets/run.png'
 import backarrow from '../../assets/backarrow.png'
 import taskmanager from '../../assets/taskmanager.png'
@@ -137,9 +136,6 @@ export function imageMapping(name, type) {
 
         case "patch":
             return patch;
-
-        case "3dobject":
-            return ThreedObject;
 
         case "run":
             return run;
@@ -286,10 +282,6 @@ export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUr
       setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
     break;
 
-    case '3dObject': 
-        setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
-    break;
-
     default: break; 
   }
 }
@@ -301,10 +293,6 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
   
         case 'Note': 
         setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
-        break;
-
-        case '3dObject': 
-        setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
         break;
   
       default: break; 
@@ -318,7 +306,6 @@ export function handleDoubleClickEnterLink(name, handleshow) {
   switch(name) {
     case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
     case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
-    case '3dObject': window.open('https://yuteoctober.github.io/3d_book/', '_blank'); break;
     case 'Github': 
       handleshow('Github'); 
       break;
@@ -335,7 +322,6 @@ if (now - lastTapTime < 300) {
     case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
     case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
     case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;
-    case '3dObject': window.open('https://yuteoctober.github.io/3d_book/', '_blank'); break;
     default: break; 
   }
 }

@@ -24,7 +24,7 @@ Changes are relative to Yuteoctober/wins95Portfolio:main from November 2, 2025.
 
 ### Removed
 
-- AiAgent, Cat, Bitcoin, News, NFT, Fortune, and Store apps
+- AiAgent, Cat, Bitcoin, News, NFT, Fortune, 3d Object, and Store apps
 - Tile page
 - Search bar
 - Windows wallpapers

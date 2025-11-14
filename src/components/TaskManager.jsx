@@ -36,7 +36,7 @@ function TaskManager() {
 
     const allState = ObjectState()
 
-    const bannedItems = ['TaskManager', '3dObject']
+    const bannedItems = ['TaskManager']
 
     const activeStateAll = allState.filter(item => { // from objectState
         if (bannedItems.includes(item.name)) {
