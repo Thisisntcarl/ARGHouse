@@ -225,15 +225,6 @@
         "y": 26
     },
     {
-        "name": "WebResume",
-        "pic": "WebResume",
-        "folderId": "Resume",
-        "size": 2100,
-        "type": ".exe",
-        "x": 28,
-        "y": 28
-    },
-    {
         "name": "Cicada Detroit",
         "pic": "CicadaDetroit",
         "folderId": "Desktop",

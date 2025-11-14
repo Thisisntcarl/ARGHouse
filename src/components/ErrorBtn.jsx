@@ -41,11 +41,6 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 setContent(textResetStorage);
                 break;
 
-            case "webresume":
-                setYesNo(true);
-                setContent(textExternal);
-                break;
-
             case "cicada detroit":
                 setYesNo(true);
                 setContent(textExternal);
@@ -70,9 +65,6 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
         switch (name.toLowerCase()) {
             case "resetstorage":
                 return removeLocalStorage();
-
-            case "webresume":
-                return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
 
             case "cicada detroit":
                 return window.open('https://www.cicadadetroit.com/');
