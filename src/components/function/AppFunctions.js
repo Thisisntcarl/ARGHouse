@@ -26,11 +26,8 @@ import tenthPic from '../../assets/010.jpg'
 import eleventhPic from '../../assets/011.jpg'
 import binEmp from '../../assets/bin2.png'
 import reset from '../../assets/reset.png'
-import github from '../../assets/github.png'
 import paint from '../../assets/paint.png'
 import patch from '../../assets/patch.png'
-import ThreedObject from '../../assets/3dObject.png'
-import Fortune from '../../assets/fortune.png'
 import run from '../../assets/run.png'
 import backarrow from '../../assets/backarrow.png'
 import taskmanager from '../../assets/taskmanager.png'
@@ -88,7 +85,6 @@ export function imageMapping(name, type) {
         case 'utility':
             return Project;
 
-        case 'nft':
         case 'note':
             return file;
 
@@ -106,7 +102,6 @@ export function imageMapping(name, type) {
             return MSN;
 
         case 'internet':
-        case 'webresume':
             return ie;
 
         case 'settings':
@@ -131,20 +126,11 @@ export function imageMapping(name, type) {
         case 'resetstorage':
             return reset;
 
-        case 'github':
-            return github;
-
         case "paint":
             return paint;
 
         case "patch":
             return patch;
-
-        case "3dobject":
-            return ThreedObject;
-
-        case "fortune":
-            return Fortune;
 
         case "run":
             return run;
@@ -286,20 +272,9 @@ export function handleDoubleClickPhotoOpenMobile(name, setCurrentPhoto, lastTapT
 export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUrl) {
 
   switch(name) {
-    case 'Nft': 
-      setProjectUrl('https://opennft.netlify.app/'); 
-    break;
 
     case 'Note': 
       setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
-    break;
-
-    case '3dObject': 
-        setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
-    break;
-
-    case 'Fortune': 
-        setProjectUrl('https://yuteoctober.github.io/week_fortune/'); 
     break;
 
     default: break; 
@@ -310,20 +285,9 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
   const now = Date.now();
   if (now - lastTapTime < 300) {
     switch(name) {
-      case 'Nft': 
-        setProjectUrl('https://opennft.netlify.app/'); 
-        break;
   
         case 'Note': 
         setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
-        break;
-
-        case '3dObject': 
-        setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
-        break;
-
-        case 'Fortune': 
-        setProjectUrl('https://yuteoctober.github.io/week_fortune/'); 
         break;
   
       default: break; 
@@ -335,16 +299,9 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
 export function handleDoubleClickEnterLink(name, handleshow) {
 
   switch(name) {
-    case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
     case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
     case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
-    case '3dObject': window.open('https://yuteoctober.github.io/3d_book/', '_blank'); break;
-    case 'Fortune': window.open('https://yuteoctober.github.io/week_fortune/', '_blank'); break;
-    case 'Github': 
-      handleshow('Github'); 
-      break;
-
-    default: break; 
+    default: break;
   }
 }
 
@@ -353,12 +310,8 @@ export function handleDoubleTapEnterMobile(name, lastTapTime, setLastTapTime, se
 const now = Date.now();
 if (now - lastTapTime < 300) {
   switch(name) {
-    case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
     case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
     case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
-    case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;
-    case '3dObject': window.open('https://yuteoctober.github.io/3d_book/', '_blank'); break;
-    case 'Fortune': window.open('https://yuteoctober.github.io/week_fortune/', '_blank'); break;
     default: break; 
   }
 }

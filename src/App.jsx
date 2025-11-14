@@ -186,9 +186,6 @@ function App() {
     const [MailExpand, setMailExpand] = useState(
         {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
-    const [NftExpand, setNftExpand] = useState(
-        {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-
     const [NoteExpand, setNoteExpand] = useState(
         {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
@@ -943,7 +940,6 @@ function App() {
         isTouchDevice, setIsTouchDevice,
         ProjectExpand, setProjectExpand,
         MailExpand, setMailExpand,
-        NftExpand, setNftExpand,
         NoteExpand, setNoteExpand,
         TypeExpand, setTypeExpand,
         handleDoubleTapEnterMobile,
@@ -1416,10 +1412,7 @@ function App() {
             {name: 'Project', setter: setProjectExpand, usestate: ProjectExpand, color: 'rgba(211, 117, 0, 0.85)', size: 'small'},
             {name: 'Picture', setter: setPictureExpand, usestate: pictureExpand, color: 'rgba(85, 50, 148, 0.85)', size: 'large'},
             {name: 'Mail', setter: setMailExpand, usestate: MailExpand, color: 'rgba(178, 26, 77, 0.85)', size: 'small'},
-            {name: 'Nft', setter: setNftExpand, usestate: NftExpand, color: 'rgba(142, 29, 126, 0.85)', size: 'small'},
             {name: 'Note', setter: setNoteExpand, usestate: NoteExpand, color: 'rgba(114, 81, 54, 0.85)', size: 'small'},
-            {name: '3dObject', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small'},
-            {name: 'Fortune', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(224, 88, 43, 0.85)', size: 'small'},
             {name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand, color: 'rgba(105, 136, 145, 0.85)', size: 'small'},
             {name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small'},
             {name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand, color: 'rgba(187, 51, 48, 0.85)', size: 'small'},
@@ -1537,20 +1530,8 @@ function App() {
                 if (lowerCaseName === 'mail') clippySendemailfunction();
                 if (lowerCaseName === 'winamp') clippySongFunction();
                 if (lowerCaseName === 'msn') clippyUsernameFunction();
-                if (lowerCaseName === 'nft') {
-                    handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
-                    handleShow('Internet');
-                }
                 if (lowerCaseName === 'note') {
                     handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
-                    handleShow('Internet');
-                }
-                if (lowerCaseName === '3dobject') {
-                    handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
-                    handleShow('Internet');
-                }
-                if (lowerCaseName === 'fortune') {
-                    handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
                     handleShow('Internet');
                 }
             } else {
@@ -1566,7 +1547,7 @@ function App() {
         if (tap.includes(name)) return;
         setStartActive(false);
 
-        const notToOpenList = ['Run', 'Nft', 'Note', '3dObject', 'Fortune'];
+        const notToOpenList = ['Run', 'Note'];
         if (notToOpenList.includes(name)) return;
 
         setTap(prevTap => [...prevTap, name]);
@@ -1632,20 +1613,8 @@ function App() {
                     if (lowerCaseName === 'mail') clippySendemailfunction();
                     if (lowerCaseName === 'winamp') clippySongFunction();
                     if (lowerCaseName === 'msn') clippyUsernameFunction();
-                    if (lowerCaseName === 'nft') {
-                        handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
-                        handleShow('Internet');
-                    }
                     if (lowerCaseName === 'note') {
                         handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
-                        handleShow('Internet');
-                    }
-                    if (lowerCaseName === '3dobject') {
-                        handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
-                        handleShow('Internet');
-                    }
-                    if (lowerCaseName === 'fortune') {
-                        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
                         handleShow('Internet');
                     }
                 }
@@ -1659,7 +1628,7 @@ function App() {
             if (tap.includes(name)) return;
             setStartActive(false)
 
-            const notToOpenList = ['Run', 'Nft', 'Note', '3dObject', 'Fortune'];
+            const notToOpenList = ['Run', 'Note'];
             if (notToOpenList.includes(name)) return;
 
             setTap(prevTap => [...prevTap, name]);

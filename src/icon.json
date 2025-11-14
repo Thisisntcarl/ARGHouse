@@ -81,15 +81,6 @@
         "y": 8
     },
     {
-        "name": "Nft",
-        "pic": "Nft",
-        "folderId": "Project",
-        "size": 15,
-        "type": ".exe",
-        "x": 9,
-        "y": 9
-    },
-    {
         "name": "Note",
         "pic": "Note",
         "folderId": "Project",
@@ -234,24 +225,6 @@
         "y": 26
     },
     {
-        "name": "Github",
-        "pic": "Github",
-        "folderId": "Resume",
-        "size": 15,
-        "type": ".exe",
-        "x": 27,
-        "y": 27
-    },
-    {
-        "name": "WebResume",
-        "pic": "WebResume",
-        "folderId": "Resume",
-        "size": 2100,
-        "type": ".exe",
-        "x": 28,
-        "y": 28
-    },
-    {
         "name": "Cicada Detroit",
         "pic": "CicadaDetroit",
         "folderId": "Desktop",
@@ -304,24 +277,6 @@
         "type": ".exe",
         "x": 35,
         "y": 35
-    },
-    {
-        "name": "3dObject",
-        "pic": "3dObject",
-        "folderId": "Project",
-        "size": 1000,
-        "type": ".exe",
-        "x": 36,
-        "y": 36
-    },
-    {
-        "name": "Fortune",
-        "pic": "Fortune",
-        "folderId": "Project",
-        "size": 1900,
-        "type": ".exe",
-        "x": 37,
-        "y": 37
     },
     {
         "name": "TaskManager",
