@@ -225,15 +225,6 @@
         "y": 26
     },
     {
-        "name": "Github",
-        "pic": "Github",
-        "folderId": "Resume",
-        "size": 15,
-        "type": ".exe",
-        "x": 27,
-        "y": 27
-    },
-    {
         "name": "WebResume",
         "pic": "WebResume",
         "folderId": "Resume",

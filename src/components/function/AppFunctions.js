@@ -26,7 +26,6 @@ import tenthPic from '../../assets/010.jpg'
 import eleventhPic from '../../assets/011.jpg'
 import binEmp from '../../assets/bin2.png'
 import reset from '../../assets/reset.png'
-import github from '../../assets/github.png'
 import paint from '../../assets/paint.png'
 import patch from '../../assets/patch.png'
 import run from '../../assets/run.png'
@@ -127,9 +126,6 @@ export function imageMapping(name, type) {
 
         case 'resetstorage':
             return reset;
-
-        case 'github':
-            return github;
 
         case "paint":
             return paint;
@@ -306,11 +302,7 @@ export function handleDoubleClickEnterLink(name, handleshow) {
   switch(name) {
     case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
     case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
-    case 'Github': 
-      handleshow('Github'); 
-      break;
-
-    default: break; 
+    default: break;
   }
 }
 
@@ -321,7 +313,6 @@ if (now - lastTapTime < 300) {
   switch(name) {
     case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
     case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
-    case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;
     default: break; 
   }
 }

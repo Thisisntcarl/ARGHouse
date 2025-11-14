@@ -3,7 +3,6 @@ import UseContext from '../Context'
 import { motion, AnimatePresence } from 'framer-motion';
 import startIcon from '../assets/logoblack32x32.png';
 import run from '../assets/run.png';
-import github from '../assets/github.png';
 import linked from '../assets/linkedin.png';
 import sidebar from '../assets/sidebar95.png';
 import display from '../assets/display.png';
@@ -104,21 +103,6 @@ export default function Footer() {
             className: "sidebar_popup",
             imgSrc: sidebar,
             imgAlt: "sidebar",
-            onmouseenter: () => {
-                setResumejectStartBar(false);
-                setProjectStartBar(false);
-            },
-        },
-        {
-            className: "ghithub",
-            imgSrc: github,
-            imgAlt: "github",
-            style: {borderRadius: '5px'},
-            spanText: "Github",
-            onClick: () => {
-                handleDoubleClickEnterLink('Github', handleShow)
-                setStartActive(false)
-            },
             onmouseenter: () => {
                 setResumejectStartBar(false);
                 setProjectStartBar(false);

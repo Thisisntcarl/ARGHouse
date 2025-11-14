@@ -41,11 +41,6 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 setContent(textResetStorage);
                 break;
 
-            case "github":
-                setYesNo(true);
-                setContent(textExternal);
-                break;
-
             case "webresume":
                 setYesNo(true);
                 setContent(textExternal);
@@ -75,9 +70,6 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
         switch (name.toLowerCase()) {
             case "resetstorage":
                 return removeLocalStorage();
-
-            case "github":
-                return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
 
             case "webresume":
                 return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
