@@ -306,15 +306,6 @@
         "y": 36
     },
     {
-        "name": "Fortune",
-        "pic": "Fortune",
-        "folderId": "Project",
-        "size": 1900,
-        "type": ".exe",
-        "x": 37,
-        "y": 37
-    },
-    {
         "name": "TaskManager",
         "pic": "TaskManager",
         "folderId": "Utility",

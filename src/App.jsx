@@ -1414,7 +1414,6 @@ function App() {
             {name: 'Mail', setter: setMailExpand, usestate: MailExpand, color: 'rgba(178, 26, 77, 0.85)', size: 'small'},
             {name: 'Note', setter: setNoteExpand, usestate: NoteExpand, color: 'rgba(114, 81, 54, 0.85)', size: 'small'},
             {name: '3dObject', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small'},
-            {name: 'Fortune', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(224, 88, 43, 0.85)', size: 'small'},
             {name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand, color: 'rgba(105, 136, 145, 0.85)', size: 'small'},
             {name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small'},
             {name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand, color: 'rgba(187, 51, 48, 0.85)', size: 'small'},
@@ -1540,10 +1539,6 @@ function App() {
                     handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
                     handleShow('Internet');
                 }
-                if (lowerCaseName === 'fortune') {
-                    handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
-                    handleShow('Internet');
-                }
             } else {
                 // Set other items to not focused
                 if (item.type === 'userCreatedFolder') {
@@ -1557,7 +1552,7 @@ function App() {
         if (tap.includes(name)) return;
         setStartActive(false);
 
-        const notToOpenList = ['Run', 'Note', '3dObject', 'Fortune'];
+        const notToOpenList = ['Run', 'Note', '3dObject'];
         if (notToOpenList.includes(name)) return;
 
         setTap(prevTap => [...prevTap, name]);
@@ -1631,10 +1626,6 @@ function App() {
                         handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
                         handleShow('Internet');
                     }
-                    if (lowerCaseName === 'fortune') {
-                        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
-                        handleShow('Internet');
-                    }
                 }
                 if (item.type === 'userCreatedFolder') {
                     item.setter({focusItem: false});
@@ -1646,7 +1637,7 @@ function App() {
             if (tap.includes(name)) return;
             setStartActive(false)
 
-            const notToOpenList = ['Run', 'Note', '3dObject', 'Fortune'];
+            const notToOpenList = ['Run', 'Note', '3dObject'];
             if (notToOpenList.includes(name)) return;
 
             setTap(prevTap => [...prevTap, name]);
