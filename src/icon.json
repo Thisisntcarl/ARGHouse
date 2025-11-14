@@ -81,15 +81,6 @@
         "y": 8
     },
     {
-        "name": "Nft",
-        "pic": "Nft",
-        "folderId": "Project",
-        "size": 15,
-        "type": ".exe",
-        "x": 9,
-        "y": 9
-    },
-    {
         "name": "Note",
         "pic": "Note",
         "folderId": "Project",
